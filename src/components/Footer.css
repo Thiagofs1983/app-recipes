@@ -1,0 +1,44 @@
+:root {
+
+  --textColor: black;
+
+  --hoverTextColor: gold;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--textColor);
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.divIcons {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 20px;
+  padding: 5px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  margin-right: 5px;
+}
+
+p {
+  margin-top: 18px;
+}
+
+p:hover {
+  color: var(--hoverTextColor);
+}
