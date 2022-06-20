@@ -1,8 +1,12 @@
 import React from 'react';
+import Footer from '../components/Footer';
 
 function FavoriteRecipes() {
   return (
-    <div>FavoriteRecipes</div>
+    <div>
+      FavoriteRecipes
+      <Footer />
+    </div>
   );
 }
 
