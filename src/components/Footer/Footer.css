@@ -1,0 +1,54 @@
+:root {
+
+  --backgroundColor: rgb(58, 58, 238);
+
+  --textColor: black;
+
+  --hoverTextColor: gold;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--textColor);
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  align-items: center;
+  background-color: var(--backgroundColor);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.divIcons {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 20px;
+  padding: 5px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  height: 25px;
+  margin-right: 5px;
+  width: 25px;
+}
+
+p {
+  margin-top: 18px;
+  padding: 3px;
+}
+
+p:hover {
+  color: var(--hoverTextColor);
+}
