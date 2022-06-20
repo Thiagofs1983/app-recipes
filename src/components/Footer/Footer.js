@@ -10,20 +10,17 @@ function Footer() {
     <footer data-testid="footer">
       <div>
         <Link className="divIcons" to="/drinks">
-          <img src={ drinkIcon } alt="drinkIcon" />
-          <p data-testid="drinks-bottom-btn">Drinks</p>
+          <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="drinkIcon" />
         </Link>
       </div>
       <div>
         <Link className="divIcons" to="/explore">
-          <img src={ exploreIcon } alt="drinkIcon" />
-          <p data-testid="explore-bottom-btn">Explore</p>
+          <img data-testid="explore-bottom-btn" src={ exploreIcon } alt="drinkIcon" />
         </Link>
       </div>
       <div>
         <Link className="divIcons" to="/foods">
-          <img src={ mealIcon } alt="drinkIcon" />
-          <p data-testid="food-bottom-btn">Food</p>
+          <img data-testid="food-bottom-btn" src={ mealIcon } alt="drinkIcon" />
         </Link>
       </div>
     </footer>

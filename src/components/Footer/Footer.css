@@ -17,8 +17,12 @@
 footer {
   align-items: center;
   background-color: var(--backgroundColor);
+  bottom: 0;
   display: flex;
   justify-content: center;
+  left: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .divIcons {
