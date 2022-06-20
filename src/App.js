@@ -26,30 +26,30 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Login } />
-          <Route path="/foods" component={ Profile } />
-          <Route path="/drinks" component={ RecipeDrinks } />
-          <Route path="/foods/{id-da-receita}" component={ RecipeFoods } />
+          <Route path="/foods" component={ Foods } />
+          <Route path="/drinks" component={ Drinks } />
+          <Route path="/foods/{id-da-receita}" component={ DetailsFoods } />
           <Route path="/drinks/{id-da-receita}" component={ DetailDrinks } />
-          <Route path="/foods/{id-da-receita}/in-progress" component={ DetailsFoods } />
-          <Route path="/drinks/{id-da-receita}/in-progres" component={ DoneRecipe } />
-          <Route path="/explore" component={ Drinks } />
-          <Route path="/explore/foods" component={ Explore } />
+          <Route path="/foods/{id-da-receita}/in-progress" component={ RecipeFoods } />
+          <Route path="/drinks/{id-da-receita}/in-progres" component={ RecipeDrinks } />
+          <Route path="/explore" component={ Explore } />
+          <Route path="/explore/foods" component={ ExploreFoods } />
           <Route path="/explore/drinks" component={ ExploreDrinks } />
           <Route
             path="/explore/foods/ingredients"
-            component={ ExploreDrinksIngredient }
+            component={ ExploreFoodsIngredients }
           />
           <Route
             path="/explore/drinks/ingredients"
-            component={ ExploreFoodsIngredients }
+            component={ ExploreDrinksIngredient }
           />
           <Route
             path="/explore/foods/nationalities"
             component={ ExploreFoodsNationalities }
           />
-          <Route path="/profile" component={ FavoriteRecipes } />
-          <Route path="/done-recipes" component={ Foods } />
-          <Route path="/favorite-recipes" component={ ExploreFoods } />
+          <Route path="/profile" component={ Profile } />
+          <Route path="/done-recipes" component={ DoneRecipe } />
+          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
       </BrowserRouter>
 
