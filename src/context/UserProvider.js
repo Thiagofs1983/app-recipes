@@ -17,8 +17,14 @@ function UserProvider({ children }) {
     });
   };
 
+  const handleClick = () => {
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+  };
+
   const context = {
     handleChange,
+    handleClick,
     user,
   };
 
