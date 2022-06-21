@@ -19,20 +19,20 @@ function Header({ namePage, isEnable }) {
 
       <h1 data-testid="page-title">{ namePage }</h1>
 
-      { isEnable && (
-      <div>
-        <input
-          type="image"
-          data-testid="search-top-btn"
+      {isEnable && (
+        <div>
+          <input
+            type="image"
+            data-testid="search-top-btn"
 
-          src={ searchIcon }
-          alt="search button"
-          onClick={ () => setSearchBar(!searchBar) }
-        />
+            src={ searchIcon }
+            alt="search button"
+            onClick={ () => setSearchBar(!searchBar) }
+          />
 
-        { searchBar && <p data-testid="search-input">Mostrar Barra</p> }
-      </div>
-      ) }
+          { searchBar && <p data-testid="search-input">Mostrar Barra</p> }
+        </div>
+      )}
 
     </header>
   );
