@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
+import Header from '../components/Header';
 import RecipeCard from '../components/Cards/RecipeCard';
 
 function Foods() {
@@ -15,8 +16,6 @@ function Foods() {
     category,
     setBtnFilter,
   } = useContext(FoodDrinkContext);
-  console.log(dataFood);
-  console.log(categoryFood);
 
   const maxNumber = 12;
 
@@ -26,6 +25,7 @@ function Foods() {
 
   return (
     <div>
+      <Header namePage="Foods" />
       <div>
         <button
           type="button"

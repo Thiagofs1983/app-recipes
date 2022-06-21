@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeCard from '../components/Cards/RecipeCard';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
 function Drinks() {
@@ -25,6 +26,7 @@ function Drinks() {
 
   return (
     <div>
+      <Header namePage="Drinks" />
       <div>
         <button
           type="button"
