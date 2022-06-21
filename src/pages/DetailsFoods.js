@@ -5,12 +5,7 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 
 function DetailsFoods() {
   const { detailFood } = useContext(ProductDetailsContext);
-
-  // console.log(detailFood);
-  // const strMealThumb, strMeal = detailFood[0];
   console.log(detailFood[0].idMeal);
-  // const { strMealThumb } = detailFood[0];
-  // console.log(strMealThumb);
 
   return (
     <section>
