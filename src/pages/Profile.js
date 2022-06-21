@@ -40,7 +40,6 @@ function Profile() {
       </div>
       <Footer />
       <Header namePage="Profile" isEnable={ false } />
-    </div>
     </section>
   );
 }

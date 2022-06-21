@@ -4,7 +4,6 @@ import Header from '../components/Header';
 function FavoriteRecipes() {
   return (
     <div>
-      FavoriteRecipes
       <Header namePage="Favorite Recipes" isEnable={ false } />
     </div>
   );

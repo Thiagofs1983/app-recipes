@@ -5,7 +5,6 @@ import Header from '../components/Header';
 function Drinks() {
   return (
     <div>
-      Drinks
       <Footer />
       <Header namePage="Drinks" />
     </div>

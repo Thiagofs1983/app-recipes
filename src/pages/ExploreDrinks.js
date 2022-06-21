@@ -5,7 +5,6 @@ import Header from '../components/Header';
 function ExploreDrinks() {
   return (
     <div>
-      ExploreDrinks
       <Footer />
       <Header namePage="Explore Drinks" isEnable={ false }/>
     </div>

@@ -18,7 +18,7 @@ function Header({ namePage, isEnable }) {
       </Link>
 
       <h1 data-testid="page-title">{ namePage }</h1>
-      
+
       { isEnable && (
       <div>
         <input

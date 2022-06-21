@@ -11,7 +11,6 @@ function Foods() {
 
   return (
     <div>
-      Foods
       <Footer />
       <Header namePage="Foods"/>
     </div>
