@@ -4,8 +4,8 @@ import Footer from '../components/Footer/Footer';
 function ExploreDrinksIngredient() {
   return (
     <div>
+      <Header namePage="Explore Ingredient" isEnable={ false } />
       <Footer />
-      <Header namePage="Explore Ingredient" isEnable={ false }/>
     </div>
   );
 }

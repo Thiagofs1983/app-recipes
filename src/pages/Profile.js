@@ -9,6 +9,7 @@ function Profile() {
 
   return (
     <section>
+      <Header namePage="Profile" isEnable={ false } />
       <h1>Profile</h1>
       <p data-testid="profile-email">{ userEmail.email }</p>
       <div>
@@ -39,7 +40,6 @@ function Profile() {
         </Link>
       </div>
       <Footer />
-      <Header namePage="Profile" isEnable={ false } />
     </section>
   );
 }

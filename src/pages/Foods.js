@@ -11,8 +11,8 @@ function Foods() {
 
   return (
     <div>
+      <Header namePage="Foods" />
       <Footer />
-      <Header namePage="Foods"/>
     </div>
   );
 }

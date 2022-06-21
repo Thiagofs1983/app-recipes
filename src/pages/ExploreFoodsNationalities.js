@@ -5,8 +5,8 @@ import Header from '../components/Header';
 function ExploreFoodsNationalities() {
   return (
     <div>
-      <Footer />
       <Header namePage="Explore Nationalities" />
+      <Footer />
     </div>
   );
 }

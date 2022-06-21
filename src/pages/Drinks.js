@@ -5,8 +5,8 @@ import Header from '../components/Header';
 function Drinks() {
   return (
     <div>
-      <Footer />
       <Header namePage="Drinks" />
+      <Footer />
     </div>
   );
 }

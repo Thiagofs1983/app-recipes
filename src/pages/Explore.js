@@ -5,8 +5,8 @@ import Header from '../components/Header';
 function Explore() {
   return (
     <div>
+      <Header namePage="Explore" isEnable={ false } />
       <Footer />
-      <Header namePage="Explore" isEnable={ false }/>
     </div>
   );
 }
