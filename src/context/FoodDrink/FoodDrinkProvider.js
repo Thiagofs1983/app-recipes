@@ -7,6 +7,7 @@ const DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const CATEGORY_FOOD_API = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const CATEGORY_DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 // const FITER_FROM_CATEGORY = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+const INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 
 const NUMBER_DOZE = 12;
 const NUMBER_CINCO = 5;
@@ -14,6 +15,7 @@ const NUMBER_CINCO = 5;
 function FoodDrinkProvider({ children }) {
   const [dataFood, setDataFood] = useState([]);
   const [dataDrink, setDataDrink] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [categoryFood, setCategoryFood] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
   const [selectItemFilter, setSelectItemFilter] = useState('');
@@ -144,9 +146,24 @@ function FoodDrinkProvider({ children }) {
     }
   };
 
+  useEffect(() => {
+    const ApiIngredients = async () => {
+      try {
+        const response = await fetch(INGREDIENTS);
+        const { meals } = await response.json();
+        const ingredientsAPI = meals.filter((igredient, index) => index < NUMBER_DOZE);
+        setIngredients([...ingredientsAPI]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    ApiIngredients();
+  }, []);
+
   const contextValue = {
     dataFood,
     dataDrink,
+    ingredients,
     categoryFood,
     categoryDrink,
     handleClickFilterCategoryFood,
