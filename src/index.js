@@ -5,12 +5,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import UserProvider from './context/UserProvider';
 import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
+import ProductDetailsProvider from './context/FoodDetails/ProductDetailsProvider';
 
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
       <FoodDrinkProvider>
-        <App />
+        <ProductDetailsProvider>
+          <App />
+        </ProductDetailsProvider>
       </FoodDrinkProvider>
     </UserProvider>
   </BrowserRouter>,

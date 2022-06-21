@@ -10,8 +10,6 @@ function Foods() {
     handleClickFilterCategoryFood,
     handleClickCategoryAllFood,
   } = useContext(FoodDrinkContext);
-  console.log(dataFood);
-  console.log(categoryFood);
 
   return (
     <div>
