@@ -1,9 +1,12 @@
 import React from 'react';
+// import { useHistory } from 'react-router-dom';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 
 function DetailsDrinks() {
   // const { valorQueViraDaApi } = useContext()
+  // const history = useHistory();
+  console.log();
   return (
     <section>
       <div>
