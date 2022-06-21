@@ -4,48 +4,58 @@ import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 
 function DetailsFoods() {
-  const { detailFood } = useContext(ProductDetailsContext);
-
-  // console.log(detailFood);
-  // const strMealThumb, strMeal = detailFood[0];
-  console.log(detailFood[0].idMeal);
-  // const { strMealThumb } = detailFood[0];
-  // console.log(strMealThumb);
-
+  const { detailFood, RecomendadosDrink } = useContext(ProductDetailsContext);
   return (
     <section>
       <div>
-        {/* <img
+        <img
           data-testid="recipe-photo"
-          src={ strMealThumb }
-          alt="comida"
-        /> */}
+          src={ detailFood?.strMealThumb }
+          alt={ detailFood?.strMeal }
+        />
       </div>
       <div>
-        <h1 data-testid="recipe-title">Sonho</h1>
+        <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
         <div>
           <ButtonCompartilhar />
           <ButtonFavoritar />
         </div>
       </div>
       <div>
-        <p data-testid="recipe-category">Categoria</p>
+        <p data-testid="recipe-category">{detailFood?.strCategory}</p>
       </div>
       <div>
-        <h2>Ingredients</h2>
+        <h2 data-testid="0-ingredient-name-and-measure ">Ingredients</h2>
         <h3>
-          Virá um map do iten aqui
+          olś
         </h3>
       </div>
       <div>
         <h2>Instructions</h2>
-        <h3 data-testid="instructions">virá pelo provider</h3>
+        <h4 data-testid="instructions">{detailFood?.strInstructions}</h4>
       </div>
       <div>
         <h2>Video</h2>
-        <source
-          data-testid="video"
-        />
+        <iframe data-testid="video" src={ detailFood?.strYoutube } title="Video" />
+      </div>
+      <div>
+        <h2>Recommended</h2>
+        {
+          RecomendadosDrink.map((card) => (
+            <div key={ card.idDrink }>
+              <img src={ card.strDrinkThumb } alt={ card.strDrink } />
+              <p>{card.strCategory}</p>
+              <h3>{card.strDrink}</h3>
+            </div>
+          ))
+        }
+      </div>
+      <div>
+        <button
+          type="button"
+        >
+          Start Recipe
+        </button>
       </div>
 
     </section>
