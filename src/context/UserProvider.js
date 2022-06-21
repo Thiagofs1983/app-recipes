@@ -20,6 +20,7 @@ function UserProvider({ children }) {
   const handleClick = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify({ email: user.email }));
   };
 
   const context = {
