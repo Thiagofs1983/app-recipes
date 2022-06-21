@@ -21,9 +21,7 @@ function DetailsDrinks() {
       </div>
       <div>
         <h2>Ingredients</h2>
-        <h3
-          data-testid="${index}-ingredient-name-and-measure"
-        >
+        <h3>
           Virá um map do iten aqui
         </h3>
       </div>
