@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
@@ -37,5 +38,14 @@ function Header({ namePage, isEnable }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  namePage: PropTypes.string.isRequired,
+  isEnable: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  isEnable: true,
+};
 
 export default Header;
