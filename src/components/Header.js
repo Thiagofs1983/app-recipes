@@ -25,7 +25,6 @@ function Header({ namePage, isEnable }) {
           <input
             type="image"
             data-testid="search-top-btn"
-
             src={ searchIcon }
             alt="search button"
             onClick={ () => setSearchBar(!searchBar) }

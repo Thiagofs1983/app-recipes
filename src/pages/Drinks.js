@@ -4,7 +4,6 @@ import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
-
 function Drinks() {
   const {
     dataDrink,

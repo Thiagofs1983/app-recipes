@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
-import FoodDrinkContext from '../context/Food/FoodDrinkContext';
-import Header from '../components/Header';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
+import Header from '../components/Header';
 
 function Foods() {
   const {
