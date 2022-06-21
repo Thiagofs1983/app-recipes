@@ -5,7 +5,6 @@ import IgredientCard from '../components/Explore/IgredientCard';
 
 function ExploreFoodsIngredients() {
   const { ingredients } = useContext(FoodDrinkContext);
-  console.log(ingredients);
   return (
     <div>
       {
