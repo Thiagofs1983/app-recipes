@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
@@ -7,6 +8,7 @@ function Foods() {
     dataFood,
     categoryFood,
     handleClickFilterCategoryFood,
+    handleClickCategoryAllFood,
   } = useContext(FoodDrinkContext);
   console.log(dataFood);
   console.log(categoryFood);
@@ -14,6 +16,14 @@ function Foods() {
   return (
     <div>
       <div>
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ handleClickCategoryAllFood }
+        >
+          All
+        </button>
+
         {categoryFood.map((food) => (
           <button
             name={ food.strCategory }
@@ -28,14 +38,16 @@ function Foods() {
       </div>
       <div>
         {dataFood.map((food, index) => (
-          <div data-testid={ `${index}-recipe-card` } key={ food.strMeal }>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ food.strMealThumb }
-              alt={ food.strMeal }
-            />
-            <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-          </div>
+          <Link key={ food.strMeal } to={ `/foods/${food.idMeal}` }>
+            <div data-testid={ `${index}-recipe-card` }>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ food.strMealThumb }
+                alt={ food.strMeal }
+              />
+              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+            </div>
+          </Link>
         ))}
       </div>
       <Footer />
