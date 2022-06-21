@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import './Header.css';
 
 function Header({ namePage, isEnable }) {
   const [searchBar, setSearchBar] = useState(false);
 
   return (
-    <header>
-      <div>
+    <header className="header">
+      <div className="icons">
         <Link to="/profile">
           <img
             data-testid="profile-top-btn"
