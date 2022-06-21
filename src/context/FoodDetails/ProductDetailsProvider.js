@@ -8,6 +8,7 @@ const NUMERO_SETE = 7;
 function FoodDetailsProvider({ children }) {
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/substr
   const history = useHistory();
+
   console.log(history.location.pathname.substr(NUMERO_SETE));
   const [idUrl, setIdUrl] = useState('');
   const [detailFood, setDetailFood] = useState([]);
