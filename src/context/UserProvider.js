@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 
@@ -7,9 +8,8 @@ function UserProvider({ children }) {
     email: '',
     password: '',
   });
-
+  const history = useHistory();
   const handleChange = ({ target }) => {
-    console.log('teste', target);
     const { value, name } = target;
     setUser({
       ...user,
@@ -21,12 +21,13 @@ function UserProvider({ children }) {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email: user.email }));
+    history.push('/foods');
   };
 
   const context = {
     handleChange,
-    handleClick,
     user,
+    handleClick,
   };
 
   return (

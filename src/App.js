@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 /* import rockGlass from './images/rockGlass.svg'; */
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,42 +19,49 @@ import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import ExploreFoods from './pages/ExploreFoods';
-import UserProvider from './context/UserProvider';
 
 function App() {
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route path="/foods" component={ Profile } />
-          <Route path="/drinks" component={ RecipeDrinks } />
-          <Route path="/foods/{id-da-receita}" component={ RecipeFoods } />
-          <Route path="/drinks/{id-da-receita}" component={ DetailDrinks } />
-          <Route path="/foods/{id-da-receita}/in-progress" component={ DetailsFoods } />
-          <Route path="/drinks/{id-da-receita}/in-progres" component={ DoneRecipe } />
-          <Route path="/explore" component={ Drinks } />
-          <Route path="/explore/foods" component={ Explore } />
-          <Route path="/explore/drinks" component={ ExploreDrinks } />
-          <Route
-            path="/explore/foods/ingredients"
-            component={ ExploreDrinksIngredient }
-          />
-          <Route
-            path="/explore/drinks/ingredients"
-            component={ ExploreFoodsIngredients }
-          />
-          <Route
-            path="/explore/foods/nationalities"
-            component={ ExploreFoodsNationalities }
-          />
-          <Route path="/profile" component={ FavoriteRecipes } />
-          <Route path="/done-recipes" component={ Foods } />
-          <Route path="/favorite-recipes" component={ ExploreFoods } />
-        </Switch>
-      </BrowserRouter>
-
-      {/* <div className="meals">
+    <div>
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route exact path="/foods" component={ Foods } />
+        <Route exact path="/drinks" component={ Drinks } />
+        <Route exact path="/foods/{id-da-receita}" component={ DetailsFoods } />
+        <Route exact path="/drinks/{id-da-receita}" component={ DetailDrinks } />
+        <Route
+          exact
+          path="/foods/{id-da-receita}/in-progress"
+          component={ RecipeFoods }
+        />
+        <Route
+          exact
+          path="/drinks/{id-da-receita}/in-progres"
+          component={ RecipeDrinks }
+        />
+        <Route exact path="/explore" component={ Explore } />
+        <Route exact path="/explore/foods" component={ ExploreFoods } />
+        <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+        <Route
+          exact
+          path="/explore/foods/ingredients"
+          component={ ExploreFoodsIngredients }
+        />
+        <Route
+          exact
+          path="/explore/drinks/ingredients"
+          component={ ExploreDrinksIngredient }
+        />
+        <Route
+          exact
+          path="/explore/foods/nationalities"
+          component={ ExploreFoodsNationalities }
+        />
+        <Route exact path="/profile" component={ Profile } />
+        <Route exact path="/done-recipes" component={ DoneRecipe } />
+        <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+      </Switch>
+      { /* <div className="meals">
         <span className="logo">TRYbE</span>
         <object
           className="rocksGlass"
@@ -63,9 +70,8 @@ function App() {
         >
           Glass
         </object>
-      </div> */}
-    </UserProvider>
-
+      </div> */ }
+    </div>
   );
 }
 
