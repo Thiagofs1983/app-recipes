@@ -12,11 +12,15 @@ function Header({ namePage, isEnable }) {
     <header className="header">
       <div className="icons">
         <Link to="/profile">
-          <img
+          <button
+            type="button"
             data-testid="profile-top-btn"
-            src={ profileIcon }
-            alt="profile button"
-          />
+          >
+            <img
+              src={ profileIcon }
+              alt="profile button"
+            />
+          </button>
         </Link>
 
         <h1 data-testid="page-title">{ namePage }</h1>
@@ -32,7 +36,7 @@ function Header({ namePage, isEnable }) {
               data-testid="search-top-btn"
             />
           </button>
-        ) }
+        )}
       </div>
 
       { searchBar && (
