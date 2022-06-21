@@ -10,6 +10,14 @@ function ExploreDrinks() {
     history.push('/explore/drinks/ingredients');
   };
 
+  const clickExploreDrinksSurprise = async () => {
+    const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+    const response = await fetch(url);
+    const { drinks } = await response.json();
+    const id = drinks[0].idDrink;
+    history.push(`/drinks/${id}`);
+  };
+
   return (
     <div>
       <ButtonExplore
@@ -20,6 +28,7 @@ function ExploreDrinks() {
       <ButtonExplore
         testId="explore-surprise"
         buttonText="Surprise me!"
+        handleClick={ clickExploreDrinksSurprise }
       />
       <Footer />
     </div>
