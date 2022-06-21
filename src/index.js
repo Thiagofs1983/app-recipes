@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import UserProvider from './context/UserProvider';
-import FoodDrinkProvider from './context/Food/FoodDrinkProvider';
+import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
 
 ReactDOM.render(
   <BrowserRouter>
