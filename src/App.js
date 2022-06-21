@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-/* import rockGlass from './images/rockGlass.svg'; */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -22,7 +21,6 @@ import ExploreFoods from './pages/ExploreFoods';
 
 function App() {
   return (
-    <div>
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />
@@ -61,17 +59,6 @@ function App() {
         <Route exact path="/done-recipes" component={ DoneRecipe } />
         <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       </Switch>
-      { /* <div className="meals">
-        <span className="logo">TRYbE</span>
-        <object
-          className="rocksGlass"
-          type="image/svg+xml"
-          data={ rockGlass }
-        >
-          Glass
-        </object>
-      </div> */ }
-    </div>
   );
 }
 

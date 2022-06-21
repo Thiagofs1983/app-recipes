@@ -5,11 +5,14 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import UserProvider from './context/UserProvider';
+import FoodDrinkProvider from './context/Food/FoodDrinkProvider';
 
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
-      <App />
+      <FoodDrinkProvider>
+        <App />
+      </FoodDrinkProvider>
     </UserProvider>
   </BrowserRouter>,
   document.getElementById('root'),
