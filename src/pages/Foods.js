@@ -12,7 +12,7 @@ function Foods() {
     <div>
       Foods
       <Footer />
-      <Header />
+      <Header namePage="Foods"/>
     </div>
   );
 }

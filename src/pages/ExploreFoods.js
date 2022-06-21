@@ -7,7 +7,7 @@ function ExploreFoods() {
     <div>
       ExploreFoods
       <Footer />
-      <Header />
+      <Header namePage="Explore Foods" isEnable={ false }/>
     </div>
   );
 }

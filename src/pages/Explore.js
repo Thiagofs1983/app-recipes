@@ -7,7 +7,7 @@ function Explore() {
     <div>
       Explore
       <Footer />
-      <Header />
+      <Header namePage="Explore" isEnable={ false }/>
     </div>
   );
 }

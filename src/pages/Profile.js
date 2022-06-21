@@ -7,7 +7,7 @@ function Profile() {
     <div>
       Profile
       <Footer />
-      <Header />
+      <Header namePage="Profile" isEnable={ false } />
     </div>
   );
 }

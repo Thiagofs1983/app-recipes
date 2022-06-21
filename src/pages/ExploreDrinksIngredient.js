@@ -6,6 +6,7 @@ function ExploreDrinksIngredient() {
     <div>
       ExploreDrinksIngredient
       <Footer />
+      <Header namePage="Explore Ingredient" isEnable={ false }/>
     </div>
   );
 }

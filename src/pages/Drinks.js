@@ -7,7 +7,7 @@ function Drinks() {
     <div>
       Drinks
       <Footer />
-      <Header />
+      <Header namePage="Drinks" />
     </div>
   );
 }
