@@ -81,9 +81,9 @@ function FoodDetailsProvider({ children }) {
   const context = {
     detailFood,
     detailDrink,
+    detailApiFoodId,
     recommendedFood,
     RecomendadosDrink,
-    detailApiFoodId,
     detailApiDrinkId,
     idUrl,
   };

@@ -17,12 +17,13 @@ function Foods() {
     category,
     setBtnFilter,
   } = useContext(FoodDrinkContext);
+  console.log(dataFood);
 
   const maxNumber = 12;
 
   useEffect(() => {
     setBtnFilter(false);
-  }, [setBtnFilter]);
+  }, []);
   const { detailApiFoodId } = useContext(ProductDetailsContext);
 
   return (

@@ -4,13 +4,16 @@ import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
 
 function Profile() {
-  const userProfile = localStorage.getItem('user');
+  const userProfile = localStorage.getItem('user') !== null ? localStorage
+    .getItem('user') : '';
   const userEmail = JSON.parse(userProfile);
+  console.log(userEmail.email);
 
   return (
     <section>
-      <Header namePage="Profile" isEnable={ false } />
-      <h1>Profile</h1>
+      <div>
+        <Header namePage="Profile" isEnable={ false } />
+      </div>
       <p data-testid="profile-email">{ userEmail.email }</p>
       <div>
         <Link to="/done-recipes">
