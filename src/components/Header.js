@@ -14,11 +14,11 @@ function Header({ namePage, isEnable }) {
         <Link to="/profile">
           <button
             type="button"
-            data-testid="profile-top-btn"
           >
             <img
               src={ profileIcon }
               alt="profile button"
+              data-testid="profile-top-btn"
             />
           </button>
         </Link>
