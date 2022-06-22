@@ -39,18 +39,7 @@ function Header({ namePage, isEnable }) {
           </button>
         )}
       </div>
-
-      { searchBar && (
-        <div>
-          <input
-            type="text"
-            data-testid="search-input"
-          />
-
-          { searchBar && <SearchBar /> }
-        </div>
-      ) }
-
+      { searchBar && <SearchBar /> }
     </header>
   );
 }

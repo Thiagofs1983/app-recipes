@@ -24,7 +24,7 @@ function Drinks() {
 
   useEffect(() => {
     setBtnFilter(false);
-  }, [setBtnFilter]);
+  }, []);
 
   return (
     <div>

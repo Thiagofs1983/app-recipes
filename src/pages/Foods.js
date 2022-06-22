@@ -23,7 +23,7 @@ function Foods() {
 
   useEffect(() => {
     setBtnFilter(false);
-  }, [setBtnFilter]);
+  }, []);
   const { detailApiFoodId } = useContext(ProductDetailsContext);
 
   return (
