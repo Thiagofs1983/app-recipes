@@ -20,18 +20,18 @@ function FoodDetailsProvider({ children }) {
   const [recommendedFood, setRecommendedFood] = useState([]);
   console.log(idUrlDrink, idUrlFood);
 
-  useEffect(() => {
-    const detailApiFoodId = async () => {
-      try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idUrlFood}`);
-        const dataApi = await response.json();
-        setDetailFood(dataApi.meals[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    detailApiFoodId();
-  }, [idUrlFood]);
+  const detailApiFoodId = async (idfood) => {
+    console.log('olá');
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idfood}`);
+      const { meals } = await response.json();
+      console.log(meals[0]);
+      setDetailFood(meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    history.push(`/foods/${idfood}`);
+  };
 
   useEffect(() => {
     setIdUrlFood(history.location.pathname.substr(NUMERO_SETE));
@@ -88,6 +88,7 @@ function FoodDetailsProvider({ children }) {
   const context = {
     detailFood,
     detailDrink,
+    detailApiFoodId,
     recommendedFood,
     RecomendadosDrink,
   };
