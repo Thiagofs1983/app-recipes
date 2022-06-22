@@ -33,6 +33,7 @@ function FoodDetailsProvider({ children }) {
   }, [history.location.pathname]);
 
   const detailApiDrinkId = async (idDrink) => {
+    console.log(idDrink);
     history.push(`/drinks/${idDrink}`);
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`);

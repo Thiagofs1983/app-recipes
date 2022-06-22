@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeCard from '../components/Cards/RecipeCard';
 import Footer from '../components/Footer/Footer';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 

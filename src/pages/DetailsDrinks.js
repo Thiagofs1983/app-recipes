@@ -66,7 +66,7 @@ function DetailsDrinks() {
         <h2>Instructions</h2>
         <h3 data-testid="instructions">{detailDrink?.strInstructions}</h3>
       </div>
-      <div className="scrollmenu">
+      <div className="horizontal-scroll-wrapper">
         <h6>Recommended</h6>
         {
           recommendedFood.map((food, index) => (
@@ -75,13 +75,17 @@ function DetailsDrinks() {
               className="divDrinks"
               key={ index }
             >
-              <img src={ food.strMealThumb } alt={ food.strMeal } />
-              <p>{food.strCategory}</p>
-              <h5
+              <img
+                data-testid="recipe-photo"
+                src={ food.strMealThumb }
+                alt={ food.strMeal }
+              />
+              <p data-testid="recipe-category">{food.strCategory}</p>
+              <h3
                 data-testid={ `${index}-recomendation-title` }
               >
                 {food.strMeal}
-              </h5>
+              </h3>
             </div>))
         }
       </div>

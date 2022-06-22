@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 import Footer from '../components/Footer/Footer';
 import IgredientCard from '../components/Explore/IgredientCard';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 function ExploreFoodsIngredients() {
   const { ingredients, clickMealsIngredient } = useContext(FoodDrinkContext);
