@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.scrollmenu {
+  display: block;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.buttonStart {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  height: 100px;
+  left: 35%;
+  position: fixed;
+  top: 90%;
+  width: 100px;
+}
+
+.divDrinks {
+  background-color: #333;
+  border: 1px solid white;
+  display: inline-block;
+  height: 180px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  width: 50%;
+}
+
+img {
+  height: 80px;
+  width: 80px;
+}
+
+p, h5 {
+  border: 1px solid red;
+  font-size: medium;
+  text-align: center;
+}
+
+h6 {
+  font-size: large;
+  text-align: center;
+}
