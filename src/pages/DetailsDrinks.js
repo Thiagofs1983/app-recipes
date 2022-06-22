@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
@@ -6,7 +6,30 @@ import './Details.css';
 
 function DetailsDrinks() {
   const { detailDrink, recommendedFood } = useContext(ProductDetailsContext);
+  const [ingredientesData, setingredientesData] = useState([]);
+  const [measure, setMeasures] = useState([]);
   console.log(detailDrink);
+
+  useEffect(() => {
+    const ingredientes = [];
+    setingredientesData(ingredientes);
+    console.log(Object.entries(detailDrink));
+    Object.entries(detailDrink).forEach(([key, value]) => {
+      if (key.includes('strIngredient') && value !== '' && value !== null) {
+        ingredientes.push(value);
+      }
+    });
+  }, [detailDrink]);
+
+  useEffect(() => {
+    const quantidades = [];
+    setMeasures(quantidades);
+    Object.entries(detailDrink).forEach(([key, value]) => {
+      if (key.includes('strMeasure') && value !== '' && value !== null) {
+        quantidades.push(value);
+      }
+    });
+  }, [detailDrink]);
 
   return (
     <section>
@@ -33,9 +56,11 @@ function DetailsDrinks() {
         >
           Ingredients
         </h2>
-        {/* {
-          detailDrink.map((drinks) => )
-        } */}
+        { ingredientesData.map((ingredients, index) => (
+          <p key={ index }>
+            {`- ${ingredients} - ${measure[index]}`}
+          </p>
+        ))}
       </div>
       <div>
         <h2>Instructions</h2>
@@ -61,6 +86,7 @@ function DetailsDrinks() {
         }
       </div>
       <button
+        className="button1"
         data-testid="start-recipe-btn"
         type="button"
       >
