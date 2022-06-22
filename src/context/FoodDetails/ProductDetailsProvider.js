@@ -7,7 +7,6 @@ const NUMERO_SEIS = 6;
 const RECOMENDACAO_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 function FoodDetailsProvider({ children }) {
-  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/substr
   const history = useHistory();
 
   const [RecomendadosDrink, setRecommendadosDrink] = useState([]);
@@ -17,6 +16,7 @@ function FoodDetailsProvider({ children }) {
   const [recommendedFood, setRecommendedFood] = useState([]);
 
   const detailApiFoodId = async (idfood) => {
+    console.log('idurl', idUrl, 'idApi', idfood);
     history.push(`/foods/${idfood}`);
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idfood}`);

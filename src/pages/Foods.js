@@ -17,7 +17,6 @@ function Foods() {
     category,
     setBtnFilter,
   } = useContext(FoodDrinkContext);
-  console.log(dataFood);
 
   const maxNumber = 12;
 
@@ -56,15 +55,18 @@ function Foods() {
         {dataFood.length > 0 && btnFilter === false
         && dataFood
           .map((food, index) => (
-            <Link key={ food.strMeal } to={ `/foods/${food.idMeal}` }>
-              <div data-testid={ `${index}-recipe-card` }>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ food.strMealThumb }
-                  alt={ food.strMeal }
-                />
-                <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-              </div>
+            <Link
+              key={ food.strMeal }
+              data-testid={ `${index}-recipe-card` }
+              to={ `/foods/${food.idMeal}` }
+              onClick={ () => detailApiFoodId(food.idMeal) }
+            >
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ food.strMealThumb }
+                alt={ food.strMeal }
+              />
+              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
             </Link>
           ))}
       </div>
@@ -72,22 +74,13 @@ function Foods() {
         { category === 'foods' && btnFilter === true
         && listRecipes.slice(0, maxNumber)
           .map((food, index) => (
-            <div
-              key={ food.strMeal }
-              onClick={ () => detailApiFoodId(food.idMeal) }
-              onKeyPress={ () => {} }
-              role="menuitem"
-              tabIndex="0"
-              data-testid={ `${index}-recipe-card` }
-            >
-              <RecipeCard />
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ food.strMealThumb }
-                alt={ food.strMeal }
+            <Link key={ food.idMeal } to={ `/foods/${food.idMeal}` }>
+              <RecipeCard
+                image={ food.strMealThumb }
+                name={ food.strMeal }
+                index={ index }
               />
-              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-            </div>
+            </Link>
           )) }
       </div>
       <Footer />
