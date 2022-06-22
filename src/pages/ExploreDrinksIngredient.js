@@ -8,7 +8,7 @@ function ExploreDrinksIngredient() {
   const { drinksIngredients, clickDrinkIngredient } = useContext(FoodDrinkContext);
   return (
     <div>
-      <Header namePage="Explore Ingredient" isEnable={ false } />
+      <Header namePage="Explore Ingredients" isEnable={ false } />
       {
         drinksIngredients.map((ingredient, index) => (
           <IgredientCard
