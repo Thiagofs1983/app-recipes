@@ -67,7 +67,7 @@ function DetailsFoods() {
         <h2>Video</h2>
         <iframe data-testid="video" src={ detailFood?.strYoutube } title="Video" />
       </div>
-      <div className="scrollmenu">
+      <div className="horizontal-scroll-wrapper">
         <h6>Recommended</h6>
         {
           RecomendadosDrink.map((card, index) => (

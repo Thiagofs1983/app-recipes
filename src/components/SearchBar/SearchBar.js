@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import searchApi from '../services/searchApi';
-import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
+import searchApi from '../../services/searchApi';
+import FoodDrinkContext from '../../context/FoodDrink/FoodDrinkContext';
 
 function SearchBar() {
   const history = useHistory();
