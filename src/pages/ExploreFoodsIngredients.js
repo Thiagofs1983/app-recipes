@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 import Footer from '../components/Footer/Footer';
 import IgredientCard from '../components/Explore/IgredientCard';
+import Header from '../components/Header';
 
 function ExploreFoodsIngredients() {
   const { ingredients, clickMealsIngredient } = useContext(FoodDrinkContext);
   return (
     <div>
+      <Header namePage="Explore Ingredients" isEnable={ false } />
       {
         ingredients.map((ingredient, index) => (
           <IgredientCard

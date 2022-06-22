@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
 
 function Profile() {
   const userProfile = localStorage.getItem('user');
@@ -8,6 +9,7 @@ function Profile() {
 
   return (
     <section>
+      <Header namePage="Profile" isEnable={ false } />
       <h1>Profile</h1>
       <p data-testid="profile-email">{ userEmail.email }</p>
       <div>

@@ -23,6 +23,11 @@ function FoodDrinkProvider({ children }) {
   const [categoryDrink, setCategoryDrink] = useState([]);
   const [selectItemFilter, setSelectItemFilter] = useState('');
   const [drinksIngredients, setDrinksIngredients] = useState([]);
+  const [checkbox, setCheckbox] = useState('');
+  const [input, setInput] = useState('');
+  const [listRecipes, setListRecipes] = useState([]);
+  const [category, setCategory] = useState('');
+  const [btnFilter, setBtnFilter] = useState(false);
 
   useEffect(() => {
     const apiFood = async () => {
@@ -209,6 +214,8 @@ function FoodDrinkProvider({ children }) {
   };
 
   const contextValue = {
+    input,
+    checkbox,
     dataFood,
     dataDrink,
     ingredients,
@@ -217,10 +224,18 @@ function FoodDrinkProvider({ children }) {
     drinksIngredients,
     clickMealsIngredient,
     clickDrinkIngredient,
+    category,
+    listRecipes,
+    btnFilter,
     handleClickFilterCategoryFood,
     handleClickFilterCategoryDrink,
     handleClickCategoryAllDrink,
     handleClickCategoryAllFood,
+    setInput,
+    setCheckbox,
+    setListRecipes,
+    setCategory,
+    setBtnFilter,
   };
 
   return (
@@ -229,9 +244,7 @@ function FoodDrinkProvider({ children }) {
     </FoodDrinkContext.Provider>
   );
 }
-
 FoodDrinkProvider.propTypes = {
   children: propTypes.node.isRequired,
 };
-
 export default FoodDrinkProvider;

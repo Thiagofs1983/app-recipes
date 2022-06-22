@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
 import ButtonExplore from '../components/Explore/Button';
 
 function Explore() {
@@ -13,6 +14,7 @@ function Explore() {
   };
   return (
     <div>
+      <Header namePage="Explore" isEnable={ false } />
       <ButtonExplore
         buttonText="Explore Foods"
         testId="explore-foods"
