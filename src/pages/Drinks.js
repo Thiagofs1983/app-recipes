@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RecipeCard from '../components/Cards/RecipeCard';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
+import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
 function Drinks() {
@@ -16,13 +17,14 @@ function Drinks() {
     category,
     setBtnFilter,
   } = useContext(FoodDrinkContext);
-  console.log(dataDrink);
+
+  const { detailApiDrinkId } = useContext(ProductDetailsContext);
 
   const maxNumber = 12;
 
   useEffect(() => {
     setBtnFilter(false);
-  }, []);
+  }, [setBtnFilter]);
 
   return (
     <div>
@@ -52,17 +54,21 @@ function Drinks() {
       <div>
         {dataDrink.length > 0 && btnFilter === false
         && dataDrink.map((drink, index) => (
-          <Link key={ drink.strDrink } to={ `/drinks/${drink.idDrink}` }>
-            <div data-testid={ `${index}-recipe-card` }>
-
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ drink.strDrinkThumb }
-                alt={ drink.strDrink }
-              />
-              <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
-            </div>
-          </Link>
+          <div
+            key={ drink.strDrink }
+            onClick={ () => detailApiDrinkId(drink.idDrink) }
+            onKeyPress={ () => {} }
+            role="menuitem"
+            tabIndex={ index }
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ drink.strDrinkThumb }
+              alt={ drink.strDrink }
+            />
+            <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+          </div>
         ))}
       </div>
       <div>

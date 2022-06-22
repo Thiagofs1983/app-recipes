@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
+import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 import Header from '../components/Header';
 import RecipeCard from '../components/Cards/RecipeCard';
@@ -21,7 +22,8 @@ function Foods() {
 
   useEffect(() => {
     setBtnFilter(false);
-  }, []);
+  }, [setBtnFilter]);
+  const { detailApiFoodId } = useContext(ProductDetailsContext);
 
   return (
     <div>
@@ -68,14 +70,23 @@ function Foods() {
       <div>
         { category === 'foods' && btnFilter === true
         && listRecipes.slice(0, maxNumber)
-          .map((foods, index) => (
-            <Link key={ foods.idMeal } to={ `/foods/${foods.idMeal}` }>
-              <RecipeCard
-                image={ foods.strMealThumb }
-                name={ foods.strMeal }
-                index={ index }
+          .map((food, index) => (
+            <div
+              key={ food.strMeal }
+              onClick={ () => detailApiFoodId(food.idMeal) }
+              onKeyPress={ () => {} }
+              role="menuitem"
+              tabIndex="0"
+              data-testid={ `${index}-recipe-card` }
+            >
+              <RecipeCard />
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ food.strMealThumb }
+                alt={ food.strMeal }
               />
-            </Link>
+              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+            </div>
           )) }
       </div>
       <Footer />
