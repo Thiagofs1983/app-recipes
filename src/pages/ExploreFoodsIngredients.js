@@ -4,7 +4,7 @@ import Footer from '../components/Footer/Footer';
 import IgredientCard from '../components/Explore/IgredientCard';
 
 function ExploreFoodsIngredients() {
-  const { ingredients } = useContext(FoodDrinkContext);
+  const { ingredients, clickMealsIngredient } = useContext(FoodDrinkContext);
   return (
     <div>
       {
@@ -16,6 +16,7 @@ function ExploreFoodsIngredients() {
             testId={ `${index}-ingredient-card` }
             testImage={ `${index}-card-img` }
             testName={ `${index}-card-name` }
+            handleClick={ () => clickMealsIngredient(ingredient.strIngredient) }
           />
         ))
       }

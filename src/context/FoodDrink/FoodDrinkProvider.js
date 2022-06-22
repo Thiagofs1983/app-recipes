@@ -195,6 +195,19 @@ function FoodDrinkProvider({ children }) {
     history.push('/drinks');
   };
 
+  const clickMealsIngredient = async (name) => {
+    const MEALS_PER_INGREDIENT = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${name}`;
+    try {
+      const response = await fetch(MEALS_PER_INGREDIENT);
+      const { meals } = await response.json();
+      const mealsPerIngredients = meals.filter((drink, index) => index < NUMBER_DOZE);
+      setDataFood([...mealsPerIngredients]);
+    } catch (e) {
+      console.log(e);
+    }
+    history.push('/foods');
+  };
+
   const contextValue = {
     dataFood,
     dataDrink,
@@ -202,6 +215,7 @@ function FoodDrinkProvider({ children }) {
     categoryFood,
     categoryDrink,
     drinksIngredients,
+    clickMealsIngredient,
     clickDrinkIngredient,
     handleClickFilterCategoryFood,
     handleClickFilterCategoryDrink,
