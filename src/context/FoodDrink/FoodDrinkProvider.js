@@ -17,6 +17,11 @@ function FoodDrinkProvider({ children }) {
   const [categoryFood, setCategoryFood] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
   const [selectItemFilter, setSelectItemFilter] = useState('');
+  const [checkbox, setCheckbox] = useState('');
+  const [input, setInput] = useState('');
+  const [listRecipes, setListRecipes] = useState([]);
+  const [category, setCategory] = useState('');
+  const [btnFilter, setBtnFilter] = useState(false);
 
   useEffect(() => {
     const apiFood = async () => {
@@ -145,14 +150,24 @@ function FoodDrinkProvider({ children }) {
   };
 
   const contextValue = {
+    input,
+    checkbox,
     dataFood,
     dataDrink,
+    category,
+    listRecipes,
     categoryFood,
     categoryDrink,
+    btnFilter,
     handleClickFilterCategoryFood,
     handleClickFilterCategoryDrink,
     handleClickCategoryAllDrink,
     handleClickCategoryAllFood,
+    setInput,
+    setCheckbox,
+    setListRecipes,
+    setCategory,
+    setBtnFilter,
   };
 
   return (

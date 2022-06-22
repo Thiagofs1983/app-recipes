@@ -1,5 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import RecipeCard from '../components/Cards/RecipeCard';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
@@ -9,12 +12,23 @@ function Drinks() {
     categoryDrink,
     handleClickFilterCategoryDrink,
     handleClickCategoryAllDrink,
+    listRecipes,
+    btnFilter,
+    category,
+    setBtnFilter,
   } = useContext(FoodDrinkContext);
 
   const { detailApiDrinkId } = useContext(ProductDetailsContext);
 
+  const maxNumber = 12;
+
+  useEffect(() => {
+    setBtnFilter(false);
+  }, [setBtnFilter]);
+
   return (
     <div>
+      <Header namePage="Drinks" />
       <div>
         <button
           type="button"
@@ -24,7 +38,8 @@ function Drinks() {
           All
         </button>
 
-        {categoryDrink.map((drink) => (
+        {categoryDrink.length > 0 && btnFilter === false
+        && categoryDrink.map((drink) => (
           <button
             name={ drink.strCategory }
             key={ drink.strCategory }
@@ -37,7 +52,8 @@ function Drinks() {
         ))}
       </div>
       <div>
-        {dataDrink.map((drink, index) => (
+        {dataDrink.length > 0 && btnFilter === false
+        && dataDrink.map((drink, index) => (
           <div
             key={ drink.strDrink }
             onClick={ () => detailApiDrinkId(drink.idDrink) }
@@ -54,6 +70,19 @@ function Drinks() {
             <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
           </div>
         ))}
+      </div>
+      <div>
+        { category === 'drinks' && btnFilter === true
+        && listRecipes.slice(0, maxNumber)
+          .map((drinks, index) => (
+            <Link key={ drinks.idDrink } to={ `/drinks/${drinks.idDrink}` }>
+              <RecipeCard
+                image={ drinks.strDrinkThumb }
+                name={ drinks.strDrink }
+                index={ index }
+              />
+            </Link>
+          )) }
       </div>
       <Footer />
     </div>
