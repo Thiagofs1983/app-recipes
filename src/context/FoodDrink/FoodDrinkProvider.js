@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 import FoodDrinkContext from './FoodDrinkContext';
 
@@ -14,6 +15,7 @@ const NUMBER_DOZE = 12;
 const NUMBER_CINCO = 5;
 
 function FoodDrinkProvider({ children }) {
+  const history = useHistory();
   const [dataFood, setDataFood] = useState([]);
   const [dataDrink, setDataDrink] = useState([]);
   const [ingredients, setIngredients] = useState([]);
@@ -180,6 +182,19 @@ function FoodDrinkProvider({ children }) {
     ApiDrinksIngredients();
   }, []);
 
+  const clickDrinkIngredient = async (name) => {
+    const DRINKS_PER_INGREDIENT = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${name}`;
+    try {
+      const response = await fetch(DRINKS_PER_INGREDIENT);
+      const { drinks } = await response.json();
+      const drinksPerIngredients = drinks.filter((drink, index) => index < NUMBER_DOZE);
+      setDataDrink([...drinksPerIngredients]);
+    } catch (e) {
+      console.log(e);
+    }
+    history.push('/drinks');
+  };
+
   const contextValue = {
     dataFood,
     dataDrink,
@@ -187,6 +202,7 @@ function FoodDrinkProvider({ children }) {
     categoryFood,
     categoryDrink,
     drinksIngredients,
+    clickDrinkIngredient,
     handleClickFilterCategoryFood,
     handleClickFilterCategoryDrink,
     handleClickCategoryAllDrink,
