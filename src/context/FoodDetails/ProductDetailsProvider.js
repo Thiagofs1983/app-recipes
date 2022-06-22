@@ -3,56 +3,49 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ProductDetailsContext from './ProductDetailsContext';
 
-const NUMERO_SETE = 7;
 const NUMERO_SEIS = 6;
 const RECOMENDACAO_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-const NUMERO_OITO = 8;
 
 function FoodDetailsProvider({ children }) {
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/substr
   const history = useHistory();
 
   const [RecomendadosDrink, setRecommendadosDrink] = useState([]);
-  const [idUrlFood, setIdUrlFood] = useState('');
-  const [detailFood, setDetailFood] = useState([]);
-  const [idUrlDrink, setIdUrlDrink] = useState('');
-  const [detailDrink, setDetailDrink] = useState([]);
+  const [idUrl, setIdUrl] = useState('');
+  const [detailFood, setDetailFood] = useState({});
+  const [detailDrink, setDetailDrink] = useState({});
   const [recommendedFood, setRecommendedFood] = useState([]);
-  console.log(idUrlDrink, idUrlFood);
+
+  const detailApiFoodId = async (idfood) => {
+    history.push(`/foods/${idfood}`);
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idfood}`);
+      const { meals } = await response.json();
+      console.log(meals[0]);
+      setDetailFood(meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const detailApiFoodId = async () => {
-      try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idUrlFood}`);
-        const dataApi = await response.json();
-        setDetailFood(dataApi.meals[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    detailApiFoodId();
-  }, [idUrlFood]);
-
-  useEffect(() => {
-    setIdUrlFood(history.location.pathname.substr(NUMERO_SETE));
+    setIdUrl(history.location.pathname.split('/')[2]);
   }, [history.location.pathname]);
 
-  useEffect(() => {
-    const detailApiDrinkId = async () => {
-      try {
-        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idUrlDrink}`);
-        const dataApi = await response.json();
-        setDetailDrink(dataApi.drinks[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    detailApiDrinkId();
-  }, [idUrlDrink]);
-  console.log(detailDrink);
+  const detailApiDrinkId = async (idDrink) => {
+    history.push(`/drinks/${idDrink}`);
+    try {
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`);
+      const { drinks } = await response.json();
+      console.log(drinks[0]);
+      setDetailDrink(drinks[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    setIdUrlDrink(history.location.pathname.substr(NUMERO_OITO));
+    setIdUrl(history.location.pathname.split('/')[2]);
   }, [history.location.pathname]);
 
   useEffect(() => {
@@ -90,6 +83,9 @@ function FoodDetailsProvider({ children }) {
     detailDrink,
     recommendedFood,
     RecomendadosDrink,
+    detailApiFoodId,
+    detailApiDrinkId,
+    idUrl,
   };
 
   return (
