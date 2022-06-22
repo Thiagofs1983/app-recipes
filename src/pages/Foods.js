@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
+import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 
 function Foods() {
@@ -10,6 +10,8 @@ function Foods() {
     handleClickFilterCategoryFood,
     handleClickCategoryAllFood,
   } = useContext(FoodDrinkContext);
+
+  const { detailApiFoodId } = useContext(ProductDetailsContext);
 
   return (
     <div>
@@ -36,16 +38,21 @@ function Foods() {
       </div>
       <div>
         {dataFood.map((food, index) => (
-          <Link key={ food.strMeal } to={ `/foods/${food.idMeal}` }>
-            <div data-testid={ `${index}-recipe-card` }>
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ food.strMealThumb }
-                alt={ food.strMeal }
-              />
-              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-            </div>
-          </Link>
+          <div
+            key={ food.strMeal }
+            onClick={ () => detailApiFoodId(food.idMeal) }
+            onKeyPress={ () => {} }
+            role="menuitem"
+            tabIndex="0"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ food.strMealThumb }
+              alt={ food.strMeal }
+            />
+            <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+          </div>
         ))}
       </div>
       <Footer />
