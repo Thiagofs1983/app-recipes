@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import IgredientCard from '../components/Explore/IgredientCard';
 import Header from '../components/Header/Header';
+import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 
 const NUMBER_TWELVE = 12;
 
 function ExploreFoodsNationalities() {
   const history = useHistory();
+  const { setDetailFood } = useContext(ProductDetailsContext);
   const [state, setState] = useState('All');
   const [listNation, setListNation] = useState([]);
   const [mealsPerNation, setMealsPerNation] = useState([]);
@@ -54,8 +56,17 @@ function ExploreFoodsNationalities() {
     foodNatinality();
   }, [state]);
 
-  const clickRecipe = (id) => {
+  const clickRecipe = async (id) => {
     history.push(`/foods/${id}`);
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const { meals } = await response.json();
+      console.log(meals[0]);
+      setDetailFood(meals[0]);
+      setIdUrl(idUrl);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
