@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
-import Header from '../components/Header';
 import IgredientCard from '../components/Explore/IgredientCard';
+import Header from '../components/Header/Header';
 
 const NUMBER_TWELVE = 12;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem('user')) || { email: 'xablau@xablau.com' };

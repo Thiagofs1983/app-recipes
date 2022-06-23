@@ -16,22 +16,32 @@
 }
 
 .button1 {
-  height: 100px;
-  left: 35%;
+  align-items: center;
+  background-color: var(--backgroundColor);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
   position: fixed;
-  top: 90%;
-  width: 100px;
+  width: 100%;
 }
 
 .divDrinks {
   background-color: #333;
-  border: 1px solid white;
   display: inline-block;
   height: 180px;
+  margin-bottom: 15%;
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  width: 50%;
+  width: 180px;
+}
+
+.horizontal-scroll-wrapper {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100px;
 }
 
 img {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import RecipeCard from '../components/Cards/RecipeCard';
 
 function Foods() {
