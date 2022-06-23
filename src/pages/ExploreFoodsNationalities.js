@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
 import IgredientCard from '../components/Explore/IgredientCard';
@@ -6,6 +7,7 @@ import IgredientCard from '../components/Explore/IgredientCard';
 const NUMBER_TWELVE = 12;
 
 function ExploreFoodsNationalities() {
+  const history = useHistory();
   const [state, setState] = useState('All');
   const [listNation, setListNation] = useState([]);
   const [mealsPerNation, setMealsPerNation] = useState([]);
@@ -52,6 +54,10 @@ function ExploreFoodsNationalities() {
     foodNatinality();
   }, [state]);
 
+  const clickRecipe = (id) => {
+    history.push(`/foods/${id}`);
+  };
+
   return (
     <div>
       <Header namePage="Explore Nationalities" />
@@ -74,6 +80,7 @@ function ExploreFoodsNationalities() {
             image={ food.strMealThumb }
             testImage={ `${index}-card-img` }
             testName={ `${index}-card-name` }
+            handleClick={ () => clickRecipe(food.idMeal) }
           />
         ))
       }
