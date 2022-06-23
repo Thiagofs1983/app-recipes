@@ -3,13 +3,15 @@ import shareIcon from '../../images/shareIcon.svg';
 
 function ButtonCompartilhar() {
   return (
-    <div>
+    <button
+      type="button"
+    >
       <img
         src={ shareIcon }
         alt="icone Compartilhar"
         data-testid="share-btn"
       />
-    </div>
+    </button>
   );
 }
 

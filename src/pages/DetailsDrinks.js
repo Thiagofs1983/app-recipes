@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
-import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
+import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
 
@@ -45,7 +45,7 @@ function DetailsDrinks() {
         <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
         <div>
           <ButtonCompartilhar />
-          <ButtonFavoritar />
+          <ButtonFavoritarDrink />
         </div>
       </div>
       <div>
@@ -65,8 +65,8 @@ function DetailsDrinks() {
         <h2>Instructions</h2>
         <h3 data-testid="instructions">{detailDrink?.strInstructions}</h3>
       </div>
+      <h6>Recommended</h6>
       <div className="horizontal-scroll-wrapper">
-        <h6>Recommended</h6>
         {
           recommendedFood.map((food, index) => (
             <div

@@ -15,7 +15,7 @@ function FoodDetailsProvider({ children }) {
   const [detailDrink, setDetailDrink] = useState({});
   const [recommendedFood, setRecommendedFood] = useState([]);
 
-  console.log(idUrl);
+  console.log(detailFood);
 
   const detailApiFoodId = async (idFood) => {
     history.push(`foods/${idFood}`);
