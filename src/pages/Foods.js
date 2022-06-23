@@ -52,6 +52,7 @@ function Foods() {
             </button>
           ))}
       </div>
+
       <div>
         {dataFood.length > 0 && btnFilter === false
         && dataFood
