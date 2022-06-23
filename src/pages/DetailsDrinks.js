@@ -8,6 +8,7 @@ function DetailsDrinks() {
   const { detailDrink, recommendedFood } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
+
   console.log(detailDrink);
 
   useEffect(() => {
