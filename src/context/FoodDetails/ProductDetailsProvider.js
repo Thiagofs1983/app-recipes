@@ -15,35 +15,59 @@ function FoodDetailsProvider({ children }) {
   const [detailDrink, setDetailDrink] = useState({});
   const [recommendedFood, setRecommendedFood] = useState([]);
 
-  const detailApiFoodId = async (idfood) => {
-    console.log('idurl', idUrl, 'idApi', idfood);
-    history.push(`/foods/${idfood}`);
+  console.log(idUrl);
+
+  const detailApiFoodId = async (idFood) => {
+    history.push(`foods/${idFood}`);
     try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idfood}`);
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`);
       const { meals } = await response.json();
       console.log(meals[0]);
       setDetailFood(meals[0]);
+      setIdUrl(idUrl);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    setIdUrl(history.location.pathname.split('/')[2]);
-  }, [history.location.pathname]);
-
   const detailApiDrinkId = async (idDrink) => {
-    console.log(idDrink);
     history.push(`/drinks/${idDrink}`);
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`);
       const { drinks } = await response.json();
       console.log(drinks[0]);
       setDetailDrink(drinks[0]);
+      setIdUrl(idUrl);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const detailsFood = async () => {
+      try {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idUrl}`);
+        const { meals } = await response.json();
+        setDetailFood(meals[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    detailsFood();
+  }, [idUrl]);
+
+  useEffect(() => {
+    const detailsDrink = async () => {
+      try {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idUrl}`);
+        const { drinks } = await response.json();
+        setDetailDrink(drinks[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    detailsDrink();
+  }, [idUrl]);
 
   useEffect(() => {
     setIdUrl(history.location.pathname.split('/')[2]);

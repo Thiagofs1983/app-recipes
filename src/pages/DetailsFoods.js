@@ -8,7 +8,6 @@ function DetailsFoods() {
   const { detailFood, RecomendadosDrink } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-  console.log(detailFood);
 
   useEffect(() => {
     const ingredientes = [];
@@ -32,70 +31,77 @@ function DetailsFoods() {
 
   return (
     <section>
-      <div>
-        <img
-          data-testid="recipe-photo"
-          src={ detailFood?.strMealThumb }
-          alt={ detailFood?.strMeal }
-        />
-      </div>
-      <div>
-        <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
-        <div>
-          <ButtonCompartilhar />
-          <ButtonFavoritar />
-        </div>
-      </div>
-      <div>
-        <p data-testid="recipe-category">{detailFood?.strCategory}</p>
-      </div>
-      <div>
-        <h2 data-testid={ `${0}-ingredient-name-and-measure` }>Ingredients</h2>
-        <h3>
-          { ingredientesData.map((ingredients, index) => (
-            <p key={ index }>
-              {`- ${ingredients} - ${measure[index]}`}
-            </p>
-          ))}
-        </h3>
-      </div>
-      <div>
-        <h2>Instructions</h2>
-        <h4 data-testid="instructions">{detailFood?.strInstructions}</h4>
-      </div>
-      <div>
-        <h2>Video</h2>
-        <iframe data-testid="video" src={ detailFood?.strYoutube } title="Video" />
-      </div>
-      <div className="horizontal-scroll-wrapper">
-        <h6>Recommended</h6>
-        {
-          RecomendadosDrink.map((card, index) => (
-            <div
-              className="divDrinks"
-              data-testid={ `${index}-recomendation-card` }
-              key={ card.idDrink }
-            >
-              <img
-                data-testid="recipe-photo"
-                src={ card.strDrinkThumb }
-                alt={ card.strDrink }
-              />
-              <p data-testid="recipe-category">{card.strCategory}</p>
-              <h3 data-testid={ `${index}-recomendation-title` }>{card.strDrink}</h3>
+      {detailFood !== {} && (
+        <>
+          <div>
+            <img
+              data-testid="recipe-photo"
+              src={ detailFood?.strMealThumb }
+              alt={ detailFood?.strMeal }
+            />
+          </div>
+          <div>
+            <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
+            <div>
+              <ButtonCompartilhar />
+              <ButtonFavoritar />
             </div>
-          ))
-        }
-      </div>
-      <div className="buttonStart">
-        <button
-          className="button1"
-          type="button"
-          data-testid="start-recipe-btn"
-        >
-          Start Recipe
-        </button>
-      </div>
+          </div>
+          <div>
+            <p data-testid="recipe-category">{detailFood?.strCategory}</p>
+          </div>
+          <div>
+            <h2>Ingredients</h2>
+            <h3>
+              {ingredientesData.map((ingredients, index) => (
+                <p data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
+                  {`- ${ingredients} - ${measure[index]}`}
+                </p>
+              ))}
+            </h3>
+          </div>
+          <div>
+            <h2>Instructions</h2>
+            <h4 data-testid="instructions">{detailFood?.strInstructions}</h4>
+          </div>
+          <div>
+            <h2>Video</h2>
+            <iframe
+              data-testid="video"
+              src={ `https://www.youtube.com/embed${detailFood?.strinYoutube?.split('/')[1]}` }
+              title="Video"
+            />
+          </div>
+          <div className="horizontal-scroll-wrapper">
+            <h6>Recommended</h6>
+            {RecomendadosDrink.map((card, index) => (
+              <div
+                className="divDrinks"
+                data-testid={ `${index}-recomendation-card` }
+                key={ card.idDrink }
+              >
+                <img
+                  data-testid="recipe-photo"
+                  src={ card.strDrinkThumb }
+                  alt={ card.strDrink }
+                />
+                <p data-testid="recipe-category">{card.strCategory}</p>
+                <h3 data-testid={ `${index}-recomendation-title` }>{card.strDrink}</h3>
+              </div>
+            ))}
+          </div>
+          <div className="buttonStart">
+            <button
+              className="button1"
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              Start Recipe
+            </button>
+          </div>
+
+        </>
+      )}
     </section>
   );
 }

@@ -18,12 +18,13 @@ function Foods() {
     setBtnFilter,
   } = useContext(FoodDrinkContext);
 
+  const { detailApiFoodId } = useContext(ProductDetailsContext);
+
   const maxNumber = 12;
 
   useEffect(() => {
     setBtnFilter(false);
   }, []);
-  const { detailApiFoodId } = useContext(ProductDetailsContext);
 
   return (
     <div>
@@ -55,11 +56,13 @@ function Foods() {
         {dataFood.length > 0 && btnFilter === false
         && dataFood
           .map((food, index) => (
-            <Link
+            <div
               key={ food.strMeal }
-              data-testid={ `${index}-recipe-card` }
-              to={ `/foods/${food.idMeal}` }
               onClick={ () => detailApiFoodId(food.idMeal) }
+              onKeyPress={ () => {} }
+              role="menuitem"
+              tabIndex={ index }
+              data-testid={ `${index}-recipe-card` }
             >
               <img
                 data-testid={ `${index}-card-img` }
@@ -67,7 +70,7 @@ function Foods() {
                 alt={ food.strMeal }
               />
               <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-            </Link>
+            </div>
           ))}
       </div>
       <div>

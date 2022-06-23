@@ -51,13 +51,11 @@ function DetailsDrinks() {
         <h6 data-testid="recipe-category">{detailDrink?.strAlcoholic}</h6>
       </div>
       <div>
-        <h2
-          data-testid={ `${0}-ingredient-name-and-measure` }
-        >
+        <h2>
           Ingredients
         </h2>
         { ingredientesData.map((ingredients, index) => (
-          <p key={ index }>
+          <p data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
             {`- ${ingredients} - ${measure[index]}`}
           </p>
         ))}
