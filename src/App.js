@@ -29,12 +29,12 @@ function App() {
       <Route exact path="/drinks/:id" component={ DetailDrinks } />
       <Route
         exact
-        path="/foods/{id-da-receita}/in-progress"
+        path="/foods/:id/in-progress"
         component={ RecipeFoods }
       />
       <Route
         exact
-        path="/drinks/{id-da-receita}/in-progres"
+        path="/drinks/:id/in-progress"
         component={ RecipeDrinks }
       />
       <Route exact path="/explore" component={ Explore } />
