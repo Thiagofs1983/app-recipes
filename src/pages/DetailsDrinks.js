@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
@@ -10,13 +10,14 @@ function DetailsDrinks() {
     detailDrink,
     recommendedFood,
     progress, setProgress,
-    visibleStart, setVisibleStart,
+    visibleStart,
     nameButton,
     setNameButton,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
   const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
     const ingredientes = [];
@@ -38,18 +39,23 @@ function DetailsDrinks() {
     });
   }, [detailDrink]);
 
-  console.log(detailDrink?.idDrink);
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.cocktails[id]) {
+      setNameButton(false);
+    }
+  }, []);
+
+  console.log(id);
 
   const handleStartClick = () => {
-    setNameButton(false);
-    setVisibleStart(false);
     setProgress({
       ...progress,
       cocktails: {
         ...progress.cocktails,
-        [detailDrink?.idDrink]: ingredientesData,
+        [detailDrink?.idDrink]: [],
       },
     });
+    setNameButton(false);
     history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
   };
 
