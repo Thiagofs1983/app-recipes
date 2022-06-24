@@ -31,7 +31,8 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header
-        title="Favorite Recipes"
+        namePage="Favorite Recipes"
+        isEnable={ false }
       />
       <div>
         <button
