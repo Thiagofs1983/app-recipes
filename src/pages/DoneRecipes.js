@@ -1,19 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import RecipesDoneCard from '../components/Cards/RecipesDoneCard';
+import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
+import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
 import Header from '../components/Header/Header';
+import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 
 function DoneRecipes() {
-  // const [doneRecipes, setDoneRecipes] = useState([]);
+  const { detailFood,
+    detailDrink,
+    done,
+    // setDone,
+  } = useContext(ProductDetailsContext);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  console.log('comida', detailFood);
+  console.log('bebida', detailDrink);
 
   const handleAll = () => {
     console.log('all');
+    setDoneRecipes([
+      ...doneRecipes,
+      done,
+    ]);
   };
 
   const handleFood = () => {
     console.log('food');
+    setDoneRecipes([
+      ...doneRecipes,
+      done.type === 'food',
+    ]);
   };
 
   const handleDrinks = () => {
     console.log('drink');
+    setDoneRecipes([
+      ...doneRecipes,
+      done.type === 'drink',
+    ]);
   };
 
   return (
@@ -42,18 +65,25 @@ function DoneRecipes() {
         >
           Drinks
         </button>
-        {/* <div>
-          <p data-testid="${index}-horizontal-top-text">Category Recipe</p>
-          <img data-testid="${index}-horizontal-image" src="imgCard" alt="imgCard" />
-          <p data-testid="${index}-horizontal-name">Name Recipe</p>
-          <p data-testid="${index}-horizontal-done-date">Date Recipe</p>
-          <img
-            data-testid="${index}-horizontal-share-btn"
-            src="shareRecipes"
-            alt="shareRecipes"
-          />
-          <p data-testid="${index}-${tagName}-horizontal-tag">Tags</p>
-        </div> */}
+        <div>
+          {
+            doneRecipes.map((doneItem, index) => (
+              <RecipesDoneCard
+                key={ index }
+                buttonShareType={ doneItem.type === 'food'
+                  ? <ButtonShareFood data-testid={ `${index}-horizontal-share-btn` } />
+                  : <ButtonShareDrink data-testid={ `${index}-horizontal-share-btn` } /> }
+                tags={ doneItem.tags }
+                date={ doneItem.doneDate }
+                category={ doneItem.type === 'food'
+                  ? doneItem.category : doneItem.alcoholicOrNot }
+                index={ index }
+                image={ doneItem.image }
+                name={ doneItem.name }
+              />
+            ))
+          }
+        </div>
       </div>
     </div>
   );
