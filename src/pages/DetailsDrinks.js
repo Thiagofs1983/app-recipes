@@ -10,8 +10,7 @@ function DetailsDrinks() {
     detailDrink,
     recommendedFood,
     progress, setProgress,
-    visibleStart,
-    nameButton,
+    nameButton, setDone, done,
     setNameButton,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
@@ -55,7 +54,7 @@ function DetailsDrinks() {
         [detailDrink?.idDrink]: [],
       },
     });
-    setNameButton(false);
+    setDone([]);
     history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
   };
 
@@ -115,15 +114,20 @@ function DetailsDrinks() {
             </div>))
         }
       </div>
-      <button
-        className={ visibleStart ? 'button1' : 'hidden' }
-        data-testid="start-recipe-btn"
-        type="button"
-        onClick={ handleStartClick }
-      >
-        { nameButton ? 'Start Recipe' : 'Continue Recipe' }
-      </button>
-
+      <div className="buttonStart">
+        {
+          done.length === 0 ? (
+            <button
+              className="button1"
+              data-testid="start-recipe-btn"
+              type="button"
+              onClick={ handleStartClick }
+            >
+              { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+            </button>
+          ) : <div />
+        }
+      </div>
     </section>
   );
 }

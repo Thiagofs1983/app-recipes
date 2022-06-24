@@ -15,6 +15,7 @@ function FoodDetailsProvider({ children }) {
   const [detailDrink, setDetailDrink] = useState({});
   const [recommendedFood, setRecommendedFood] = useState([]);
   const [progress, setProgress] = useLocalStorage('inProgressRecipes', {});
+  const [done, setDone] = useLocalStorage('doneRecipes', []);
   const [visibleStart, setVisibleStart] = useState(true);
   const [nameButton, setNameButton] = useState(true);
 
@@ -119,6 +120,8 @@ function FoodDetailsProvider({ children }) {
     idUrl,
     nameButton,
     setNameButton,
+    done,
+    setDone,
   };
 
   return (

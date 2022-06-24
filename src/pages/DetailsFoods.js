@@ -7,8 +7,8 @@ import './Details.css';
 
 function DetailsFoods() {
   const { detailFood, RecomendadosDrink,
-    progress, setProgress,
-    nameButton, visibleStart, setNameButton,
+    progress, setProgress, setDone, done,
+    nameButton, setNameButton,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
@@ -50,7 +50,7 @@ function DetailsFoods() {
         [detailFood?.idMeal]: [],
       },
     });
-    setNameButton(false);
+    setDone([]);
     history.push(`/foods/${detailFood?.idMeal}/in-progress`);
   };
 
@@ -117,7 +117,7 @@ function DetailsFoods() {
           </div>
           <div className="buttonStart">
             {
-              visibleStart ? (
+              done.length === 0 ? (
                 <button
                   className="button1"
                   data-testid="start-recipe-btn"
