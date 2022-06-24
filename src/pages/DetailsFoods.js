@@ -1,13 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
 
 function DetailsFoods() {
-  const { detailFood, RecomendadosDrink } = useContext(ProductDetailsContext);
+  const { detailFood, RecomendadosDrink,
+    progress, setProgress, idUrl, setVisibleStart,
+    nameButton, visibleStart, setNameButton,
+  } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const ingredientes = [];
@@ -18,6 +23,7 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
+  console.log(detailFood);
 
   useEffect(() => {
     const quantidades = [];
@@ -28,6 +34,28 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes')).meals[idUrl]) {
+      setVisibleStart(false);
+      setNameButton(false);
+      console.log(idUrl);
+    }
+  }, []);
+
+  console.log(JSON.parse(localStorage.getItem('inProgressRecipes')).meals[idUrl]);
+
+  const handleStartClick = () => {
+    setProgress({
+      ...progress,
+      meals: {
+        ...progress.meals,
+        [detailFood?.idMeal]: ingredientesData,
+      },
+    });
+    setNameButton(false);
+    history.push(`/foods/${detailFood?.idMeal}/in-progress`);
+  };
 
   return (
     <section>
@@ -91,13 +119,18 @@ function DetailsFoods() {
             ))}
           </div>
           <div className="buttonStart">
-            <button
-              className="button1"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              Start Recipe
-            </button>
+            {
+              visibleStart ? (
+                <button
+                  className="button1"
+                  data-testid="start-recipe-btn"
+                  type="button"
+                  onClick={ handleStartClick }
+                >
+                  { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+                </button>
+              ) : <div />
+            }
           </div>
 
         </>

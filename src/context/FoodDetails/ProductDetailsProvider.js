@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ProductDetailsContext from './ProductDetailsContext';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const NUMERO_SEIS = 6;
 const RECOMENDACAO_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 function FoodDetailsProvider({ children }) {
   const history = useHistory();
-
   const [RecomendadosDrink, setRecommendadosDrink] = useState([]);
   const [idUrl, setIdUrl] = useState('');
   const [detailFood, setDetailFood] = useState({});
   const [detailDrink, setDetailDrink] = useState({});
   const [recommendedFood, setRecommendedFood] = useState([]);
-
-  console.log(idUrl);
+  const [progress, setProgress] = useLocalStorage('inProgressRecipes', {});
+  const [visibleStart, setVisibleStart] = useState(true);
+  const [nameButton, setNameButton] = useState(true);
 
   const detailApiFoodId = async (idFood) => {
     history.push(`foods/${idFood}`);
@@ -104,6 +105,10 @@ function FoodDetailsProvider({ children }) {
   }, []);
 
   const context = {
+    visibleStart,
+    setVisibleStart,
+    progress,
+    setProgress,
     detailFood,
     detailDrink,
     setDetailFood,
@@ -112,6 +117,8 @@ function FoodDetailsProvider({ children }) {
     RecomendadosDrink,
     detailApiDrinkId,
     idUrl,
+    nameButton,
+    setNameButton,
   };
 
   return (

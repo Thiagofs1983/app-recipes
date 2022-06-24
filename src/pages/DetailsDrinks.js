@@ -1,20 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
 
 function DetailsDrinks() {
-  const { detailDrink, recommendedFood } = useContext(ProductDetailsContext);
+  const {
+    detailDrink,
+    recommendedFood,
+    progress, setProgress,
+    visibleStart, setVisibleStart,
+    nameButton,
+    setNameButton,
+  } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-
-  console.log(detailDrink);
+  const history = useHistory();
 
   useEffect(() => {
     const ingredientes = [];
     setingredientesData(ingredientes);
-    console.log(Object.entries(detailDrink));
     Object.entries(detailDrink).forEach(([key, value]) => {
       if (key.includes('strIngredient') && value !== '' && value !== null) {
         ingredientes.push(value);
@@ -31,6 +37,21 @@ function DetailsDrinks() {
       }
     });
   }, [detailDrink]);
+
+  console.log(detailDrink?.idDrink);
+
+  const handleStartClick = () => {
+    setNameButton(false);
+    setVisibleStart(false);
+    setProgress({
+      ...progress,
+      cocktails: {
+        ...progress.cocktails,
+        [detailDrink?.idDrink]: ingredientesData,
+      },
+    });
+    history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
+  };
 
   return (
     <section>
@@ -89,12 +110,14 @@ function DetailsDrinks() {
         }
       </div>
       <button
-        className="button1"
+        className={ visibleStart ? 'button1' : 'hidden' }
         data-testid="start-recipe-btn"
         type="button"
+        onClick={ handleStartClick }
       >
-        Start Recipe
+        { nameButton ? 'Start Recipe' : 'Continue Recipe' }
       </button>
+
     </section>
   );
 }

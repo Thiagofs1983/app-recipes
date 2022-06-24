@@ -7,7 +7,7 @@ import RecipeDrinks from './pages/RecipeDrinks';
 import RecipeFoods from './pages/RecipeFoods';
 import DetailsFoods from './pages/DetailsFoods';
 import DetailDrinks from './pages/DetailsDrinks';
-import DoneRecipe from './pages/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
 import Explore from './pages/Explore';
 import ExploreDrinks from './pages/ExploreDrinks';
@@ -28,13 +28,11 @@ function App() {
       <Route exact path="/foods/:id" component={ DetailsFoods } />
       <Route exact path="/drinks/:id" component={ DetailDrinks } />
       <Route
-        exact
-        path="/foods/{id-da-receita}/in-progress"
+        path="/foods/:id/in-progress"
         component={ RecipeFoods }
       />
       <Route
-        exact
-        path="/drinks/{id-da-receita}/in-progres"
+        path="/drinks/:id/in-progress"
         component={ RecipeDrinks }
       />
       <Route exact path="/explore" component={ Explore } />
@@ -56,7 +54,7 @@ function App() {
         component={ ExploreFoodsNationalities }
       />
       <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/done-recipes" component={ DoneRecipe } />
+      <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route path="*" component={ NotFound } />
     </Switch>
