@@ -2,13 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
-import './Details.css';
+import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 
 function RecipeFoods() {
   const { detailFood } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-
+  const [ingredientsFinish, setIngredientsFinish] = useState([]);
+  console.log(ingredientsFinish);
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -46,7 +47,6 @@ function RecipeFoods() {
               <ButtonCompartilhar />
               <ButtonFavoritar />
             </div>
-            <input type="checkbox" name="" id="" />
           </div>
           <div>
             <p data-testid="recipe-category">{detailFood?.strCategory}</p>
@@ -55,17 +55,14 @@ function RecipeFoods() {
             <h2>Ingredients</h2>
             <h3>
               {ingredientesData.map((ingredients, index) => (
-                <label
-                  htmlFor={ index }
+                <IngredientCardCheckbox
+                  index={ index }
                   key={ index }
-                  data-testid={ `${index}-ingredient-step` }
-                >
-                  <input
-                    type="checkbox"
-                    id={ index }
-                  />
-                  {`- ${ingredients} - ${measure[index]}`}
-                </label>
+                  testId={ `${index}-ingredient-step` }
+                  ingredients={ ingredients }
+                  measure={ measure }
+                  arrIngredients={ setIngredientsFinish }
+                />
               ))}
             </h3>
           </div>

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
 import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
+import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 import './Details.css';
 
 function RecipeDrinks() {
@@ -47,7 +48,6 @@ function RecipeDrinks() {
               <ButtonCompartilhar />
               <ButtonFavoritar />
             </div>
-            <input type="checkbox" name="" id="" />
           </div>
           <div>
             <p data-testid="recipe-category">{detailDrink?.strCategory}</p>
@@ -56,17 +56,12 @@ function RecipeDrinks() {
             <h2>Ingredients</h2>
             <h3>
               {ingredientesData.map((ingredients, index) => (
-                <label
-                  htmlFor={ index }
+                <IngredientCardCheckbox
                   key={ index }
-                  data-testid={ `${index}-ingredient-step` }
-                >
-                  <input
-                    type="checkbox"
-                    id={ index }
-                  />
-                  {`- ${ingredients} - ${measure[index]}`}
-                </label>
+                  index={ index }
+                  ingredients={ ingredients }
+                  measure={ measure }
+                />
               ))}
             </h3>
           </div>
