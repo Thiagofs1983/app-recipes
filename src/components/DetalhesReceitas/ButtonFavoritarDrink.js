@@ -2,20 +2,18 @@ import React, { useContext } from 'react';
 import useLocalStorage from '../../hook/useLocalStorage';
 import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 // https://usehooks.com/useLocalStorage/
 
 function ButtonFavoritarDrink() {
   const { detailDrink } = useContext(ProductDetailsContext);
-  // const [foodFavoritado, setfoodFavoritado] = useState([]);
   const [drink, setDrink] = useLocalStorage('favoriteRecipes', []);
-  console.log(detailDrink);
-  console.log(drink);
 
-  const favoritarFood = () => {
+  const favoritarDrink = () => {
     const favoriteDrink = {
       id: detailDrink?.idDrink,
       type: 'drink',
-      nationality: detailDrink?.strArea,
+      nationality: '',
       category: detailDrink?.strCategory,
       alcoholicOrNot: detailDrink?.strAlcoholic,
       name: detailDrink?.strDrink,
@@ -28,17 +26,39 @@ function ButtonFavoritarDrink() {
     ]);
   };
 
+  const RemoveFavorite = () => {
+    console.log('olá');
+    const filterFavoritos = drink
+      .filter((fav) => fav.id !== detailDrink?.idDrink);
+    setDrink(filterFavoritos);
+  };
+
   return (
-    <button
-      type="button"
-      onClick={ favoritarFood }
-    >
-      <img
-        src={ whiteHeartIcon }
-        alt="botão favoritar"
-        data-testid="favorite-btn"
-      />
-    </button>
+    <div>
+      {drink.some((dado) => dado.id === detailDrink?.idDrink) ? (
+        <button
+          type="button"
+          onClick={ RemoveFavorite }
+        >
+          <img
+            src={ blackHeartIcon }
+            alt="botão favoritar"
+            data-testid="favorite-btn"
+          />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={ favoritarDrink }
+        >
+          <img
+            src={ whiteHeartIcon }
+            alt="botão favoritar"
+            data-testid="favorite-btn"
+          />
+        </button>
+      )}
+    </div>
   );
 }
 

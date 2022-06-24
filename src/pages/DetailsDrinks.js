@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
+import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
@@ -44,7 +44,7 @@ function DetailsDrinks() {
       <div>
         <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
         <div>
-          <ButtonCompartilhar />
+          <ButtonShareDrink />
           <ButtonFavoritarDrink />
         </div>
       </div>

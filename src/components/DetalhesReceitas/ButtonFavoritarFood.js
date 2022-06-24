@@ -1,16 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import useLocalStorage from '../../hook/useLocalStorage';
 import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 // https://usehooks.com/useLocalStorage/
 
 function ButtonFavoritarFood() {
   const { detailFood } = useContext(ProductDetailsContext);
-  // const [foodFavoritado, setfoodFavoritado] = useState([]);
   const [food, setFood] = useLocalStorage('favoriteRecipes', []);
-  const [clickFavorito, useClickFavorito] = useState(false);
-
-  console.log(food);
 
   const favoritarFood = () => {
     const favoriteFod = {
@@ -29,17 +26,38 @@ function ButtonFavoritarFood() {
     ]);
   };
 
+  const RemoveFavorite = () => {
+    const filterFavoritos = food
+      .filter((fav) => fav.id !== detailFood?.idMeal);
+    setFood(filterFavoritos);
+  };
+
   return (
-    <button
-      type="button"
-      onClick={ favoritarFood }
-    >
-      <img
-        src={ whiteHeartIcon }
-        alt="botão favoritar"
-        data-testid="favorite-btn"
-      />
-    </button>
+    <div>
+      {food.some((dado) => dado.id === detailFood?.idMeal) ? (
+        <button
+          type="button"
+          onClick={ RemoveFavorite }
+        >
+          <img
+            src={ blackHeartIcon }
+            alt="botão favoritar"
+            data-testid="favorite-btn"
+          />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={ favoritarFood }
+        >
+          <img
+            src={ whiteHeartIcon }
+            alt="botão favoritar"
+            data-testid="favorite-btn"
+          />
+        </button>
+      )}
+    </div>
   );
 }
 
