@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ButtonCompartilhar from '../components/DetalhesReceitas/ButtonCompartilhar';
-import ButtonFavoritar from '../components/DetalhesReceitas/ButtonFavoritar';
+import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
+import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 import './Details.css';
@@ -45,8 +45,8 @@ function RecipeDrinks() {
           <div>
             <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
             <div>
-              <ButtonCompartilhar />
-              <ButtonFavoritar />
+              <ButtonShareDrink />
+              <ButtonFavoritarDrink />
             </div>
           </div>
           <div>

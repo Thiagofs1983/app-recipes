@@ -28,18 +28,11 @@ function App() {
       <Route exact path="/foods/:id" component={ DetailsFoods } />
       <Route exact path="/drinks/:id" component={ DetailDrinks } />
       <Route
-<<<<<<< HEAD
-        exact
-=======
->>>>>>> 92cd1e9a60654db33f98bfde489af873b18b943c
         path="/foods/:id/in-progress"
         component={ RecipeFoods }
       />
       <Route
-<<<<<<< HEAD
         exact
-=======
->>>>>>> 92cd1e9a60654db33f98bfde489af873b18b943c
         path="/drinks/:id/in-progress"
         component={ RecipeDrinks }
       />
