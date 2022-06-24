@@ -1,20 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
 
 function DetailsDrinks() {
-  const { detailDrink, recommendedFood } = useContext(ProductDetailsContext);
+  const {
+    detailDrink,
+    recommendedFood,
+    progress, setProgress,
+    nameButton, setDone, done,
+    setNameButton,
+  } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-
-  console.log(detailDrink);
+  const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
     const ingredientes = [];
     setingredientesData(ingredientes);
-    console.log(Object.entries(detailDrink));
     Object.entries(detailDrink).forEach(([key, value]) => {
       if (key.includes('strIngredient') && value !== '' && value !== null) {
         ingredientes.push(value);
@@ -31,6 +37,26 @@ function DetailsDrinks() {
       }
     });
   }, [detailDrink]);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.cocktails[id]) {
+      setNameButton(false);
+    }
+  }, []);
+
+  console.log(id);
+
+  const handleStartClick = () => {
+    setProgress({
+      ...progress,
+      cocktails: {
+        ...progress.cocktails,
+        [detailDrink?.idDrink]: [],
+      },
+    });
+    setDone([]);
+    history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
+  };
 
   return (
     <section>
@@ -88,13 +114,20 @@ function DetailsDrinks() {
             </div>))
         }
       </div>
-      <button
-        className="button1"
-        data-testid="start-recipe-btn"
-        type="button"
-      >
-        Start Recipe
-      </button>
+      <div className="buttonStart">
+        {
+          done.length === 0 ? (
+            <button
+              className="button1"
+              data-testid="start-recipe-btn"
+              type="button"
+              onClick={ handleStartClick }
+            >
+              { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+            </button>
+          ) : <div />
+        }
+      </div>
     </section>
   );
 }

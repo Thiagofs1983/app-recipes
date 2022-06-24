@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
@@ -6,27 +7,16 @@ import './Details.css';
 // https://github.com/youtube/api-samples/issues/140 iframe youtube.
 
 function DetailsFoods() {
-  const { detailFood, RecomendadosDrink } = useContext(ProductDetailsContext);
+  const { detailFood, RecomendadosDrink,
+    progress, setProgress, setDone, done,
+    nameButton, setNameButton,
+  } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-  const [bool, setBool] = useState(true);
-
   const linkYoutube = detailFood?.strYoutube?.split('=')[1];
 
-  const doneRecipeBtn = JSON.parse(localStorage.getItem('doneRecipe'));
-
-  useEffect(() => {
-    const test = [{ id: 2 }];
-    Object.entries(test[0]).forEach(([key, value]) => {
-      if (key.includes('id') && value === 2) {
-        setBool(true);
-      } else {
-        setBool(false);
-      }
-    });
-  }, []);
-
-  console.log(bool);
+  const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
     const ingredientes = [];
@@ -37,6 +27,7 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
+  console.log(detailFood);
 
   useEffect(() => {
     const quantidades = [];
@@ -47,6 +38,24 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.meals[id]) {
+      setNameButton(false);
+    }
+  }, []);
+
+  const handleStartClick = () => {
+    setProgress({
+      ...progress,
+      meals: {
+        ...progress.meals,
+        [detailFood?.idMeal]: [],
+      },
+    });
+    setDone([]);
+    history.push(`/foods/${detailFood?.idMeal}/in-progress`);
+  };
 
   return (
     <section>
@@ -89,8 +98,8 @@ function DetailsFoods() {
           title="Video"
         />
       </div>
-      <h6>Recommended</h6>
       <div className="horizontal-scroll-wrapper">
+        <h6>Recommended</h6>
         {RecomendadosDrink.map((card, index) => (
           <div
             className="divDrinks"
@@ -107,17 +116,20 @@ function DetailsFoods() {
           </div>
         ))}
       </div>
-      {!doneRecipeBtn ? undefined : (
-        <div className="buttonStart">
-          <button
-            className="button1"
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            Start Recipe
-          </button>
-        </div>
-      )}
+      <div className="buttonStart">
+        {
+          done.length === 0 ? (
+            <button
+              className="button1"
+              data-testid="start-recipe-btn"
+              type="button"
+              onClick={ handleStartClick }
+            >
+              { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+            </button>
+          ) : <div />
+        }
+      </div>
     </section>
   );
 }
