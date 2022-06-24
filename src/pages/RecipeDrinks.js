@@ -9,7 +9,9 @@ function RecipeDrinks() {
   const { detailDrink } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-  console.log(detailDrink);
+  const [ingredientsFinish, setIngredientsFinish] = useState([]);
+
+  console.log(ingredientsFinish);
 
   useEffect(() => {
     const ingredientes = [];
@@ -59,8 +61,10 @@ function RecipeDrinks() {
                 <IngredientCardCheckbox
                   key={ index }
                   index={ index }
+                  testId={ `${index}-ingredient-step` }
                   ingredients={ ingredients }
                   measure={ measure }
+                  arrIngredients={ setIngredientsFinish }
                 />
               ))}
             </h3>
