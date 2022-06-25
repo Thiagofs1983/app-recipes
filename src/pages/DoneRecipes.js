@@ -13,6 +13,7 @@ function DoneRecipes() {
   } = useContext(ProductDetailsContext);
   const [doneRecipes, setDoneRecipes] = useState([]);
   console.log('comida', detailFood);
+
   console.log('bebida', detailDrink);
 
   const handleAll = () => {
