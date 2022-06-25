@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
-import './Details.css';
+import './pagesCss/Details.css';
 // https://github.com/youtube/api-samples/issues/140 iframe youtube.
 
 function DetailsFoods() {

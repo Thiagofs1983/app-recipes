@@ -1,0 +1,22 @@
+:root {
+
+  --backgroundColor: #1d3557;
+
+  --textColor: #f1faee;
+
+  --buttonColor: #e63946;
+
+  --secondaryTXTColor: #a8dadc;
+
+  --secondaryBGColor: #457b9d;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  box-sizing: border-box;
+  color: var(--textColor);
+  font-family: Arial , Helvetica , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+

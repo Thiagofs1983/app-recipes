@@ -1,0 +1,44 @@
+.divCard {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.divFood {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 170px;
+  justify-content: space-around;
+  margin: 5px;
+  width: 170px;
+}
+
+.imgFood {
+  height: 80%;
+  width: 100%;
+}
+
+.nameFood {
+  color:black;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px;
+}
+
+.divButton {
+  align-self: center;
+  display: flex;
+  flex: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.buttonFoods {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-weight: 600;
+  height: 45px;
+  padding: 4px;
+}

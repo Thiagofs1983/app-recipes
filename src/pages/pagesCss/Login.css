@@ -1,0 +1,43 @@
+.mainLogin {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-top: 45%;
+  padding: 5%;
+}
+
+.nameApp {
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+}
+
+.formLogin {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-top: 20%;
+  padding: 5%;
+}
+
+.inputLogin {
+  background-color: azure;
+  color: black;
+  font-weight: 600;
+  height: 35px;
+  margin: 2%;
+  text-align: center;
+  width: 250px;
+}
+
+.buttonLogin {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: larger;
+  font-weight: 600;
+  margin: 5%;
+  padding: 2%;
+  width: 80%;
+}

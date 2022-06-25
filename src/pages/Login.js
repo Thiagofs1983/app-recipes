@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Input from '../components/Login/Input';
 import Button from '../components/Login/Button';
+import './pagesCss/Login.css';
 
 function Login() {
   const history = useHistory();
@@ -28,15 +29,16 @@ function Login() {
   };
 
   return (
-    <main>
-      <h1>Login</h1>
-      <form action="">
+    <main className="mainLogin">
+      <h1 className="nameApp">App de Receitas</h1>
+      <form className="formLogin">
         <Input
           type="email"
           name="email"
           value={ user.email }
           onChange={ handleChange }
           testeId="email-input"
+          text="Email"
         />
         <Input
           type="password"
@@ -44,6 +46,7 @@ function Login() {
           value={ user.password }
           onChange={ handleChange }
           testeId="password-input"
+          text="Password"
         />
         <Button
           testId="login-submit-btn"

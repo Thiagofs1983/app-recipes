@@ -5,6 +5,7 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
 import Header from '../components/Header/Header';
 import RecipeCard from '../components/Cards/RecipeCard';
+import './pagesCss/Foods.css';
 
 function Foods() {
   const {
@@ -29,19 +30,20 @@ function Foods() {
   return (
     <div>
       <Header namePage="Foods" />
-      <div>
+      <div className="divButton">
         <button
+          className="buttonFoods"
           type="button"
           data-testid="All-category-filter"
           onClick={ handleClickCategoryAllFood }
         >
           All
         </button>
-
         {categoryFood.length > 0 && btnFilter === false
         && categoryFood
           .map((food) => (
             <button
+              className="buttonFoods"
               name={ food.strCategory }
               key={ food.strCategory }
               type="button"
@@ -52,12 +54,12 @@ function Foods() {
             </button>
           ))}
       </div>
-
-      <div>
+      <div className="divCard">
         {dataFood.length > 0 && btnFilter === false
         && dataFood
           .map((food, index) => (
             <div
+              className="divFood"
               key={ food.strMeal }
               onClick={ () => detailApiFoodId(food.idMeal) }
               onKeyPress={ () => {} }
@@ -66,11 +68,17 @@ function Foods() {
               data-testid={ `${index}-recipe-card` }
             >
               <img
+                className="imgFood"
                 data-testid={ `${index}-card-img` }
                 src={ food.strMealThumb }
                 alt={ food.strMeal }
               />
-              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+              <p
+                className="nameFood"
+                data-testid={ `${index}-card-name` }
+              >
+                { food.strMeal }
+              </p>
             </div>
           ))}
       </div>

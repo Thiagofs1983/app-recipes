@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
-import './Details.css';
+import './pagesCss/Details.css';
 
 function DetailsDrinks() {
   const {

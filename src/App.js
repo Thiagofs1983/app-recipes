@@ -18,6 +18,7 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import ExploreFoods from './pages/ExploreFoods';
 import NotFound from './pages/NotFound';
+import './App.css';
 
 function App() {
   return (

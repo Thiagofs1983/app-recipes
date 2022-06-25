@@ -43,23 +43,3 @@
   overflow-y: auto;
   width: 100px;
 }
-
-img {
-  height: 80px;
-  width: 80px;
-}
-
-p, h5 {
-  border: 1px solid red;
-  font-size: medium;
-  text-align: center;
-}
-
-h6 {
-  font-size: large;
-  text-align: center;
-}
-
-.hidden {
-  display: hidden;
-}

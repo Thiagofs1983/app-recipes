@@ -10,28 +10,30 @@ function Header({ namePage, isEnable }) {
   const [searchBar, setSearchBar] = useState(false);
 
   return (
-    <header className="header">
-      <div className="icons">
+    <header className="divHeader">
+      <div className="header">
         <Link to="/profile">
           <button
+            className="buttonIcon"
             type="button"
           >
             <img
+              className="imgIcon"
               src={ profileIcon }
               alt="profile button"
               data-testid="profile-top-btn"
             />
           </button>
         </Link>
-
-        <h1 data-testid="page-title">{ namePage }</h1>
-
+        <h1 className="titlePage" data-testid="page-title">{ namePage }</h1>
         { isEnable && (
           <button
+            className="buttonIcon"
             type="button"
             onClick={ () => setSearchBar(!searchBar) }
           >
             <img
+              className="imgIcon"
               src={ searchIcon }
               alt="search button"
               data-testid="search-top-btn"
@@ -39,7 +41,9 @@ function Header({ namePage, isEnable }) {
           </button>
         )}
       </div>
-      { searchBar && <SearchBar /> }
+      <div className="searchBar">
+        { searchBar && <SearchBar /> }
+      </div>
     </header>
   );
 }
