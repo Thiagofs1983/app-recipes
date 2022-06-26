@@ -11,6 +11,15 @@ function FavoriteRecipes() {
     setFavorites(favoriteRecipes);
   }, []);
 
+  const removeFavorites = (index) => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favId = favoriteRecipes[index].id;
+    const newFavorites = favoriteRecipes.filter(({ id }) => id !== favId);
+    setFavorites(newFavorites);
+    localStorage.setItem('favoriteRecipes', JSON
+      .stringify(newFavorites));
+  };
+
   const onClickAll = () => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setFavorites(favoriteRecipes);
@@ -78,7 +87,7 @@ function FavoriteRecipes() {
               <h4
                 role="presentation"
                 data-testid={ `${index}-horizontal-name` }
-
+                width="150px"
               >
                 {name}
               </h4>
@@ -93,6 +102,7 @@ function FavoriteRecipes() {
                 src={ blackHeartIcon }
                 alt="Favorite Icon"
                 data-testid={ `${index}-horizontal-favorite-btn` }
+                onClick={ () => removeFavorites(index) }
               />
             </div>
           </div>))}
