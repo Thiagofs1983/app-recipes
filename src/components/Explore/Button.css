@@ -1,0 +1,9 @@
+.buttonExplore {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: 30px;
+  font-weight: 700;
+  margin: 20px;
+  padding: 20px;
+  width: 70%;
+}

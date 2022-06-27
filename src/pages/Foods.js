@@ -30,16 +30,17 @@ function Foods() {
   return (
     <div>
       <Header namePage="Foods" />
-      <div className="divButton">
-        <button
-          className="buttonFoods"
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ handleClickCategoryAllFood }
-        >
-          All
-        </button>
-        {categoryFood.length > 0 && btnFilter === false
+      <main>
+        <div className="divButton">
+          <button
+            className="buttonFoods"
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ handleClickCategoryAllFood }
+          >
+            All
+          </button>
+          {categoryFood.length > 0 && btnFilter === false
         && categoryFood
           .map((food) => (
             <button
@@ -53,9 +54,9 @@ function Foods() {
               { food.strCategory }
             </button>
           ))}
-      </div>
-      <div className="divCard">
-        {dataFood.length > 0 && btnFilter === false
+        </div>
+        <div className="divCard">
+          {dataFood.length > 0 && btnFilter === false
         && dataFood
           .map((food, index) => (
             <div
@@ -81,9 +82,9 @@ function Foods() {
               </p>
             </div>
           ))}
-      </div>
-      <div>
-        { category === 'foods' && btnFilter === true
+        </div>
+        <div>
+          { category === 'foods' && btnFilter === true
         && listRecipes.slice(0, maxNumber)
           .map((food, index) => (
             <Link key={ food.idMeal } to={ `/foods/${food.idMeal}` }>
@@ -94,7 +95,8 @@ function Foods() {
               />
             </Link>
           )) }
-      </div>
+        </div>
+      </main>
       <Footer />
     </div>
   );

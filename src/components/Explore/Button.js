@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Button.css';
 
 function ButtonExplore({ handleClick, buttonText, testId }) {
   return (
     <button
+      className="buttonExplore"
       type="button"
       onClick={ handleClick }
       data-testid={ testId }

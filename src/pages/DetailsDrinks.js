@@ -59,66 +59,93 @@ function DetailsDrinks() {
   };
 
   return (
-    <section>
+    <section className="detailsPage">
       <div>
         <img
+          className="image"
           data-testid="recipe-photo"
           src={ detailDrink?.strDrinkThumb }
           alt={ detailDrink?.strGlass }
         />
       </div>
-      <div>
+      <div className="divTitleButtons">
         <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
-        <div>
+        <div className="divButtons">
           <ButtonShareDrink />
           <ButtonFavoritarDrink />
         </div>
       </div>
       <div>
-        <h6 data-testid="recipe-category">{detailDrink?.strAlcoholic}</h6>
+        <h5
+          className="category"
+          data-testid="recipe-category"
+        >
+          {detailDrink?.strAlcoholic}
+        </h5>
       </div>
-      <div>
+      <div className="divIngredients">
         <h2>
           Ingredients
         </h2>
-        { ingredientesData.map((ingredients, index) => (
-          <p data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
-            {`- ${ingredients} - ${measure[index]}`}
-          </p>
-        ))}
-      </div>
-      <div>
-        <h2>Instructions</h2>
-        <h3 data-testid="instructions">{detailDrink?.strInstructions}</h3>
-      </div>
-      <h6>Recommended</h6>
-      <div className="horizontal-scroll-wrapper">
-        {
-          recommendedFood.map((food, index) => (
-            <div
-              data-testid={ `${index}-recomendation-card` }
-              className="divDrinks"
+        <div>
+          { ingredientesData.map((ingredients, index) => (
+            <p
+              className="ingredients"
+              data-testid={ `${index}-ingredient-name-and-measure` }
               key={ index }
             >
-              <img
-                data-testid="recipe-photo"
-                src={ food.strMealThumb }
-                alt={ food.strMeal }
-              />
-              <p data-testid="recipe-category">{food.strCategory}</p>
-              <h3
-                data-testid={ `${index}-recomendation-title` }
-              >
-                {food.strMeal}
-              </h3>
-            </div>))
-        }
+              {`- ${ingredients} - ${measure[index]}`}
+            </p>
+          ))}
+        </div>
       </div>
-      <div className="buttonStart">
+      <div className="divInstructions">
+        <h2>Instructions</h2>
+        <p
+          className="instructions"
+          data-testid="instructions"
+        >
+          {detailDrink?.strInstructions}
+
+        </p>
+      </div>
+      <div className="divRecommended">
+        <h2>Recommended</h2>
+        <div className="horizontal-scroll-wrapper">
+          {
+            recommendedFood.map((food, index) => (
+              <div
+                data-testid={ `${index}-recomendation-card` }
+                className="divDrinksRecom"
+                key={ index }
+              >
+                <img
+                  className="imgRecommended"
+                  data-testid="recipe-photo"
+                  src={ food.strMealThumb }
+                  alt={ food.strMeal }
+                />
+                <p
+                  className="categRecommended"
+                  data-testid="recipe-category"
+                >
+                  {food.strCategory}
+                </p>
+                <p
+                  className="nameRecommended"
+                  data-testid={ `${index}-recomendation-title` }
+                >
+                  {food.strMeal}
+                </p>
+              </div>))
+          }
+        </div>
+      </div>
+      <div>
         {
           done.length === 0 ? (
             <button
-              className="button1"
+              className="buttonRecipe"
               data-testid="start-recipe-btn"
               type="button"
               onClick={ handleStartClick }

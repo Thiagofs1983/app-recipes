@@ -1,0 +1,21 @@
+.mainExplore {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-top: 20%;
+}
+
+.mainBy {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-top: 20%;
+}
+
+.ingredientsDiv {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 12%;
+}

@@ -1,29 +1,107 @@
-* {
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.scrollmenu {
-  display: block;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-.buttonStart {
+.detailsPage {
+  align-items: center;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
 }
 
-.button1 {
+.divTitleButtons {
   align-items: center;
-  background-color: var(--backgroundColor);
-  bottom: 0;
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 360px;
+}
+
+.divButtons {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.category {
+  color: var(--secondaryTXTColor);
+  width: 300px;
+}
+
+.divIngredients {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.ingredients {
+  color: var(--secondaryTXTColor);
+  margin-top: 15px;
+}
+
+.divInstructions {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.instructions {
+  color: var(--secondaryTXTColor);
+  margin: 20px;
+}
+
+.divRecommended {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.divDrinksRecom {
+  background-color: var(--secondaryBGColor);
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+  width: 170px;
+}
+
+.horizontal-scroll-wrapper {
+  height: 220px;
+  margin-bottom: 50px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 360px;
+}
+
+.imgRecommended {
+  height: 120px;
+  width: 100%;
+}
+
+.categRecommended {
+  color: var(--secondaryTXTColor);
+  margin-top: 5px;
+}
+
+.image {
+  height: 320px;
+  margin: 10px;
+  width: 320px;
+}
+
+.buttonRecipe {
+  align-items: center;
+  background-color: var(--buttonColor);
+  bottom: 0;
+  color: var(--textColor);
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  height: 50px;
   justify-content: center;
   left: 0;
   position: fixed;
-  width: 100%;
+  width: 360px;
 }
 
 .divDrinks {
@@ -37,9 +115,9 @@
   width: 180px;
 }
 
-.horizontal-scroll-wrapper {
-  height: 300px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100px;
+
+.buttonFav {
+  background-color: var(--buttonColor);
+  margin: 2px;
+  padding: 5px;
 }

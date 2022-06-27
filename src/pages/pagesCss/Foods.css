@@ -1,3 +1,7 @@
+main {
+  margin-bottom: 20%;
+}
+
 .divCard {
   display: flex;
   flex-flow: row wrap;
@@ -8,22 +12,22 @@
   background-color: var(--textColor);
   display: flex;
   flex-flow: column nowrap;
-  height: 170px;
-  justify-content: space-around;
+  height: 160px;
+  justify-content: center;
   margin: 5px;
   width: 170px;
 }
 
 .imgFood {
-  height: 80%;
+  height: 70%;
   width: 100%;
 }
 
 .nameFood {
-  color:black;
-  font-size: 20px;
-  font-weight: 700;
-  margin: 5px;
+  color: black;
+  font-weight: 600;
+  height: 20%;
+  text-align: center;
 }
 
 .divButton {
@@ -38,7 +42,9 @@
 .buttonFoods {
   background-color: var(--buttonColor);
   color: var(--textColor);
+  font-size: 13px;
   font-weight: 600;
-  height: 45px;
-  padding: 4px;
+  height: 55px;
+  margin: 5px;
+  width: 110px;
 }

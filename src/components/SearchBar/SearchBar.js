@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import searchApi from '../../services/searchApi';
 import FoodDrinkContext from '../../context/FoodDrink/FoodDrinkContext';
+import './SearchBar.css';
 
 function SearchBar() {
   const history = useHistory();
@@ -70,7 +71,7 @@ function SearchBar() {
         data-testid="search-input"
         onChange={ ({ target: { value } }) => setInput(value) }
       />
-      <div>
+      <div className="divCheckBox">
         <label htmlFor="Ingredients">
           <input
             className="checkbox"

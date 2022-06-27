@@ -15,6 +15,7 @@ function ButtonShareDrink() {
   return (
     <div>
       <button
+        className="buttonFav"
         type="button"
         onClick={ clickShareDrink }
       >
