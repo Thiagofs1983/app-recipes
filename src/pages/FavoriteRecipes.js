@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteRecipes() {
   const [favorites, setFavorites] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -77,6 +79,10 @@ function FavoriteRecipes() {
               src={ image }
               alt={ name }
               data-testid={ `${index}-horizontal-image` }
+              width="150px"
+              onClick={ type === 'food'
+                ? () => history.push(`/foods/${id}`)
+                : () => history.push(`/drinks/${id}`) }
             />
             <div>
               <p
@@ -87,7 +93,9 @@ function FavoriteRecipes() {
               <h4
                 role="presentation"
                 data-testid={ `${index}-horizontal-name` }
-                width="150px"
+                onClick={ type === 'food'
+                  ? () => history.push(`/foods/${id}`)
+                  : () => history.push(`/drinks/${id}`) }
               >
                 {name}
               </h4>
@@ -96,6 +104,7 @@ function FavoriteRecipes() {
                 src={ shareIcon }
                 alt="Share Icon"
                 data-testid={ `${index}-horizontal-share-btn` }
+                onClick={ () => onClickShare(type, id) }
               />
               <input
                 type="image"
