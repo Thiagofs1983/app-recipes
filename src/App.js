@@ -33,6 +33,7 @@ function App() {
         component={ RecipeFoods }
       />
       <Route
+        exact
         path="/drinks/:id/in-progress"
         component={ RecipeDrinks }
       />
