@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import copy from 'clipboard-copy';
 import Header from '../components/Header/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteRecipes() {
   const [favorites, setFavorites] = useState([]);
+  const [isShared, setIsShared] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setFavorites(favoriteRecipes);
   }, []);
+
+  const onClickShare = (type, id) => {
+    copy(`http://localhost:3000/${type}s/${id}`);
+    setIsShared(true);
+  };
 
   const removeFavorites = (index) => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -106,6 +113,7 @@ function FavoriteRecipes() {
                 data-testid={ `${index}-horizontal-share-btn` }
                 onClick={ () => onClickShare(type, id) }
               />
+              { isShared && <p>Link copied!</p> }
               <input
                 type="image"
                 src={ blackHeartIcon }
