@@ -3,6 +3,7 @@ import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
+import './pagesCss/Details.css';
 
 function RecipeFoods() {
   const { detailFood } = useContext(ProductDetailsContext);
@@ -33,27 +34,38 @@ function RecipeFoods() {
   return (
     <section>
       {detailFood !== {} && (
-        <>
+        <div className="detailsPage">
           <div>
             <img
+              className="image"
               data-testid="recipe-photo"
               src={ detailFood?.strMealThumb }
               alt={ detailFood?.strMeal }
             />
           </div>
-          <div>
-            <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
-            <div>
+          <div className="divTitleButtons">
+            <h1
+              className="titleName"
+              data-testid="recipe-title"
+            >
+              {detailFood?.strMeal}
+            </h1>
+            <div className="divButtons">
               <ButtonShareFood />
               <ButtonFavoritarFood />
             </div>
           </div>
           <div>
-            <p data-testid="recipe-category">{detailFood?.strCategory}</p>
+            <p
+              className="category"
+              data-testid="recipe-category"
+            >
+              {detailFood?.strCategory}
+            </p>
           </div>
-          <div>
+          <div className="divIngredients">
             <h2>Ingredients</h2>
-            <h3>
+            <div className="divCardIngred">
               {ingredientesData.map((ingredients, index) => (
                 <IngredientCardCheckbox
                   index={ index }
@@ -64,19 +76,25 @@ function RecipeFoods() {
                   arrIngredients={ setIngredientsFinish }
                 />
               ))}
-            </h3>
+            </div>
           </div>
-          <div>
+          <div className="divInstructionsRecipe">
             <h2>Instructions</h2>
-            <h4 data-testid="instructions">{detailFood?.strInstructions}</h4>
+            <p
+              className="instructions"
+              data-testid="instructions"
+            >
+              {detailFood?.strInstructions}
+            </p>
           </div>
           <button
+            className="buttonRecipe"
             type="button"
             data-testid="finish-recipe-btn"
           >
             Finish
           </button>
-        </>
+        </div>
       )}
     </section>
   );

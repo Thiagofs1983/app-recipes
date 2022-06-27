@@ -33,8 +33,19 @@
 }
 
 .divIngredients {
+  align-items: center;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.divCardIngred {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .ingredients {
@@ -48,6 +59,15 @@
   flex-flow: column nowrap;
   justify-content: center;
   margin: 10px;
+}
+
+.divInstructionsRecipe {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 40px;
 }
 
 .instructions {
