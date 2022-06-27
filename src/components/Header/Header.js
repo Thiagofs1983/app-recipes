@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import SearchBar from '../SearchBar/SearchBar';
@@ -8,23 +8,23 @@ import './Header.css';
 
 function Header({ namePage, isEnable }) {
   const [searchBar, setSearchBar] = useState(false);
+  const history = useHistory();
 
   return (
     <header className="divHeader">
       <div className="header">
-        <Link to="/profile">
-          <button
-            className="buttonIcon"
-            type="button"
-          >
-            <img
-              className="imgIcon"
-              src={ profileIcon }
-              alt="profile button"
-              data-testid="profile-top-btn"
-            />
-          </button>
-        </Link>
+        <button
+          className="buttonIcon"
+          type="button"
+          onClick={ () => history.push('/profile') }
+        >
+          <img
+            className="imgIcon"
+            src={ profileIcon }
+            alt="profile button"
+            data-testid="profile-top-btn"
+          />
+        </button>
         <h1 className="titlePage" data-testid="page-title">{ namePage }</h1>
         { isEnable && (
           <button

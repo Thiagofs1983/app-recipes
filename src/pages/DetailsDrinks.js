@@ -69,7 +69,7 @@ function DetailsDrinks() {
         />
       </div>
       <div className="divTitleButtons">
-        <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
+        <h1 className="titleName" data-testid="recipe-title">{detailDrink?.strDrink}</h1>
         <div className="divButtons">
           <ButtonShareDrink />
           <ButtonFavoritarDrink />
@@ -84,9 +84,7 @@ function DetailsDrinks() {
         </h5>
       </div>
       <div className="divIngredients">
-        <h2>
-          Ingredients
-        </h2>
+        <h2>Ingredients</h2>
         <div>
           { ingredientesData.map((ingredients, index) => (
             <p

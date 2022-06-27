@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer';
 import IngredientCard from '../components/Explore/IngredientCard';
 import Header from '../components/Header/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
+import './pagesCss/Explore.css';
 
 const NUMBER_TWELVE = 12;
 
@@ -71,9 +72,12 @@ function ExploreFoodsNationalities() {
 
   return (
     <div>
-      <Header namePage="Explore Nationalities" />
-      <main>
+      <div className="divHeader">
+        <Header namePage="Explore Nationalities" />
+      </div>
+      <main className="mainNational">
         <select
+          className="selectNational"
           data-testid="explore-by-nationality-dropdown"
           onChange={ handleNation }
         >
@@ -83,7 +87,7 @@ function ExploreFoodsNationalities() {
             ))
           }
         </select>
-        <div>
+        <div className="divNational">
           {
             mealsPerNation.map((food, index) => (
               <IngredientCard

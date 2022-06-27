@@ -19,3 +19,24 @@
   flex-flow: row wrap;
   margin-top: 12%;
 }
+
+.mainNational {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.selectNational {
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  width: 100px;
+}
+
+.divNational {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

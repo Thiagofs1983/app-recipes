@@ -9,12 +9,9 @@
   width: 200px;
 }
 
-.divButtons {
-  align-items: center;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  margin-top: 20px;
+.emailProfile {
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .mainProfile {
@@ -22,10 +19,14 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  margin: 10%;
+  margin-top: 20px;
 }
 
-.emailProfile {
-  font-size: 22px;
-  font-weight: 700;
+.divButtonsProfile {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 300px;
+  justify-content: center;
+  width: 300px;
 }

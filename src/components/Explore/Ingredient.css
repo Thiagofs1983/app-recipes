@@ -2,17 +2,20 @@
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
+  height: 180px;
   justify-content: center;
-  width: 50%;
+  margin: 3px;
+  width: 170px;
 }
 
 .imgIngredient {
-  height: 80%;
-  margin: 5px;
+  height: 130px;
+  width: 160px;
 }
 
 .nameIngredient {
+  font-size: 12px;
   font-weight: 600;
-  height: 15%;
+  height: 30px;
   margin: 5px;
 }
