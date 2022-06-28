@@ -1,41 +1,39 @@
-import React, { useContext } from 'react';
-import RecipesDoneCard from '../components/Cards/RecipesDoneCard';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import copy from 'clipboard-copy';
 import Header from '../components/Header/Header';
-import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
+import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipes() {
-  const { detailFood,
-    detailDrink,
-    done,
-    // setDone,
-  } = useContext(ProductDetailsContext);
   const [doneRecipes, setDoneRecipes] = useState([]);
-  console.log('comida', detailFood);
+  const [isShared, setIsShared] = useState(false);
+  const history = useHistory();
 
-  console.log('bebida', detailDrink);
+  useEffect(() => {
+    const Recipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    setDoneRecipes(Recipes);
+  }, []);
+
+  const onClickShare = (type, id) => {
+    copy(`http://localhost:3000/${type}s/${id}`);
+    setIsShared(true);
+  };
 
   const handleAll = () => {
-    console.log('all');
-    setDoneRecipes([
-      ...doneRecipes,
-      done,
-    ]);
+    const Recipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    setDoneRecipes(Recipes);
   };
 
   const handleFood = () => {
-    console.log('food');
-    setDoneRecipes([
-      ...doneRecipes,
-      done.type === 'food',
-    ]);
+    const Recipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const filtered = Recipes.filter(({ type }) => type === 'food');
+    setDoneRecipes(filtered);
   };
 
   const handleDrinks = () => {
-    console.log('drink');
-    setDoneRecipes([
-      ...doneRecipes,
-      done.type === 'drink',
-    ]);
+    const Recipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const filtered = Recipes.filter(({ type }) => type === 'drink');
+    setDoneRecipes(filtered);
   };
 
   return (
@@ -44,7 +42,7 @@ function DoneRecipes() {
       Done Recipes
       <div>
         <button
-          onClick={ handleAll }
+          onClick={ () => handleAll() }
           data-testid="filter-by-all-btn"
           type="button"
         >
@@ -65,20 +63,67 @@ function DoneRecipes() {
           Drinks
         </button>
         <div>
-          {
-            doneRecipes.map((doneItem, index) => (
-              <RecipesDoneCard
-                key={ index }
-                tags={ doneItem.tags }
-                date={ doneItem.doneDate }
-                category={ doneItem.type === 'food'
-                  ? doneItem.category : doneItem.alcoholicOrNot }
-                index={ index }
-                image={ doneItem.image }
-                name={ doneItem.name }
+          {doneRecipes && doneRecipes.length > 0
+        && doneRecipes.map((
+          { id,
+            type,
+            nationality,
+            category,
+            alcoholicOrNot,
+            name,
+            image,
+            doneDate,
+            tags }, index,
+        ) => (
+          <div key={ id }>
+            <input
+              type="image"
+              src={ image }
+              alt={ name }
+              data-testid={ `${index}-horizontal-image` }
+              width="150px"
+              onClick={ type === 'food'
+                ? () => history.push(`/foods/${id}`)
+                : () => history.push(`/drinks/${id}`) }
+            />
+            <div>
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
+              </p>
+              <input
+                type="image"
+                src={ shareIcon }
+                alt="Share Icon"
+                data-testid={ `${index}-horizontal-share-btn` }
+                onClick={ () => onClickShare(type, id) }
               />
-            ))
-          }
+              { isShared && <p>Link copied!</p> }
+              <h4
+                role="presentation"
+                data-testid={ `${index}-horizontal-name` }
+                onClick={ type === 'food'
+                  ? () => history.push(`/foods/${id}`)
+                  : () => history.push(`/drinks/${id}`) }
+              >
+                {name}
+              </h4>
+              <p data-testid={ `${index}-horizontal-done-date` }>
+                {doneDate}
+              </p>
+              { type === 'food'
+                ? tags && tags.map((tag) => (
+                  <span
+                    key={ tag }
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                  >
+                    {tag}
+                  </span>))
+                : null}
+
+            </div>
+          </div>))}
         </div>
       </div>
     </div>

@@ -4,12 +4,13 @@ import shareIcon from '../../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-function ButtonShareFood() {
+function ButtonShare() {
   const history = useHistory();
   const [copyShare, setCopyShare] = useState('');
 
   const clickShareFood = () => {
-    copy(`${window.location.origin}${history.location.pathname}`);
+    copy(`${window.location.origin}${history.location.pathname
+      .split('/in-progress')[0]}`);
     setCopyShare('Link copied!');
   };
 
@@ -30,4 +31,4 @@ function ButtonShareFood() {
   );
 }
 
-export default ButtonShareFood;
+export default ButtonShare;

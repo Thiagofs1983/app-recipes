@@ -27,7 +27,6 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
-  console.log(detailFood);
 
   useEffect(() => {
     const quantidades = [];
