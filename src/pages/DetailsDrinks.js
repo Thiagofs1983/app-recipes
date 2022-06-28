@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
+import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './pagesCss/Details.css';
@@ -71,7 +71,7 @@ function DetailsDrinks() {
       <div className="divTitleButtons">
         <h1 className="titleName" data-testid="recipe-title">{detailDrink?.strDrink}</h1>
         <div className="divButtons">
-          <ButtonShareDrink />
+          <ButtonShare />
           <ButtonFavoritarDrink />
         </div>
       </div>
