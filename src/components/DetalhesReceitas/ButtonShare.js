@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 
-function ButtonShareDrink() {
+const copy = require('clipboard-copy');
+
+function ButtonShare() {
   const history = useHistory();
   const [copyShare, setCopyShare] = useState('');
 
-  const clickShareDrink = () => {
-    copy(`${window.location.origin}${history.location.pathname}`);
+  const clickShareFood = () => {
+    copy(`${window.location.origin}${history.location.pathname
+      .split('/in-progress')[0]}`);
     setCopyShare('Link copied!');
   };
 
@@ -16,7 +18,7 @@ function ButtonShareDrink() {
     <div>
       <button
         type="button"
-        onClick={ clickShareDrink }
+        onClick={ clickShareFood }
       >
         <img
           src={ shareIcon }
@@ -29,4 +31,4 @@ function ButtonShareDrink() {
   );
 }
 
-export default ButtonShareDrink;
+export default ButtonShare;

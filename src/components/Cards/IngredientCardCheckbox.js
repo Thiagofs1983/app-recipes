@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-// import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import './IngredientCardCheckbox.css';
 
 function IngredientCardCheckbox({
-  index, ingredients, measure, testId, arrIngredients }) {
-  const [check, setCheck] = useState(false);
-
-  /* const { detailDrink } = useContext(ProductDetailsContext); */
-  const handleChange = ({ target: { checked } }) => {
-    setCheck(checked);
-    arrIngredients((prev) => [...prev, ingredients]);
-    /* if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
-      localStorage.setItem(inProgressRecipes, JSON.stringify())
-    } */
-  };
-
+  index, ingredients, measure, testId, checked, handleChange }) {
   return (
     <label
       htmlFor={ index }
       data-testid={ testId }
-      className={ check === true ? 'toogle' : '' }
+      className={ checked === true ? 'toogle' : '' }
     >
       <input
         type="checkbox"
         id={ index }
-        checked={ check }
-        onChange={ handleChange }
+        checked={ checked }
+        onChange={ () => handleChange(ingredients) }
       />
       {`- ${ingredients} - ${measure[index]}`}
     </label>
@@ -36,9 +24,10 @@ function IngredientCardCheckbox({
 IngredientCardCheckbox.propTypes = {
   index: PropTypes.number.isRequired,
   ingredients: PropTypes.string.isRequired,
-  measure: PropTypes.string.isRequired,
+  measure: PropTypes.arrayOf(PropTypes.string).isRequired,
   testId: PropTypes.string.isRequired,
-  arrIngredients: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default IngredientCardCheckbox;
