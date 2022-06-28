@@ -1,10 +1,11 @@
 main {
-  margin-bottom: 20%;
+  padding-bottom: 30px;
 }
 
 .divCard {
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: 50px;
 }
 
 .divDrink {
