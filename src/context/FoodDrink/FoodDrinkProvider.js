@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 import FoodDrinkContext from './FoodDrinkContext';
+import useRequestApiFilter from '../../hook/useRequestApiFilter';
 
 const FOOD_API = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const CATEGORY_FOOD_API = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const MEALS_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 const CATEGORY_DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-// const FITER_FROM_CATEGORY = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 const DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 
 const NUMBER_DOZE = 12;
@@ -29,64 +29,17 @@ function FoodDrinkProvider({ children }) {
   const [category, setCategory] = useState('');
   const [btnFilter, setBtnFilter] = useState(false);
 
-  useEffect(() => {
-    const apiFood = async () => {
-      try {
-        const response = await fetch(FOOD_API);
-        const dataApi = await response.json();
-        const filterFoods12 = dataApi.meals.filter((food, index) => index < NUMBER_DOZE);
-        setDataFood(filterFoods12);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    apiFood();
-  }, []);
+  useRequestApiFilter(FOOD_API, 'meals', setDataFood, NUMBER_DOZE);
 
-  useEffect(() => {
-    const apiDrink = async () => {
-      try {
-        const response = await fetch(DRINK_API);
-        const dataApi = await response.json();
-        const filterDrinks12 = dataApi.drinks
-          .filter((food, index) => index < NUMBER_DOZE);
-        setDataDrink(filterDrinks12);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    apiDrink();
-  }, []);
+  useRequestApiFilter(DRINK_API, 'drinks', setDataDrink, NUMBER_DOZE);
 
-  useEffect(() => {
-    const apiCategoryFood = async () => {
-      try {
-        const response = await fetch(CATEGORY_FOOD_API);
-        const dataApi = await response.json();
-        const filterCategoryFood = dataApi.meals
-          .filter((food, index) => index < NUMBER_CINCO);
-        setCategoryFood(filterCategoryFood);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    apiCategoryFood();
-  }, []);
+  useRequestApiFilter(CATEGORY_FOOD_API, 'meals', setCategoryFood, NUMBER_CINCO);
 
-  useEffect(() => {
-    const apiCategoryDrink = async () => {
-      try {
-        const response = await fetch(CATEGORY_DRINK_API);
-        const dataApi = await response.json();
-        const filterCategoryDrinks = dataApi.drinks
-          .filter((food, index) => index < NUMBER_CINCO);
-        setCategoryDrink(filterCategoryDrinks);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    apiCategoryDrink();
-  }, []);
+  useRequestApiFilter(CATEGORY_DRINK_API, 'drinks', setCategoryDrink, NUMBER_CINCO);
+
+  useRequestApiFilter(MEALS_INGREDIENTS, 'meals', setIngredients, NUMBER_DOZE);
+
+  useRequestApiFilter(DRINKS_INGREDIENTS, 'drinks', setDrinksIngredients, NUMBER_DOZE);
 
   const handleClickFilterCategoryFood = async ({ target }) => {
     const { name } = target;
@@ -155,38 +108,6 @@ function FoodDrinkProvider({ children }) {
     }
   };
 
-  useEffect(() => {
-    const ApiIngredients = async () => {
-      try {
-        const response = await fetch(MEALS_INGREDIENTS);
-        const { meals } = await response.json();
-        const mealsIngredientsAPI = meals.filter(
-          (igredient, index) => index < NUMBER_DOZE,
-        );
-        setIngredients([...mealsIngredientsAPI]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    ApiIngredients();
-  }, []);
-
-  useEffect(() => {
-    const ApiDrinksIngredients = async () => {
-      try {
-        const response = await fetch(DRINKS_INGREDIENTS);
-        const { drinks } = await response.json();
-        const drinksIngredientsAPI = drinks.filter(
-          (igredient, index) => index < NUMBER_DOZE,
-        );
-        setDrinksIngredients([...drinksIngredientsAPI]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    ApiDrinksIngredients();
-  }, []);
-
   const clickDrinkIngredient = async (name) => {
     const DRINKS_PER_INGREDIENT = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${name}`;
     try {
@@ -247,4 +168,5 @@ function FoodDrinkProvider({ children }) {
 FoodDrinkProvider.propTypes = {
   children: propTypes.node.isRequired,
 };
+
 export default FoodDrinkProvider;
