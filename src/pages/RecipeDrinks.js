@@ -4,6 +4,7 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
+import useLocalStorage from '../hook/useLocalStorage';
 
 function RecipeDrinks() {
   const { detailDrink } = useContext(ProductDetailsContext);
@@ -11,6 +12,8 @@ function RecipeDrinks() {
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
+  const [doneRecipeDrinks, setDoneRecipesdrink] = useLocalStorage('doneRecipes', []);
+
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -78,6 +81,23 @@ function RecipeDrinks() {
   };
 
   const clickRedirect = () => {
+    const current = new Date();
+    const date = `${current
+      .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+
+    const doneRecipeDrink = {
+      id,
+      type: 'drink',
+      nationality: '',
+      category: detailDrink?.strCategory,
+      alcoholicOrNot: detailDrink?.strAlcoholic,
+      name: detailDrink?.strDrink,
+      image: detailDrink?.strDrinkThumb,
+      doneDate: date,
+      tags: [],
+    };
+
+    setDoneRecipesdrink([...doneRecipeDrinks, doneRecipeDrink]);
     history.push('/done-recipes');
   };
 

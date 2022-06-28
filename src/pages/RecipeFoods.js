@@ -4,6 +4,7 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
+import useLocalStorage from '../hook/useLocalStorage';
 
 function RecipeFoods() {
   const { detailFood } = useContext(ProductDetailsContext);
@@ -11,8 +12,10 @@ function RecipeFoods() {
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
+  const [doneRecipesFood, setDoneRecipesfood] = useLocalStorage('doneRecipes', []);
   const { id } = useParams();
   const history = useHistory();
+  console.log(detailFood);
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -77,6 +80,24 @@ function RecipeFoods() {
 
   const clickRedirect = () => {
     history.push('/done-recipes');
+
+    const current = new Date();
+    const date = `${current
+      .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+
+    const doneRecipeFod = {
+      id,
+      type: 'food',
+      nationality: detailFood?.strArea,
+      category: detailFood?.strCategory,
+      alcoholicOrNot: '',
+      name: detailFood?.strMeal,
+      image: detailFood?.strMealThumb,
+      doneDate: date,
+      tags: [detailFood.strTags],
+    };
+
+    setDoneRecipesfood([...doneRecipesFood, doneRecipeFod]);
   };
 
   return (

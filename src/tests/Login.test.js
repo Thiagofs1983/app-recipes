@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
-import 'jest-localstorage-mock';
 
 // const NUMBER_SEX = 6;
 const EMAIL_ACESS = 'xablau@gmail.com';
@@ -47,5 +46,6 @@ describe('Criar a tela de Login com suas funcionalidades', () => {
     expect(btnEnter).toBeInTheDocument();
 
     userEvent.click(btnEnter);
+    expect(history.location.pathname).toBe('/foods');
   });
 });

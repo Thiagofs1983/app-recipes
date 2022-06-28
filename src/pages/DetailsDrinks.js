@@ -39,12 +39,11 @@ function DetailsDrinks() {
   }, [detailDrink]);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.cocktails[id]) {
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgress.drinks && inProgress.drinks[id]) {
       setNameButton(false);
     }
   }, []);
-
-  console.log(id);
 
   const handleStartClick = () => {
     setProgress({

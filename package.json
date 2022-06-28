@@ -78,10 +78,6 @@
       "text",
       "clover",
       "html"
-    ],
-  
-    "resetMocks" : false ,
-    "setupFiles" : [ " jest-localstorage-mock " ]
-   
+    ]
   }
 }

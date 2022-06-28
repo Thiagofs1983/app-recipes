@@ -39,7 +39,8 @@ function DetailsFoods() {
   }, [detailFood]);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.meals[id]) {
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgress.meals && inProgress.meals[id]) {
       setNameButton(false);
     }
   }, []);
