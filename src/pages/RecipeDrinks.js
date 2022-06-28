@@ -1,18 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
+import { useParams, useHistory } from 'react-router-dom';
+import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
-import './Details.css';
 
 function RecipeDrinks() {
   const { detailDrink } = useContext(ProductDetailsContext);
-  const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-  const [ingredientsFinish, setIngredientsFinish] = useState([]);
-
-  console.log(ingredientsFinish);
-
+  const [getLocalStorage, setGetLocalStorage] = useState([]);
+  const [ingredientesData, setingreditentesData] = useState([]);
+  const [objLocalStorage, setObjLocalStorage] = useState(null);
+  const { id } = useParams();
+  const history = useHistory();
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -33,6 +33,54 @@ function RecipeDrinks() {
     });
   }, [detailDrink]);
 
+  useEffect(() => {
+    if (!localStorage.getItem('inProgressRecipes')) {
+      localStorage.setItem(
+        'inProgressRecipes', JSON.stringify({ cocktails: { [id]: [] } }),
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const { cocktails } = getStorage;
+    setObjLocalStorage({ ...objLocalStorage, cocktails });
+  }, []);
+
+  useEffect(() => {
+    const getArrLocalStorage = objLocalStorage?.cocktails[id];
+    setGetLocalStorage(getArrLocalStorage);
+  }, [objLocalStorage]);
+
+  const handleChange = (ingredient) => {
+    if (getLocalStorage?.includes(ingredient)) {
+      const local = getLocalStorage?.filter((ingred) => ingred !== ingredient);
+      const newItemLocal = {
+        ...objLocalStorage,
+        cocktails: {
+          ...objLocalStorage?.cocktails,
+          [id]: [...local],
+        },
+      };
+      setGetLocalStorage([...local]);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newItemLocal));
+    } else {
+      const newItemLocal = {
+        ...objLocalStorage,
+        cocktails: {
+          ...objLocalStorage?.cocktails,
+          [id]: [...getLocalStorage, ingredient],
+        },
+      };
+      setGetLocalStorage([...getLocalStorage, ingredient]);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newItemLocal));
+    }
+  };
+
+  const clickRedirect = () => {
+    history.push('/done-recipes');
+  };
+
   return (
     <section>
       {detailDrink !== {} && (
@@ -47,7 +95,7 @@ function RecipeDrinks() {
           <div>
             <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
             <div>
-              <ButtonShareDrink />
+              <ButtonShare />
               <ButtonFavoritarDrink />
             </div>
           </div>
@@ -59,12 +107,15 @@ function RecipeDrinks() {
             <h3>
               {ingredientesData.map((ingredients, index) => (
                 <IngredientCardCheckbox
-                  key={ index }
                   index={ index }
+                  key={ index }
                   testId={ `${index}-ingredient-step` }
                   ingredients={ ingredients }
                   measure={ measure }
-                  arrIngredients={ setIngredientsFinish }
+                  handleChange={ handleChange }
+                  checked={
+                    getLocalStorage?.some((ingredient) => ingredient === ingredients)
+                  }
                 />
               ))}
             </h3>
@@ -76,8 +127,10 @@ function RecipeDrinks() {
           <button
             type="button"
             data-testid="finish-recipe-btn"
+            disabled={ getLocalStorage?.length !== ingredientesData?.length }
+            onClick={ clickRedirect }
           >
-            Finish
+            Finish Recipe
           </button>
         </>
       )}

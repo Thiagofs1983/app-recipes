@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
+import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
@@ -27,7 +27,6 @@ function DetailsFoods() {
       }
     });
   }, [detailFood]);
-  console.log(detailFood);
 
   useEffect(() => {
     const quantidades = [];
@@ -69,7 +68,7 @@ function DetailsFoods() {
       <div>
         <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
         <div>
-          <ButtonShareFood />
+          <ButtonShare />
           <ButtonFavoritarFood />
         </div>
       </div>
