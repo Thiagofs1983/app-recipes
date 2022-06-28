@@ -8,7 +8,9 @@ function useRequestApiFilter(url, typeFood, func, number) {
         const dataApi = await response.json();
         const filterFoods12 = dataApi[typeFood]
           .filter((food, index) => index < number);
-        func([...filterFoods12]);
+        if (filterFoods12.length !== 0) {
+          func([...filterFoods12]);
+        }
       } catch (error) {
         console.log(error);
       }
