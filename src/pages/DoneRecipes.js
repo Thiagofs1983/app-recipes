@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import Header from '../components/Header/Header';
 import shareIcon from '../images/shareIcon.svg';
+import './pagesCss/DoneRecipes.css';
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -39,30 +40,34 @@ function DoneRecipes() {
   return (
     <div>
       <Header namePage="Done Recipes" isEnable={ false } />
-      Done Recipes
-      <div>
-        <button
-          onClick={ () => handleAll() }
-          data-testid="filter-by-all-btn"
-          type="button"
-        >
-          All
-        </button>
-        <button
-          onClick={ handleFood }
-          data-testid="filter-by-food-btn"
-          type="button"
-        >
-          Food
-        </button>
-        <button
-          onClick={ handleDrinks }
-          data-testid="filter-by-drink-btn"
-          type="button"
-        >
-          Drinks
-        </button>
-        <div>
+      <div className="mainDone">
+        <div className="divBtnDone">
+          <button
+            className="doneBtn"
+            onClick={ () => handleAll() }
+            data-testid="filter-by-all-btn"
+            type="button"
+          >
+            All
+          </button>
+          <button
+            className="doneBtn"
+            onClick={ handleFood }
+            data-testid="filter-by-food-btn"
+            type="button"
+          >
+            Food
+          </button>
+          <button
+            className="doneBtn"
+            onClick={ handleDrinks }
+            data-testid="filter-by-drink-btn"
+            type="button"
+          >
+            Drinks
+          </button>
+        </div>
+        <div className="divFav">
           {doneRecipes && doneRecipes.length > 0
         && doneRecipes.map((
           { id,
@@ -75,8 +80,9 @@ function DoneRecipes() {
             doneDate,
             tags }, index,
         ) => (
-          <div key={ id }>
+          <div className="divFavCard" key={ id }>
             <input
+              className="inputFav"
               type="image"
               src={ image }
               alt={ name }
@@ -86,7 +92,7 @@ function DoneRecipes() {
                 ? () => history.push(`/foods/${id}`)
                 : () => history.push(`/drinks/${id}`) }
             />
-            <div>
+            <div className="divText">
               <p
                 data-testid={ `${index}-horizontal-top-text` }
               >
@@ -112,16 +118,17 @@ function DoneRecipes() {
               <p data-testid={ `${index}-horizontal-done-date` }>
                 {doneDate}
               </p>
-              { type === 'food'
-                ? tags && tags.map((tag) => (
-                  <span
-                    key={ tag }
-                    data-testid={ `${index}-${tag}-horizontal-tag` }
-                  >
-                    {tag}
-                  </span>))
-                : null}
-
+              <div className="doneTags">
+                { type === 'food'
+                  ? tags && tags.map((tag) => (
+                    <span
+                      key={ tag }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                    >
+                      {tag}
+                    </span>))
+                  : null}
+              </div>
             </div>
           </div>))}
         </div>

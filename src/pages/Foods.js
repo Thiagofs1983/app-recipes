@@ -30,7 +30,7 @@ function Foods() {
   return (
     <div>
       <Header namePage="Foods" />
-      <main>
+      <main className="mainFoods">
         <div className="divButton">
           <button
             className="buttonFoods"

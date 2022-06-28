@@ -1,8 +1,12 @@
+.mainFav {
+  background-color: var(--backgroundColor);
+  height: 560px;
+}
+
 .divBtnFav {
   align-items: center;
   display: flex;
   justify-content: space-around;
-  margin-top: 7px;
 }
 
 .btnFav {

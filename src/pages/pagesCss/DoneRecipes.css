@@ -1,0 +1,19 @@
+.mainDone {
+  background-color: var(--backgroundColor);
+  height: 560px;
+}
+
+.divBtnDone {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.doneBtn {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-weight: 600;
+  margin: 5px;
+  padding: 10px;
+  width: 90px;
+}

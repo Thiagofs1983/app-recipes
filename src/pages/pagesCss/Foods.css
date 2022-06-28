@@ -1,5 +1,7 @@
-main {
+.mainFoods {
+  background-color: var(--backgroundColor);
   padding-bottom: 30px;
+  width: 360px;
 }
 
 .divCard {
@@ -35,8 +37,6 @@ main {
   display: flex;
   flex: row nowrap;
   justify-content: space-between;
-  margin-bottom: 2%;
-  margin-top: 2%;
 }
 
 .buttonFoods {

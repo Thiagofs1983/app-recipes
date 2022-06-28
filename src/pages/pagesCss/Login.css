@@ -1,18 +1,17 @@
 .mainLogin {
   align-items: center;
-  background-image: url('../../images/AppLogin2.jpg');
   display: flex;
   flex-flow: column nowrap;
-  height: 100vh;
+  height: 640px;
   justify-content: center;
-  width: 100vw;
+  width: 360px;
 }
 
 .nameApp {
   color: black;
   font-weight: 700;
   text-align: center;
-  width: 100%;
+  width: 200px;
 }
 
 .formLogin {
@@ -30,7 +29,7 @@
   height: 35px;
   margin: 2%;
   text-align: center;
-  width: 250px;
+  width: 200px;
 }
 
 .buttonLogin {
@@ -38,7 +37,6 @@
   color: var(--textColor);
   font-size: larger;
   font-weight: 600;
-  margin: 5%;
   padding: 2%;
   width: 80%;
 }

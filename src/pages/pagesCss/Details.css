@@ -1,5 +1,6 @@
 .detailsPage {
   align-items: center;
+  background-color: var(--backgroundColor);
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

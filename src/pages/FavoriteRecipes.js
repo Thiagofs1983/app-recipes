@@ -53,34 +53,35 @@ function FavoriteRecipes() {
         namePage="Favorite Recipes"
         isEnable={ false }
       />
-      <div className="divBtnFav">
-        <button
-          className="btnFav"
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ () => onClickAll() }
-        >
-          All
-        </button>
-        <button
-          className="btnFav"
-          type="button"
-          data-testid="filter-by-food-btn"
-          onClick={ () => onClickFilterFood() }
-        >
-          Food
-        </button>
-        <button
-          className="btnFav"
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ () => onClickFilterDrink() }
-        >
-          Drinks
-        </button>
-      </div>
-      <div className="divFav">
-        {favorites && favorites.length > 0
+      <main className="mainFav">
+        <div className="divBtnFav">
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-all-btn"
+            onClick={ () => onClickAll() }
+          >
+            All
+          </button>
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-food-btn"
+            onClick={ () => onClickFilterFood() }
+          >
+            Food
+          </button>
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-drink-btn"
+            onClick={ () => onClickFilterDrink() }
+          >
+            Drinks
+          </button>
+        </div>
+        <div className="divFav">
+          {favorites && favorites.length > 0
         && favorites.map((
           { id, type, nationality, category, alcoholicOrNot, name, image }, index,
         ) => (
@@ -134,7 +135,8 @@ function FavoriteRecipes() {
               </div>
             </div>
           </div>))}
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

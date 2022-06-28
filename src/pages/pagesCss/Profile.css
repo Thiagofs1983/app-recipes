@@ -16,10 +16,11 @@
 
 .mainProfile {
   align-items: center;
+  background-color: var(--backgroundColor);
   display: flex;
   flex-flow: column nowrap;
+  height: 500px;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .divButtonsProfile {
