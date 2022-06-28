@@ -8,7 +8,6 @@ const DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const CATEGORY_FOOD_API = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const MEALS_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 const CATEGORY_DRINK_API = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-// const FITER_FROM_CATEGORY = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 const DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 
 const NUMBER_DOZE = 12;
@@ -28,13 +27,13 @@ function FoodDrinkProvider({ children }) {
   const [listRecipes, setListRecipes] = useState([]);
   const [category, setCategory] = useState('');
   const [btnFilter, setBtnFilter] = useState(false);
-
+  console.log(dataFood);
   useEffect(() => {
     const apiFood = async () => {
       try {
         const response = await fetch(FOOD_API);
         const dataApi = await response.json();
-        const filterFoods12 = dataApi.meals.filter((food, index) => index < NUMBER_DOZE);
+        const filterFoods12 = dataApi.meals?.filter((food, index) => index < NUMBER_DOZE);
         setDataFood(filterFoods12);
       } catch (error) {
         console.log(error);
@@ -49,7 +48,7 @@ function FoodDrinkProvider({ children }) {
         const response = await fetch(DRINK_API);
         const dataApi = await response.json();
         const filterDrinks12 = dataApi.drinks
-          .filter((food, index) => index < NUMBER_DOZE);
+          ?.filter((food, index) => index < NUMBER_DOZE);
         setDataDrink(filterDrinks12);
       } catch (error) {
         console.log(error);
@@ -64,7 +63,7 @@ function FoodDrinkProvider({ children }) {
         const response = await fetch(CATEGORY_FOOD_API);
         const dataApi = await response.json();
         const filterCategoryFood = dataApi.meals
-          .filter((food, index) => index < NUMBER_CINCO);
+          ?.filter((food, index) => index < NUMBER_CINCO);
         setCategoryFood(filterCategoryFood);
       } catch (error) {
         console.log(error);
@@ -79,7 +78,7 @@ function FoodDrinkProvider({ children }) {
         const response = await fetch(CATEGORY_DRINK_API);
         const dataApi = await response.json();
         const filterCategoryDrinks = dataApi.drinks
-          .filter((food, index) => index < NUMBER_CINCO);
+          ?.filter((food, index) => index < NUMBER_CINCO);
         setCategoryDrink(filterCategoryDrinks);
       } catch (error) {
         console.log(error);
@@ -95,15 +94,15 @@ function FoodDrinkProvider({ children }) {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`);
       const dataApi = await response.json();
       const filterCategoryFood = dataApi.meals
-        .filter((food, index) => index < NUMBER_DOZE);
+        ?.filter((food, index) => index < NUMBER_DOZE);
       setDataFood(filterCategoryFood);
     }
 
     if (name === selectItemFilter) {
       const response = await fetch(FOOD_API);
       const dataApi = await response.json();
-      const filterCategoryFood = dataApi.meals
-        .filter((food, index) => index < NUMBER_DOZE);
+      const filterCategoryFood = dataApi?.meals
+        ?.filter((food, index) => index < NUMBER_DOZE);
       setDataFood(filterCategoryFood);
     }
   };
@@ -116,8 +115,8 @@ function FoodDrinkProvider({ children }) {
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`,
       );
       const dataApi = await response.json();
-      const filterCategoryDrinks = dataApi.drinks
-        .filter((drink, index) => index < NUMBER_DOZE);
+      const filterCategoryDrinks = dataApi?.drinks
+        ?.filter((drink, index) => index < NUMBER_DOZE);
 
       setDataDrink(filterCategoryDrinks);
     }
@@ -125,8 +124,8 @@ function FoodDrinkProvider({ children }) {
     if (name === selectItemFilter) {
       const response = await fetch(DRINK_API);
       const dataApi = await response.json();
-      const filterCategoryDrinks = dataApi.drinks
-        .filter((drink, index) => index < NUMBER_DOZE);
+      const filterCategoryDrinks = dataApi?.drinks
+        ?.filter((drink, index) => index < NUMBER_DOZE);
 
       setDataDrink(filterCategoryDrinks);
     }
@@ -136,8 +135,8 @@ function FoodDrinkProvider({ children }) {
     try {
       const response = await fetch(DRINK_API);
       const dataApi = await response.json();
-      const filterDrinks = dataApi.drinks
-        .filter((food, index) => index < NUMBER_DOZE);
+      const filterDrinks = dataApi?.drinks
+        ?.filter((food, index) => index < NUMBER_DOZE);
       setDataDrink(filterDrinks);
     } catch (error) {
       console.log(error);
@@ -148,7 +147,7 @@ function FoodDrinkProvider({ children }) {
     try {
       const response = await fetch(FOOD_API);
       const dataApi = await response.json();
-      const filterFoods = dataApi.meals.filter((food, index) => index < NUMBER_DOZE);
+      const filterFoods = dataApi.meals?.filter((food, index) => index < NUMBER_DOZE);
       setDataFood(filterFoods);
     } catch (error) {
       console.log(error);
@@ -160,7 +159,7 @@ function FoodDrinkProvider({ children }) {
       try {
         const response = await fetch(MEALS_INGREDIENTS);
         const { meals } = await response.json();
-        const mealsIngredientsAPI = meals.filter(
+        const mealsIngredientsAPI = meals?.filter(
           (igredient, index) => index < NUMBER_DOZE,
         );
         setIngredients([...mealsIngredientsAPI]);
@@ -176,7 +175,7 @@ function FoodDrinkProvider({ children }) {
       try {
         const response = await fetch(DRINKS_INGREDIENTS);
         const { drinks } = await response.json();
-        const drinksIngredientsAPI = drinks.filter(
+        const drinksIngredientsAPI = drinks?.filter(
           (igredient, index) => index < NUMBER_DOZE,
         );
         setDrinksIngredients([...drinksIngredientsAPI]);
@@ -192,7 +191,7 @@ function FoodDrinkProvider({ children }) {
     try {
       const response = await fetch(DRINKS_PER_INGREDIENT);
       const { drinks } = await response.json();
-      const drinksPerIngredients = drinks.filter((drink, index) => index < NUMBER_DOZE);
+      const drinksPerIngredients = drinks?.filter((drink, index) => index < NUMBER_DOZE);
       setDataDrink([...drinksPerIngredients]);
     } catch (e) {
       console.log(e);
@@ -205,7 +204,7 @@ function FoodDrinkProvider({ children }) {
     try {
       const response = await fetch(MEALS_PER_INGREDIENT);
       const { meals } = await response.json();
-      const mealsPerIngredients = meals.filter((drink, index) => index < NUMBER_DOZE);
+      const mealsPerIngredients = meals?.filter((drink, index) => index < NUMBER_DOZE);
       setDataFood([...mealsPerIngredients]);
     } catch (e) {
       console.log(e);

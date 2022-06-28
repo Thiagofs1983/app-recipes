@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes, { any } from 'prop-types';
-import ButtonShareDrink from '../DetalhesReceitas/ButtonShareDrink';
-import ButtonShareFood from '../DetalhesReceitas/ButtonShareFood';
+import ButtonShare from '../DetalhesReceitas/ButtonShare';
 
 function RecipesDoneCard(props) {
-  const { index, image, name, category, date, tags, buttonShareType } = props;
+  const { index, image, name, category, date, tags } = props;
 
   return (
     <div className="card" data-testid={ `${index}-recipe-card` }>
+      <ButtonShare data-testid={ `${index}-horizontal-share-btn` } />
       <img
         className="card-doneRecipes"
         data-testid={ `${index}-horizontal-image` }
@@ -17,9 +17,6 @@ function RecipesDoneCard(props) {
       <p data-testid={ `${index}-horizontal-top-text` }>{ category }</p>
       <p className="card-name" data-testid={ `${index}-horizontal-name` }>{ name }</p>
       <p data-testid={ `${index}-horizontal-done-date` }>{ date }</p>
-      {
-        buttonShareType
-      }
       <div>
         {
           tags.map((nomeTags, indexTags) => (

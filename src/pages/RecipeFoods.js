@@ -1,15 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
+import { useParams } from 'react-router-dom';
+import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
+import useLocalStorage from '../hook/useLocalStorage';
 
 function RecipeFoods() {
   const { detailFood } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
-  const [ingredientsFinish, setIngredientsFinish] = useState([]);
-  console.log(ingredientsFinish);
+  const [clickIngredient, setClickIngredients] = useState([]);
+  const [storage, setStorage] = useLocalStorage('inProgressRecipes', {});
+  const { id } = useParams();
+  console.log(clickIngredient);
+  // console.log(ingredientsFinish);
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -30,6 +35,23 @@ function RecipeFoods() {
     });
   }, [detailFood]);
 
+  const handleChange = () => {
+    setClickIngredients([
+      ...clickIngredient,
+      clickIngredient,
+    ]);
+
+    setStorage({
+      ...storage,
+      meals: {
+        ...storage.meals,
+        [id]: [...clickIngredient],
+      },
+    });
+  };
+
+  console.log(clickIngredient);
+
   return (
     <section>
       {detailFood !== {} && (
@@ -44,7 +66,7 @@ function RecipeFoods() {
           <div>
             <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
             <div>
-              <ButtonShareFood />
+              <ButtonShare />
               <ButtonFavoritarFood />
             </div>
           </div>
@@ -61,7 +83,9 @@ function RecipeFoods() {
                   testId={ `${index}-ingredient-step` }
                   ingredients={ ingredients }
                   measure={ measure }
-                  arrIngredients={ setIngredientsFinish }
+                  handleChange={ handleChange }
+                  setClickIngredients={ setClickIngredients }
+                  clickIngredient={ clickIngredient }
                 />
               ))}
             </h3>

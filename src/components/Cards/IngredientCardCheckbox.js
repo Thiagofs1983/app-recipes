@@ -1,32 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+// import { useParams } from 'react-router-dom';
+// import useLocalStorage from '../../hook/useLocalStorage';
 // import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import './IngredientCardCheckbox.css';
 
-function IngredientCardCheckbox({
-  index, ingredients, measure, testId, arrIngredients }) {
-  const [check, setCheck] = useState(false);
+function IngredientCardCheckbox(props) {
+  const {
+    index,
+    ingredients,
+    measure,
+    testId,
+    handleChange,
+    setClickIngredients,
 
-  /* const { detailDrink } = useContext(ProductDetailsContext); */
-  const handleChange = ({ target: { checked } }) => {
-    setCheck(checked);
-    arrIngredients((prev) => [...prev, ingredients]);
-    /* if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
-      localStorage.setItem(inProgressRecipes, JSON.stringify())
-    } */
+    // clickIngredient,
+  } = props;
+
+  const test = true;
+  // const [check, setCheck] = useState(false);
+  // const [progress, setProgress] = useLocalStorage('inProgressRecipes', {});
+  // const { id } = useParams();
+
+  const onClick1 = ({ target }) => {
+    setClickIngredients(
+      target.name,
+    );
   };
 
   return (
     <label
       htmlFor={ index }
       data-testid={ testId }
-      className={ check === true ? 'toogle' : '' }
+      className={ test ? 'toogle' : '' }
     >
       <input
         type="checkbox"
         id={ index }
-        checked={ check }
+        name={ ingredients }
+        // checked={ check }
         onChange={ handleChange }
+        onClick={ onClick1 }
       />
       {`- ${ingredients} - ${measure[index]}`}
     </label>
@@ -36,9 +50,12 @@ function IngredientCardCheckbox({
 IngredientCardCheckbox.propTypes = {
   index: PropTypes.number.isRequired,
   ingredients: PropTypes.string.isRequired,
-  measure: PropTypes.string.isRequired,
+  measure: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   testId: PropTypes.string.isRequired,
-  arrIngredients: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  setClickIngredients: PropTypes.func.isRequired,
+  // setArrayIngredient: PropTypes.func.isRequired,
+  // clickIngredient: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default IngredientCardCheckbox;

@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import RecipesDoneCard from '../components/Cards/RecipesDoneCard';
-import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
-import ButtonShareFood from '../components/DetalhesReceitas/ButtonShareFood';
 import Header from '../components/Header/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 
@@ -71,9 +69,6 @@ function DoneRecipes() {
             doneRecipes.map((doneItem, index) => (
               <RecipesDoneCard
                 key={ index }
-                buttonShareType={ doneItem.type === 'food'
-                  ? <ButtonShareFood data-testid={ `${index}-horizontal-share-btn` } />
-                  : <ButtonShareDrink data-testid={ `${index}-horizontal-share-btn` } /> }
                 tags={ doneItem.tags }
                 date={ doneItem.doneDate }
                 category={ doneItem.type === 'food'

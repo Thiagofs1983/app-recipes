@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ButtonShareDrink from '../components/DetalhesReceitas/ButtonShareDrink';
+import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
@@ -47,7 +47,7 @@ function RecipeDrinks() {
           <div>
             <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
             <div>
-              <ButtonShareDrink />
+              <ButtonShare />
               <ButtonFavoritarDrink />
             </div>
           </div>
