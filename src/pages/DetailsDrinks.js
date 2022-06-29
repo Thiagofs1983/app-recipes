@@ -9,14 +9,15 @@ function DetailsDrinks() {
   const {
     detailDrink,
     recommendedFood,
-    progress, setProgress,
     nameButton, setDone, done,
-    setNameButton,
+    setNameButton, setIdUrl,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
   const history = useHistory();
   const { id } = useParams();
+
+  setIdUrl(id);
 
   useEffect(() => {
     const ingredientes = [];
@@ -39,21 +40,17 @@ function DetailsDrinks() {
   }, [detailDrink]);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.cocktails[id]) {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal?.cocktails[id]) {
       setNameButton(false);
+    } else {
+      localStorage.setItem(
+        'inProgressRecipes', JSON.stringify({ cocktails: { [id]: [] } }),
+      );
     }
   }, []);
 
-  console.log(id);
-
   const handleStartClick = () => {
-    setProgress({
-      ...progress,
-      cocktails: {
-        ...progress.cocktails,
-        [detailDrink?.idDrink]: [],
-      },
-    });
     setDone([]);
     history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
   };

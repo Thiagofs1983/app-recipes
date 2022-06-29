@@ -26,6 +26,16 @@ function FoodDetailsProvider({ children }) {
   useRequestApiFilter(RECOMMENDED_DRINKS, 'drinks', setRecommendadosDrink, NUMERO_SIX);
 
   const detailApiFoodId = async (idFood) => {
+    /* if (localStorage.getItem('inProgressRecipes') === null) {
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ meals: { [idFood]: [] } }));
+    }
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const arrIds = Object.keys(getLocal?.meals);
+    if (!arrIds.includes(idFood)) {
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ meals: { [idFood]: [] } }));
+    } */
     history.push(`foods/${idFood}`);
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`);
@@ -39,6 +49,16 @@ function FoodDetailsProvider({ children }) {
   };
 
   const detailApiDrinkId = async (idDrink) => {
+    /* if (localStorage.getItem('inProgressRecipes') === null) {
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ cocktails: { [idDrink]: [] } }));
+    }
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const arrIds = Object.keys(getLocal?.cocktails);
+    if (!arrIds.includes(idDrink)) {
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ cocktails: { [idDrink]: [] } }));
+    } */
     history.push(`/drinks/${idDrink}`);
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`);
@@ -61,7 +81,9 @@ function FoodDetailsProvider({ children }) {
         console.log(error);
       }
     };
-    detailsFood();
+    if (idUrl) {
+      detailsFood();
+    }
   }, [idUrl]);
 
   useEffect(() => {
@@ -77,10 +99,6 @@ function FoodDetailsProvider({ children }) {
     detailsDrink();
   }, [idUrl]);
 
-  useEffect(() => {
-    setIdUrl(history.location.pathname.split('/')[2]);
-  }, [history.location.pathname]);
-
   const context = {
     done,
     idUrl,
@@ -93,6 +111,7 @@ function FoodDetailsProvider({ children }) {
     visibleStart,
     recommendedFood,
     RecomendadosDrink,
+    setIdUrl,
     setNameButton,
     setDetailFood,
     setVisibleStart,
