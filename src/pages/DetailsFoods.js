@@ -4,12 +4,11 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import './Details.css';
-// https://github.com/youtube/api-samples/issues/140 iframe youtube.
 
 function DetailsFoods() {
   const { detailFood, RecomendadosDrink,
-    progress, setProgress, setDone, done,
-    nameButton, setNameButton,
+    /* progress, setProgress, */ setDone, done,
+    nameButton, setNameButton, setIdUrl,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [measure, setMeasures] = useState([]);
@@ -17,6 +16,8 @@ function DetailsFoods() {
 
   const history = useHistory();
   const { id } = useParams();
+
+  setIdUrl(id);
 
   useEffect(() => {
     const ingredientes = [];
@@ -39,19 +40,18 @@ function DetailsFoods() {
   }, [detailFood]);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes'))?.meals[id]) {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal?.meals[id]) {
+      // console.log(getLocal?.meals[id].length);
       setNameButton(false);
-    }
+    } /* else {
+      localStorage.setItem(
+        'inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }),
+      );
+    } */
   }, []);
-
+  console.log(nameButton);
   const handleStartClick = () => {
-    setProgress({
-      ...progress,
-      meals: {
-        ...progress.meals,
-        [detailFood?.idMeal]: [],
-      },
-    });
     setDone([]);
     history.push(`/foods/${detailFood?.idMeal}/in-progress`);
   };

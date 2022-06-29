@@ -6,13 +6,14 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 
 function RecipeFoods() {
-  const { detailFood } = useContext(ProductDetailsContext);
+  const { detailFood, setIdUrl } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
   const { id } = useParams();
   const history = useHistory();
+  setIdUrl(id);
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -36,13 +37,19 @@ function RecipeFoods() {
   useEffect(() => {
     if (!localStorage.getItem('inProgressRecipes')) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
+    } else {
+      const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      console.log(getLocal);
+      const meals = { ...getLocal.meals,
+        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id] || [] };
+      localStorage.setItem('inProgressRecipes', JSON.stringify({ ...getLocal, meals }));
     }
   }, []);
 
   useEffect(() => {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const { meals } = getStorage;
-    setObjLocalStorage({ ...objLocalStorage, meals });
+    const { meals, cocktails } = getStorage;
+    setObjLocalStorage({ ...objLocalStorage, meals, cocktails });
   }, []);
 
   useEffect(() => {
