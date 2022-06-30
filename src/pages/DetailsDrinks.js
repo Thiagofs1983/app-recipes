@@ -9,14 +9,17 @@ function DetailsDrinks() {
   const {
     detailDrink,
     recommendedFood,
-    progress, setProgress,
-    nameButton, setDone, done,
+    nameButton,
     setNameButton,
+    setIdUrl,
+    done,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
   const [measure, setMeasures] = useState([]);
   const history = useHistory();
   const { id } = useParams();
+
+  setIdUrl(id);
 
   useEffect(() => {
     const ingredientes = [];
@@ -39,21 +42,20 @@ function DetailsDrinks() {
   }, [detailDrink]);
 
   useEffect(() => {
-    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (inProgress.drinks && inProgress.drinks[id]) {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal?.cocktails[id]) {
       setNameButton(false);
+    } else {
+      localStorage.setItem(
+        'inProgressRecipes', JSON.stringify({ cocktails: { [id]: [] } }),
+      );
     }
   }, []);
 
   const handleStartClick = () => {
-    setProgress({
-      ...progress,
-      cocktails: {
-        ...progress.cocktails,
-        [detailDrink?.idDrink]: [],
-      },
-    });
-    setDone([]);
+    setDone(
+      JSON.parse(localStorage.getItem('doneRecipes')) || [],
+    );
     history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
   };
 
@@ -115,7 +117,7 @@ function DetailsDrinks() {
       </div>
       <div className="buttonStart">
         {
-          done.length === 0 ? (
+          done.includes(id) ? (
             <button
               className="button1"
               data-testid="start-recipe-btn"

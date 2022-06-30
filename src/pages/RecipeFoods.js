@@ -4,19 +4,17 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
-import useLocalStorage from '../hook/useLocalStorage';
 
 function RecipeFoods() {
-  const { detailFood } = useContext(ProductDetailsContext);
+  const { detailFood, setIdUrl, done, setDone } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
-  const [doneRecipesFood, setDoneRecipesfood] = useLocalStorage('doneRecipes', []);
   const { id } = useParams();
   const history = useHistory();
-  console.log(detailFood);
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailFood).forEach(([key, value]) => {
@@ -39,14 +37,20 @@ function RecipeFoods() {
   useEffect(() => {
     if (!localStorage.getItem('inProgressRecipes')) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
+    } else {
+      const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      console.log(getLocal);
+      const meals = { ...getLocal.meals,
+        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id] || [] };
+      localStorage.setItem('inProgressRecipes', JSON.stringify({ ...getLocal, meals }));
     }
   }, []);
 
   useEffect(() => {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const { meals } = getStorage;
-    setObjLocalStorage({ ...objLocalStorage, meals });
-  }, []);
+    const { meals, cocktails } = getStorage;
+    setObjLocalStorage({ ...objLocalStorage, meals, cocktails });
+  }, [setObjLocalStorage]);
 
   useEffect(() => {
     const getArrLocalStorage = objLocalStorage?.meals[id];
@@ -79,11 +83,10 @@ function RecipeFoods() {
   };
 
   const clickRedirect = () => {
-    history.push('/done-recipes');
-
     const current = new Date();
     const date = `${current
       .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    console.log('olá');
 
     const doneRecipeFod = {
       id,
@@ -97,8 +100,10 @@ function RecipeFoods() {
       tags: [detailFood.strTags],
     };
 
-    setDoneRecipesfood([...doneRecipesFood, doneRecipeFod]);
+    setDone([...done, doneRecipeFod]);
+    history.push('/done-recipes');
   };
+  console.log('getlocal', getLocalStorage);
 
   return (
     <section>

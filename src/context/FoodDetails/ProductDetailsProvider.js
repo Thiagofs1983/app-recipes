@@ -61,7 +61,9 @@ function FoodDetailsProvider({ children }) {
         console.log(error);
       }
     };
-    detailsFood();
+    if (idUrl) {
+      detailsFood();
+    }
   }, [idUrl]);
 
   useEffect(() => {
@@ -77,10 +79,6 @@ function FoodDetailsProvider({ children }) {
     detailsDrink();
   }, [idUrl]);
 
-  useEffect(() => {
-    setIdUrl(history.location.pathname.split('/')[2]);
-  }, [history.location.pathname]);
-
   const context = {
     done,
     idUrl,
@@ -93,6 +91,7 @@ function FoodDetailsProvider({ children }) {
     visibleStart,
     recommendedFood,
     RecomendadosDrink,
+    setIdUrl,
     setNameButton,
     setDetailFood,
     setVisibleStart,

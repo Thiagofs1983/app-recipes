@@ -4,19 +4,18 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
-import useLocalStorage from '../hook/useLocalStorage';
 
 function RecipeDrinks() {
-  const { detailDrink } = useContext(ProductDetailsContext);
+  const { detailDrink, setIdUrl, done, setDone } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
-  const [doneRecipeDrinks, setDoneRecipesdrink] = useLocalStorage('doneRecipes', []);
 
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailDrink).forEach(([key, value]) => {
@@ -41,13 +40,20 @@ function RecipeDrinks() {
       localStorage.setItem(
         'inProgressRecipes', JSON.stringify({ cocktails: { [id]: [] } }),
       );
+    } else {
+      const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      console.log(getLocal);
+      const cocktails = { ...getLocal.cocktails,
+        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id] || [] };
+      localStorage.setItem('inProgressRecipes', JSON
+        .stringify({ ...getLocal, cocktails }));
     }
   }, []);
 
   useEffect(() => {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const { cocktails } = getStorage;
-    setObjLocalStorage({ ...objLocalStorage, cocktails });
+    const { cocktails, meals } = getStorage;
+    setObjLocalStorage({ ...objLocalStorage, cocktails, meals });
   }, []);
 
   useEffect(() => {
@@ -97,7 +103,7 @@ function RecipeDrinks() {
       tags: [],
     };
 
-    setDoneRecipesdrink([...doneRecipeDrinks, doneRecipeDrink]);
+    setDone([...done, doneRecipeDrink]);
     history.push('/done-recipes');
   };
 
