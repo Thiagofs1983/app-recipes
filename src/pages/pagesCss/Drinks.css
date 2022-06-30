@@ -1,0 +1,51 @@
+.mainDrinks {
+  background-color: var(--backgroundColor);
+  padding-bottom: 30px;
+  width: 360px;
+}
+
+.divCard {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 50px;
+}
+
+.divDrink {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 160px;
+  justify-content: center;
+  margin: 5px;
+  width: 170px;
+}
+
+.imgDrink {
+  height: 70%;
+  width: 100%;
+}
+
+.nameDrink {
+  color: black;
+  font-weight: 600;
+  height: 20%;
+  text-align: center;
+}
+
+.divButton {
+  align-self: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.buttonDrinks {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: 13px;
+  font-weight: 600;
+  height: 55px;
+  margin: 5px;
+  width: 110px;
+}

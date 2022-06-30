@@ -1,22 +1,42 @@
-.header {
-  background-color: rgb(64, 64, 189);
-  height: 20%;
-  left: 0;
-  top: 0;
-  width: 100%;
+.divHeader {
+  background-color: var(--secondaryBGColor);
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.icons {
+.header {
   align-items: center;
+  background-color: var(--secondaryBGColor);
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  margin: 15px;
-  padding: 5px;
+  left: 0;
+  padding-top: 6px;
+  position: fixed;
+  top: 0;
+  width: 360px;
 }
 
-img {
-  height: 25px;
-  margin-right: 5px;
-  width: 25px;
+.imgIcon {
+  border-radius: 50%;
+  height: 40px;
+  margin-top: 3px;
+  width: 40px;
+}
+
+.buttonIcon {
+  border-radius: 50%;
+  height: 55px;
+  margin: 0 auto;
+  width: 55px;
+}
+
+.titlePage {
+  font-size: 25px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.searchBar {
+  margin-top: 80px;
 }

@@ -4,6 +4,7 @@ import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarDrink from '../components/DetalhesReceitas/ButtonFavoritarDrink';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
+import './pagesCss/Details.css';
 
 function RecipeDrinks() {
   const { detailDrink, setIdUrl, done } = useContext(ProductDetailsContext);
@@ -109,27 +110,38 @@ function RecipeDrinks() {
   return (
     <section>
       {detailDrink !== {} && (
-        <>
+        <div className="detailsPage">
           <div>
             <img
+              className="image"
               data-testid="recipe-photo"
               src={ detailDrink?.strDrinkThumb }
               alt={ detailDrink?.strDrink }
             />
           </div>
-          <div>
-            <h1 data-testid="recipe-title">{detailDrink?.strDrink}</h1>
-            <div>
+          <div className="divTitleButtons">
+            <h1
+              className="titleName"
+              data-testid="recipe-title"
+            >
+              {detailDrink?.strDrink}
+            </h1>
+            <div className="divButtons">
               <ButtonShare />
               <ButtonFavoritarDrink />
             </div>
           </div>
           <div>
-            <p data-testid="recipe-category">{detailDrink?.strCategory}</p>
+            <p
+              className="category"
+              data-testid="recipe-category"
+            >
+              {detailDrink?.strCategory}
+            </p>
           </div>
-          <div>
+          <div className="divIngredients">
             <h2>Ingredients</h2>
-            <h3>
+            <div className="divCardIngred">
               {ingredientesData.map((ingredients, index) => (
                 <IngredientCardCheckbox
                   index={ index }
@@ -143,13 +155,19 @@ function RecipeDrinks() {
                   }
                 />
               ))}
-            </h3>
+            </div>
           </div>
-          <div>
+          <div className="divInstructionsRecipe">
             <h2>Instructions</h2>
-            <h4 data-testid="instructions">{detailDrink?.strInstructions}</h4>
+            <p
+              className="instructions"
+              data-testid="instructions"
+            >
+              {detailDrink?.strInstructions}
+            </p>
           </div>
           <button
+            className="buttonRecipe"
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ getLocalStorage?.length !== ingredientesData?.length }
@@ -157,7 +175,7 @@ function RecipeDrinks() {
           >
             Finish Recipe
           </button>
-        </>
+        </div>
       )}
     </section>
   );

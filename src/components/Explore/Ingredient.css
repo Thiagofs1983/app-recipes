@@ -1,0 +1,21 @@
+.buttonIngredient {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 180px;
+  justify-content: center;
+  margin: 3px;
+  width: 170px;
+}
+
+.imgIngredient {
+  height: 130px;
+  width: 160px;
+}
+
+.nameIngredient {
+  font-size: 12px;
+  font-weight: 600;
+  height: 30px;
+  margin: 5px;
+}

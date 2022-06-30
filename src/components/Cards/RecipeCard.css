@@ -1,0 +1,19 @@
+.recipeCard {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin: 5px;
+}
+
+.img-recipe {
+  height: 140px;
+  width: 170px;
+}
+
+.name-recipe {
+  color: black;
+  margin-top: 5px;
+  text-align: center;
+}

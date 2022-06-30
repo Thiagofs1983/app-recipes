@@ -8,6 +8,7 @@ function Button({ handleClick, buttonText, disabled, testId }) {
       disabled={ disabled }
       onClick={ handleClick }
       data-testid={ testId }
+      className="buttonLogin"
     >
       { buttonText }
     </button>

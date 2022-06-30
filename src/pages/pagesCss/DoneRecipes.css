@@ -1,0 +1,80 @@
+.mainDone {
+  background-color: var(--backgroundColor);
+  height: 560px;
+}
+
+.divBtnDone {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.doneBtn {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-weight: 600;
+  margin: 5px;
+  padding: 10px;
+  width: 90px;
+}
+
+.divFav {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.divFavCard {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 170px;
+}
+
+.inputFav {
+  height: 150px;
+}
+
+.divTextDone {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 150px;
+  justify-content: center;
+  width: 170px;
+}
+
+.doneDiv1 {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 65px;
+}
+
+.doneDiv2 {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 95px;
+}
+
+.categoryDone {
+  color: var(--secondaryBGColor);
+}
+
+.shareIcon {
+  height: 25px;
+  width: 25px;
+}
+
+.nameDoneRecipe {
+  font-weight: 600;
+}
+
+.tagsName {
+  background-color: var(--secondaryBGColor);
+  border-radius: 5%;
+  font-weight: 600;
+  padding: 2px;
+}
