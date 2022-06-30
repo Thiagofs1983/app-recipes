@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -9,7 +9,7 @@ import ingredientsFoods from '../mock/mockIngredientsFoods';
 const REDIRECIONAMENTO = '/explore/foods';
 
 describe('Testa a Toda há tela do exploreFoods', () => {
-  test(`Ao clicar no botão exploreFoods 
+  test(`Ao clicar no botão exploreFoods
   e redirecionado para /explore/foods/ingredients`, () => {
     const { history } = renderWithRouter(<App />);
     history.push(REDIRECIONAMENTO);
@@ -36,6 +36,7 @@ describe('Testa a Toda há tela do exploreFoods', () => {
     userEvent.click(btnExploreByIngredient);
     expect(global.fetch).toHaveBeenCalled();
     expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+    jest.restoreAllMocks();
   });
 
   test('Ao clicar no botão explore foods e redirecionado para /explore/foods', () => {
@@ -56,6 +57,7 @@ describe('Testa a Toda há tela do exploreFoods', () => {
     expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
 
     expect(history.location.pathname).toBe('/explore/foods');
+    jest.restoreAllMocks();
   });
 
   test('testa se ao clicar no botão por nacionalidades e redirecionado', () => {
@@ -75,3 +77,4 @@ describe('Testa a Toda há tela do exploreFoods', () => {
     expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=');
   });
 });
+ */

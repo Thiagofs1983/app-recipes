@@ -83,6 +83,9 @@ function RecipeFoods() {
     }
   };
 
+  const filtroRepetItens = ingredientesData
+    .filter((ing, i) => ingredientesData.indexOf(ing) === i);
+
   const clickRedirect = () => {
     history.push('/done-recipes');
     const current = new Date();
@@ -169,7 +172,7 @@ function RecipeFoods() {
             type="button"
             data-testid="finish-recipe-btn"
             onClick={ clickRedirect }
-            disabled={ getLocalStorage?.length !== ingredientesData?.length }
+            disabled={ getLocalStorage?.length !== filtroRepetItens?.length }
           >
             Finish Recipe
           </button>
