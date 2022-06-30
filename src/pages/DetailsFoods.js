@@ -6,8 +6,7 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 import './Details.css';
 
 function DetailsFoods() {
-  const { detailFood, RecomendadosDrink,
-    /* progress, setProgress, */ setDone, done,
+  const { detailFood, RecomendadosDrink, done,
     nameButton, setNameButton, setIdUrl,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingreditentesData] = useState([]);
@@ -42,17 +41,11 @@ function DetailsFoods() {
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (getLocal?.meals[id]) {
-      // console.log(getLocal?.meals[id].length);
       setNameButton(false);
-    } /* else {
-      localStorage.setItem(
-        'inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }),
-      );
-    } */
+    }
   }, []);
-  console.log(nameButton);
+
   const handleStartClick = () => {
-    setDone([]);
     history.push(`/foods/${detailFood?.idMeal}/in-progress`);
   };
 
@@ -117,16 +110,17 @@ function DetailsFoods() {
       </div>
       <div className="buttonStart">
         {
-          done.length === 0 ? (
-            <button
-              className="button1"
-              data-testid="start-recipe-btn"
-              type="button"
-              onClick={ handleStartClick }
-            >
-              { nameButton ? 'Start Recipe' : 'Continue Recipe' }
-            </button>
-          ) : <div />
+          done.some((item) => item.id === detailFood.idMeal) ? <div />
+            : (
+              <button
+                className="button1"
+                data-testid="start-recipe-btn"
+                type="button"
+                onClick={ handleStartClick }
+              >
+                { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+              </button>
+            )
         }
       </div>
     </section>
