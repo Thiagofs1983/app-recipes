@@ -83,7 +83,7 @@ function Foods() {
             </div>
           ))}
         </div>
-        <div>
+        <div className="divCard">
           { category === 'foods' && btnFilter === true
         && listRecipes.slice(0, maxNumber)
           .map((food, index) => (

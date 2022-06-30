@@ -136,7 +136,7 @@ function DetailsDrinks() {
           done.some((item) => item.id === detailDrink.idDrink) ? <div />
             : (
               <button
-                className="button1"
+                className="buttonRecipe"
                 data-testid="start-recipe-btn"
                 type="button"
                 onClick={ handleStartClick }

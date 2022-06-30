@@ -80,57 +80,65 @@ function DoneRecipes() {
             doneDate,
             tags }, index,
         ) => (
-          <div className="divFavCard" key={ id }>
+          <section className="divFavCard" key={ id }>
             <input
               className="inputFav"
               type="image"
               src={ image }
               alt={ name }
               data-testid={ `${index}-horizontal-image` }
-              width="150px"
               onClick={ type === 'food'
                 ? () => history.push(`/foods/${id}`)
                 : () => history.push(`/drinks/${id}`) }
             />
-            <div className="divText">
-              <p
-                data-testid={ `${index}-horizontal-top-text` }
-              >
-                { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
-              </p>
-              <input
-                type="image"
-                src={ shareIcon }
-                alt="Share Icon"
-                data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ () => onClickShare(type, id) }
-              />
-              { isShared && <p>Link copied!</p> }
-              <h4
-                role="presentation"
-                data-testid={ `${index}-horizontal-name` }
-                onClick={ type === 'food'
-                  ? () => history.push(`/foods/${id}`)
-                  : () => history.push(`/drinks/${id}`) }
-              >
-                {name}
-              </h4>
-              <p data-testid={ `${index}-horizontal-done-date` }>
-                {doneDate}
-              </p>
-              <div className="doneTags">
-                { type === 'food'
-                  ? tags && tags.map((tag) => (
+            <section className="divTextDone">
+              <div className="doneDiv1">
+                <p
+                  className="categoryDone"
+                  data-testid={ `${index}-horizontal-top-text` }
+                >
+                  { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
+                </p>
+                <input
+                  className="shareIcon"
+                  type="image"
+                  src={ shareIcon }
+                  alt="Share Icon"
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  onClick={ () => onClickShare(type, id) }
+                />
+                { isShared && <p>Link copied!</p> }
+              </div>
+              <div className="doneDiv2">
+                <p
+                  className="nameDoneRecipe"
+                  role="presentation"
+                  data-testid={ `${index}-horizontal-name` }
+                  onClick={ type === 'food'
+                    ? () => history.push(`/foods/${id}`)
+                    : () => history.push(`/drinks/${id}`) }
+                >
+                  {name}
+                </p>
+                <p
+                  className="dateDoneRecipe"
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
+                  {doneDate}
+                </p>
+                  { type === 'food'
+                    ? tags?.map((tag) => (
                     <span
-                      key={ tag }
-                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                      className="tagsName"
+                      key={tag}
+                      data-testid={`${index}-${tag}-horizontal-tag`}
                     >
                       {tag}
                     </span>))
-                  : null}
+                    : null}
               </div>
-            </div>
-          </div>))}
+            </section>
+          </section>))}
         </div>
       </div>
     </div>

@@ -43,6 +43,7 @@
 
 .divFavCardRecipe {
   align-items: center;
+  background-color: var(--textColor);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -50,12 +51,14 @@
 }
 
 .divText {
+  background-color: var(--textColor);
   text-align: center;
   width: 50%;
 }
 
 .divBtnFavs {
   align-items: center;
+  background-color: var(--textColor);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;

@@ -1,5 +1,6 @@
 .mainLogin {
   align-items: center;
+  background-image: url('../../images/AppLogin2.jpg');
   display: flex;
   flex-flow: column nowrap;
   height: 640px;
@@ -34,6 +35,15 @@
 
 .buttonLogin {
   background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: larger;
+  font-weight: 600;
+  padding: 2%;
+  width: 80%;
+}
+
+.buttonLogin:disabled {
+  background-color: var(--secondaryTXTColor);
   color: var(--textColor);
   font-size: larger;
   font-weight: 600;
