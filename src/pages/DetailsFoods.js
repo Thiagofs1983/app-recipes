@@ -16,9 +16,8 @@ function DetailsFoods() {
   const history = useHistory();
   const { id } = useParams();
 
-  setIdUrl(id);
-
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailFood).forEach(([key, value]) => {
