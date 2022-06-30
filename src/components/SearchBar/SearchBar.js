@@ -57,7 +57,6 @@ function SearchBar() {
     } else {
       const result = await searchApi(input, checkbox, category);
       getIdRecipes(result);
-      console.log(result);
     }
     setBtnFilter(true);
   };

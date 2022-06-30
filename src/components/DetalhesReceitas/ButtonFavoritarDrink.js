@@ -4,7 +4,6 @@ import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsConte
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import '../../pages/pagesCss/Details.css';
-// https://usehooks.com/useLocalStorage/
 
 function ButtonFavoritarDrink() {
   const { detailDrink } = useContext(ProductDetailsContext);
@@ -28,7 +27,6 @@ function ButtonFavoritarDrink() {
   };
 
   const RemoveFavorite = () => {
-    console.log('olá');
     const filterFavoritos = drink
       .filter((fav) => fav.id !== detailDrink?.idDrink);
     setDrink(filterFavoritos);

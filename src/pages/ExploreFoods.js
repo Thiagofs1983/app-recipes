@@ -21,6 +21,8 @@ function ExploreFoods() {
     const response = await fetch(url);
     const { meals } = await response.json();
     const id = meals[0].idMeal;
+    localStorage.setItem('inProgressRecipes', JSON
+      .stringify({ meals: { [id]: [] } }));
     history.push(`/foods/${id}`);
   };
 

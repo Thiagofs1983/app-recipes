@@ -7,13 +7,15 @@ import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 import './pagesCss/Details.css';
 
 function RecipeFoods() {
-  const { detailFood } = useContext(ProductDetailsContext);
+  const { detailFood, setIdUrl, done } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
+  const [doneRecipesFood, setDoneRecipesfood] = useState([]);
   const { id } = useParams();
   const history = useHistory();
+  setIdUrl(id);
   useEffect(() => {
     const ingredientes = [];
     setingreditentesData(ingredientes);
@@ -37,13 +39,18 @@ function RecipeFoods() {
   useEffect(() => {
     if (!localStorage.getItem('inProgressRecipes')) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
+    } else {
+      const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const meals = { ...getLocal.meals,
+        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id] || [] };
+      localStorage.setItem('inProgressRecipes', JSON.stringify({ ...getLocal, meals }));
     }
   }, []);
 
   useEffect(() => {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const { meals } = getStorage;
-    setObjLocalStorage({ ...objLocalStorage, meals });
+    const { meals, cocktails } = getStorage;
+    setObjLocalStorage({ ...objLocalStorage, meals, cocktails });
   }, []);
 
   useEffect(() => {
@@ -78,6 +85,23 @@ function RecipeFoods() {
 
   const clickRedirect = () => {
     history.push('/done-recipes');
+    const current = new Date();
+    const date = `${current
+      .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    const recipeFood = {
+      id,
+      type: 'food',
+      nationality: detailFood?.strArea,
+      category: detailFood?.strCategory,
+      alcoholicOrNot: '',
+      name: detailFood?.strMeal,
+      image: detailFood?.strMealThumb,
+      doneDate: date,
+      tags: [detailFood.strTags],
+    };
+    localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeFood]));
+    localStorage.removeItem('inProgressRecipes');
+    setDoneRecipesfood([...doneRecipesFood, recipeFood]);
   };
 
   return (

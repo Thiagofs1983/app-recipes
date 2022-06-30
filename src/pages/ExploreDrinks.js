@@ -17,6 +17,8 @@ function ExploreDrinks() {
     const response = await fetch(url);
     const { drinks } = await response.json();
     const id = drinks[0].idDrink;
+    localStorage.setItem('inProgressRecipes', JSON
+      .stringify({ cocktails: { [id]: [] } }));
     history.push(`/drinks/${id}`);
   };
 
