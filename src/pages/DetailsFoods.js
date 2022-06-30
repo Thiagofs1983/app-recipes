@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import ButtonShare from '../components/DetalhesReceitas/ButtonShare';
 import ButtonFavoritarFood from '../components/DetalhesReceitas/ButtonFavoritarFood';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
-import './Details.css';
+import './pagesCss/Details.css';
 
 function DetailsFoods() {
   const { detailFood, RecomendadosDrink, done,
@@ -50,39 +50,54 @@ function DetailsFoods() {
   };
 
   return (
-    <section>
+    <section className="detailsPage">
       <div>
         <img
+          className="image"
           data-testid="recipe-photo"
           src={ detailFood?.strMealThumb }
           alt={ detailFood?.strMeal }
         />
       </div>
-      <div>
-        <h1 data-testid="recipe-title">{detailFood?.strMeal}</h1>
-        <div>
+      <div className="divTitleButtons">
+        <h1 className="titleName" data-testid="recipe-title">{detailFood?.strMeal}</h1>
+        <div className="divButtons">
           <ButtonShare />
           <ButtonFavoritarFood />
         </div>
       </div>
       <div>
-        <p data-testid="recipe-category">{detailFood?.strCategory}</p>
+        <h5
+          className="category"
+          data-testid="recipe-category"
+        >
+          {detailFood?.strCategory}
+        </h5>
       </div>
-      <div>
+      <div className="divIngredients">
         <h2>Ingredients</h2>
-        <h3>
+        <div>
           {ingredientesData.map((ingredients, index) => (
-            <p data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
+            <p
+              className="ingredients"
+              data-testid={ `${index}-ingredient-name-and-measure` }
+              key={ index }
+            >
               {`- ${ingredients} - ${measure[index]}`}
             </p>
           ))}
-        </h3>
+        </div>
       </div>
-      <div>
+      <div className="divInstructions">
         <h2>Instructions</h2>
-        <h4 data-testid="instructions">{detailFood?.strInstructions}</h4>
+        <p
+          className="instructions"
+          data-testid="instructions"
+        >
+          {detailFood?.strInstructions}
+        </p>
       </div>
-      <div>
+      <div className="divVideo">
         <h2>Video</h2>
         <iframe
           data-testid="video"
@@ -90,21 +105,32 @@ function DetailsFoods() {
           title="Video"
         />
       </div>
-      <div className="horizontal-scroll-wrapper">
-        <h6>Recommended</h6>
+      <div className="horizontal-scroll-wrapper-food">
+        <h2>Recommended</h2>
         {RecomendadosDrink.map((card, index) => (
           <div
-            className="divDrinks"
+            className="divDrinksRecom"
             data-testid={ `${index}-recomendation-card` }
             key={ card.idDrink }
           >
             <img
+              className="imgRecommended"
               data-testid="recipe-photo"
               src={ card.strDrinkThumb }
               alt={ card.strDrink }
             />
-            <p data-testid="recipe-category">{card.strCategory}</p>
-            <h3 data-testid={ `${index}-recomendation-title` }>{card.strDrink}</h3>
+            <p
+              className="categRecommended"
+              data-testid="recipe-category"
+            >
+              {card.strCategory}
+            </p>
+            <p
+              className="nameRecommended"
+              data-testid={ `${index}-recomendation-title` }
+            >
+              {card.strDrink}
+            </p>
           </div>
         ))}
       </div>
@@ -113,7 +139,7 @@ function DetailsFoods() {
           done.some((item) => item.id === detailFood.idMeal) ? <div />
             : (
               <button
-                className="button1"
+                className="buttonRecipe"
                 data-testid="start-recipe-btn"
                 type="button"
                 onClick={ handleStartClick }

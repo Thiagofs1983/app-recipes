@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ type, name, value, onChange, testeId }) {
+function Input({ type, name, value, onChange, testeId, text }) {
   return (
     <input
       type={ type }
@@ -9,11 +9,14 @@ function Input({ type, name, value, onChange, testeId }) {
       value={ value }
       onChange={ onChange }
       data-testid={ testeId }
+      className="inputLogin"
+      placeholder={ text }
     />
   );
 }
 
 Input.propTypes = {
+  text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

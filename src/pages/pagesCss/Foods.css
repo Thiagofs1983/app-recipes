@@ -1,0 +1,50 @@
+.mainFoods {
+  background-color: var(--backgroundColor);
+  padding-bottom: 30px;
+  width: 360px;
+}
+
+.divCard {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.divFood {
+  align-items: center;
+  background-color: var(--textColor);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 160px;
+  justify-content: center;
+  margin: 5px;
+  width: 170px;
+}
+
+.imgFood {
+  height: 70%;
+  width: 100%;
+}
+
+.nameFood {
+  color: black;
+  font-weight: 600;
+  height: 20%;
+  text-align: center;
+}
+
+.divButton {
+  align-self: center;
+  display: flex;
+  flex: row nowrap;
+  justify-content: space-between;
+}
+
+.buttonFoods {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: 13px;
+  font-weight: 600;
+  height: 55px;
+  margin: 5px;
+  width: 110px;
+}

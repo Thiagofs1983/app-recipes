@@ -4,6 +4,7 @@ import copy from 'clipboard-copy';
 import Header from '../components/Header/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import './pagesCss/Favorite.css';
 
 function FavoriteRecipes() {
   const [favorites, setFavorites] = useState([]);
@@ -52,36 +53,41 @@ function FavoriteRecipes() {
         namePage="Favorite Recipes"
         isEnable={ false }
       />
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ () => onClickAll() }
-        >
-          All
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-food-btn"
-          onClick={ () => onClickFilterFood() }
-        >
-          Food
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ () => onClickFilterDrink() }
-        >
-          Drinks
-        </button>
-      </div>
-      <div>
-        {favorites && favorites.length > 0
+      <main className="mainFav">
+        <div className="divBtnFav">
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-all-btn"
+            onClick={ () => onClickAll() }
+          >
+            All
+          </button>
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-food-btn"
+            onClick={ () => onClickFilterFood() }
+          >
+            Food
+          </button>
+          <button
+            className="btnFav"
+            type="button"
+            data-testid="filter-by-drink-btn"
+            onClick={ () => onClickFilterDrink() }
+          >
+            Drinks
+          </button>
+        </div>
+        <div className="divFav">
+          {favorites && favorites.length > 0
         && favorites.map((
           { id, type, nationality, category, alcoholicOrNot, name, image }, index,
         ) => (
-          <div key={ id }>
+          <div className="divFavCard" key={ id }>
             <input
+              className="inputFav"
               type="image"
               src={ image }
               alt={ name }
@@ -91,39 +97,46 @@ function FavoriteRecipes() {
                 ? () => history.push(`/foods/${id}`)
                 : () => history.push(`/drinks/${id}`) }
             />
-            <div>
-              <p
-                data-testid={ `${index}-horizontal-top-text` }
-              >
-                { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
-              </p>
-              <h4
-                role="presentation"
-                data-testid={ `${index}-horizontal-name` }
-                onClick={ type === 'food'
-                  ? () => history.push(`/foods/${id}`)
-                  : () => history.push(`/drinks/${id}`) }
-              >
-                {name}
-              </h4>
-              <input
-                type="image"
-                src={ shareIcon }
-                alt="Share Icon"
-                data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ () => onClickShare(type, id) }
-              />
-              { isShared && <p>Link copied!</p> }
-              <input
-                type="image"
-                src={ blackHeartIcon }
-                alt="Favorite Icon"
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                onClick={ () => removeFavorites(index) }
-              />
+            <div className="divFavCardRecipe">
+              <div className="divText">
+                <p
+                  data-testid={ `${index}-horizontal-top-text` }
+                >
+                  { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
+                </p>
+                <h4
+                  role="presentation"
+                  data-testid={ `${index}-horizontal-name` }
+                  onClick={ type === 'food'
+                    ? () => history.push(`/foods/${id}`)
+                    : () => history.push(`/drinks/${id}`) }
+                >
+                  {name}
+                </h4>
+              </div>
+              <div className="divBtnFavs">
+                <input
+                  className="btnInputFavs"
+                  type="image"
+                  src={ shareIcon }
+                  alt="Share Icon"
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  onClick={ () => onClickShare(type, id) }
+                />
+                { isShared && <p>Link copied!</p> }
+                <input
+                  className="btnInputFavs"
+                  type="image"
+                  src={ blackHeartIcon }
+                  alt="Favorite Icon"
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  onClick={ () => removeFavorites(index) }
+                />
+              </div>
             </div>
           </div>))}
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

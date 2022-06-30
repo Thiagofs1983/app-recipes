@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import Header from '../components/Header/Header';
 import shareIcon from '../images/shareIcon.svg';
+import './pagesCss/DoneRecipes.css';
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -39,30 +40,34 @@ function DoneRecipes() {
   return (
     <div>
       <Header namePage="Done Recipes" isEnable={ false } />
-      Done Recipes
-      <div>
-        <button
-          onClick={ () => handleAll() }
-          data-testid="filter-by-all-btn"
-          type="button"
-        >
-          All
-        </button>
-        <button
-          onClick={ handleFood }
-          data-testid="filter-by-food-btn"
-          type="button"
-        >
-          Food
-        </button>
-        <button
-          onClick={ handleDrinks }
-          data-testid="filter-by-drink-btn"
-          type="button"
-        >
-          Drinks
-        </button>
-        <div>
+      <div className="mainDone">
+        <div className="divBtnDone">
+          <button
+            className="doneBtn"
+            onClick={ () => handleAll() }
+            data-testid="filter-by-all-btn"
+            type="button"
+          >
+            All
+          </button>
+          <button
+            className="doneBtn"
+            onClick={ handleFood }
+            data-testid="filter-by-food-btn"
+            type="button"
+          >
+            Food
+          </button>
+          <button
+            className="doneBtn"
+            onClick={ handleDrinks }
+            data-testid="filter-by-drink-btn"
+            type="button"
+          >
+            Drinks
+          </button>
+        </div>
+        <div className="divFav">
           {doneRecipes && doneRecipes.length > 0
         && doneRecipes.map((
           { id,
@@ -75,55 +80,65 @@ function DoneRecipes() {
             doneDate,
             tags }, index,
         ) => (
-          <div key={ id }>
+          <section className="divFavCard" key={ id }>
             <input
+              className="inputFav"
               type="image"
               src={ image }
               alt={ name }
               data-testid={ `${index}-horizontal-image` }
-              width="150px"
               onClick={ type === 'food'
                 ? () => history.push(`/foods/${id}`)
                 : () => history.push(`/drinks/${id}`) }
             />
-            <div>
-              <p
-                data-testid={ `${index}-horizontal-top-text` }
-              >
-                { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
-              </p>
-              <input
-                type="image"
-                src={ shareIcon }
-                alt="Share Icon"
-                data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ () => onClickShare(type, id) }
-              />
-              { isShared && <p>Link copied!</p> }
-              <h4
-                role="presentation"
-                data-testid={ `${index}-horizontal-name` }
-                onClick={ type === 'food'
-                  ? () => history.push(`/foods/${id}`)
-                  : () => history.push(`/drinks/${id}`) }
-              >
-                {name}
-              </h4>
-              <p data-testid={ `${index}-horizontal-done-date` }>
-                {doneDate}
-              </p>
-              { type === 'food'
-                ? tags && tags.map((tag) => (
-                  <span
-                    key={ tag }
-                    data-testid={ `${index}-${tag}-horizontal-tag` }
-                  >
-                    {tag}
-                  </span>))
-                : null}
-
-            </div>
-          </div>))}
+            <section className="divTextDone">
+              <div className="doneDiv1">
+                <p
+                  className="categoryDone"
+                  data-testid={ `${index}-horizontal-top-text` }
+                >
+                  { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
+                </p>
+                <input
+                  className="shareIcon"
+                  type="image"
+                  src={ shareIcon }
+                  alt="Share Icon"
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  onClick={ () => onClickShare(type, id) }
+                />
+                { isShared && <p>Link copied!</p> }
+              </div>
+              <div className="doneDiv2">
+                <p
+                  className="nameDoneRecipe"
+                  role="presentation"
+                  data-testid={ `${index}-horizontal-name` }
+                  onClick={ type === 'food'
+                    ? () => history.push(`/foods/${id}`)
+                    : () => history.push(`/drinks/${id}`) }
+                >
+                  {name}
+                </p>
+                <p
+                  className="dateDoneRecipe"
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
+                  {doneDate}
+                </p>
+                { type === 'food'
+                  ? tags && tags.map((tag) => (
+                    <span
+                      className="tagsName"
+                      key={ tag }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                    >
+                      {tag}
+                    </span>))
+                  : null}
+              </div>
+            </section>
+          </section>))}
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ import ExploreFoods from './pages/ExploreFoods';
 import NotFound from './pages/NotFound';
 import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
 import ProductDetailsProvider from './context/FoodDetails/ProductDetailsProvider';
+import './App.css';
 
 function App() {
   return (

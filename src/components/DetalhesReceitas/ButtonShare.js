@@ -17,6 +17,7 @@ function ButtonShare() {
   return (
     <div>
       <button
+        className="buttonFav"
         type="button"
         onClick={ clickShareFood }
       >

@@ -3,6 +3,7 @@ import useLocalStorage from '../../hook/useLocalStorage';
 import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import '../../pages/pagesCss/Details.css';
 
 function ButtonFavoritarDrink() {
   const { detailDrink } = useContext(ProductDetailsContext);
@@ -35,6 +36,7 @@ function ButtonFavoritarDrink() {
     <div>
       {drink.some((dado) => dado.id === detailDrink?.idDrink) ? (
         <button
+          className="buttonFav"
           type="button"
           onClick={ RemoveFavorite }
         >
@@ -46,6 +48,7 @@ function ButtonFavoritarDrink() {
         </button>
       ) : (
         <button
+          className="buttonFav"
           type="button"
           onClick={ favoritarDrink }
         >

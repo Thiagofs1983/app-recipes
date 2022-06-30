@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
-import IgredientCard from '../components/Explore/IgredientCard';
+import IngredientCard from '../components/Explore/IngredientCard';
 import Header from '../components/Header/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
+import './pagesCss/Explore.css';
 
 const NUMBER_TWELVE = 12;
 
@@ -70,30 +71,37 @@ function ExploreFoodsNationalities() {
 
   return (
     <div>
-      <Header namePage="Explore Nationalities" />
-      <select
-        data-testid="explore-by-nationality-dropdown"
-        onChange={ handleNation }
-      >
-        {
-          listNation.map((nation) => (
-            <option key={ nation } data-testid={ `${nation}-option` }>{nation}</option>
-          ))
-        }
-      </select>
-      {
-        mealsPerNation.map((food, index) => (
-          <IgredientCard
-            key={ food.idMeal }
-            testId={ `${index}-recipe-card` }
-            name={ food.strMeal }
-            image={ food.strMealThumb }
-            testImage={ `${index}-card-img` }
-            testName={ `${index}-card-name` }
-            handleClick={ () => clickRecipe(food.idMeal) }
-          />
-        ))
-      }
+      <div className="divHeader">
+        <Header namePage="Explore Nationalities" />
+      </div>
+      <main className="mainNational">
+        <select
+          className="selectNational"
+          data-testid="explore-by-nationality-dropdown"
+          onChange={ handleNation }
+        >
+          {
+            listNation.map((nation) => (
+              <option key={ nation } data-testid={ `${nation}-option` }>{nation}</option>
+            ))
+          }
+        </select>
+        <div className="divNational">
+          {
+            mealsPerNation.map((food, index) => (
+              <IngredientCard
+                key={ food.idMeal }
+                testId={ `${index}-recipe-card` }
+                name={ food.strMeal }
+                image={ food.strMealThumb }
+                testImage={ `${index}-card-img` }
+                testName={ `${index}-card-name` }
+                handleClick={ () => clickRecipe(food.idMeal) }
+              />
+            ))
+          }
+        </div>
+      </main>
       <Footer />
     </div>
   );
