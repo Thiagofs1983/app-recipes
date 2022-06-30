@@ -41,7 +41,7 @@ function DetailsDrinks() {
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getLocal?.cocktails[id]) {
+    if (getLocal?.cocktails !== undefined && getLocal?.cocktails[id]) {
       setNameButton(false);
     }
   }, []);
