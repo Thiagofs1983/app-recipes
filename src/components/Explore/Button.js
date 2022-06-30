@@ -11,6 +11,7 @@ function ButtonExplore({ handleClick, buttonText, testId }) {
       data-testid={ testId }
     >
       { buttonText }
+
     </button>
   );
 }
