@@ -9,7 +9,7 @@ function DetailsDrinks() {
   const {
     detailDrink,
     recommendedFood,
-    nameButton, setDone, done,
+    nameButton, done,
     setNameButton, setIdUrl,
   } = useContext(ProductDetailsContext);
   const [ingredientesData, setingredientesData] = useState([]);
@@ -43,15 +43,10 @@ function DetailsDrinks() {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (getLocal?.cocktails[id]) {
       setNameButton(false);
-    } else {
-      localStorage.setItem(
-        'inProgressRecipes', JSON.stringify({ cocktails: { [id]: [] } }),
-      );
     }
   }, []);
 
   const handleStartClick = () => {
-    setDone([]);
     history.push(`/drinks/${detailDrink?.idDrink}/in-progress`);
   };
 
@@ -113,16 +108,17 @@ function DetailsDrinks() {
       </div>
       <div className="buttonStart">
         {
-          done.length === 0 ? (
-            <button
-              className="button1"
-              data-testid="start-recipe-btn"
-              type="button"
-              onClick={ handleStartClick }
-            >
-              { nameButton ? 'Start Recipe' : 'Continue Recipe' }
-            </button>
-          ) : <div />
+          done.some((item) => item.id === detailDrink.idDrink) ? <div />
+            : (
+              <button
+                className="button1"
+                data-testid="start-recipe-btn"
+                type="button"
+                onClick={ handleStartClick }
+              >
+                { nameButton ? 'Start Recipe' : 'Continue Recipe' }
+              </button>
+            )
         }
       </div>
     </section>
