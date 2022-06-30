@@ -126,8 +126,8 @@ function DoneRecipes() {
                 >
                   {doneDate}
                 </p>
-                  { type === 'food'
-                    ? tags?.map((tag) => (
+                  { 
+                  type === 'food' ? tags && tags?.map((tag) => (
                     <span
                       className="tagsName"
                       key={tag}
