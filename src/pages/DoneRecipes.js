@@ -126,16 +126,16 @@ function DoneRecipes() {
                 >
                   {doneDate}
                 </p>
-                  { 
-                  type === 'food' ? tags && tags?.map((tag) => (
+                { type === 'food'
+                  ? tags && tags.map((tag) => (
                     <span
                       className="tagsName"
-                      key={tag}
-                      data-testid={`${index}-${tag}-horizontal-tag`}
+                      key={ tag }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
                     >
                       {tag}
                     </span>))
-                    : null}
+                  : null}
               </div>
             </section>
           </section>))}
