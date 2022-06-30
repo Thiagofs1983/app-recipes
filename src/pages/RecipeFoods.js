@@ -6,11 +6,12 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 
 function RecipeFoods() {
-  const { detailFood, setIdUrl, done, setDone } = useContext(ProductDetailsContext);
+  const { detailFood, setIdUrl, done } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
+  const [doneRecipesFood, setDoneRecipesfood] = useState([]);
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -39,7 +40,6 @@ function RecipeFoods() {
       localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
     } else {
       const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      console.log(getLocal);
       const meals = { ...getLocal.meals,
         [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id] || [] };
       localStorage.setItem('inProgressRecipes', JSON.stringify({ ...getLocal, meals }));
@@ -83,12 +83,11 @@ function RecipeFoods() {
   };
 
   const clickRedirect = () => {
+    history.push('/done-recipes');
     const current = new Date();
     const date = `${current
       .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
-    console.log('olá');
-
-    const doneRecipeFod = {
+    const recipeFood = {
       id,
       type: 'food',
       nationality: detailFood?.strArea,
@@ -99,9 +98,9 @@ function RecipeFoods() {
       doneDate: date,
       tags: [detailFood.strTags],
     };
-
-    setDone([...done, doneRecipeFod]);
-    history.push('/done-recipes');
+    localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeFood]));
+    localStorage.removeItem('inProgressRecipes');
+    setDoneRecipesfood([...doneRecipesFood, recipeFood]);
   };
   console.log('getlocal', getLocalStorage);
 

@@ -30,7 +30,6 @@ function FoodDetailsProvider({ children }) {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`);
       const { meals } = await response.json();
-      console.log(meals[0]);
       setDetailFood(meals[0]);
       setIdUrl(idUrl);
     } catch (error) {
@@ -43,7 +42,6 @@ function FoodDetailsProvider({ children }) {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`);
       const { drinks } = await response.json();
-      console.log(drinks[0]);
       setDetailDrink(drinks[0]);
       setIdUrl(idUrl);
     } catch (error) {

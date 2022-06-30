@@ -6,12 +6,12 @@ import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext'
 import IngredientCardCheckbox from '../components/Cards/IngredientCardCheckbox';
 
 function RecipeDrinks() {
-  const { detailDrink, setIdUrl, done, setDone } = useContext(ProductDetailsContext);
+  const { detailDrink, setIdUrl, done } = useContext(ProductDetailsContext);
   const [measure, setMeasures] = useState([]);
   const [getLocalStorage, setGetLocalStorage] = useState([]);
   const [ingredientesData, setingreditentesData] = useState([]);
   const [objLocalStorage, setObjLocalStorage] = useState(null);
-
+  const [doneRecipeDrink, setDoneRecipeDrink] = useState([]);
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
@@ -42,7 +42,6 @@ function RecipeDrinks() {
       );
     } else {
       const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      console.log(getLocal);
       const cocktails = { ...getLocal.cocktails,
         [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id] || [] };
       localStorage.setItem('inProgressRecipes', JSON
@@ -87,11 +86,11 @@ function RecipeDrinks() {
   };
 
   const clickRedirect = () => {
+    history.push('/done-recipes');
     const current = new Date();
     const date = `${current
       .getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
-
-    const doneRecipeDrink = {
+    const recipeDrinks = {
       id,
       type: 'drink',
       nationality: '',
@@ -100,11 +99,11 @@ function RecipeDrinks() {
       name: detailDrink?.strDrink,
       image: detailDrink?.strDrinkThumb,
       doneDate: date,
-      tags: [],
+      tags: [detailDrink.strTags],
     };
-
-    setDone([...done, doneRecipeDrink]);
-    history.push('/done-recipes');
+    localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeDrinks]));
+    localStorage.removeItem('inProgressRecipes');
+    setDoneRecipeDrink([...doneRecipeDrink, recipeDrinks]);
   };
 
   return (

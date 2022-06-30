@@ -3,7 +3,6 @@ import useLocalStorage from '../../hook/useLocalStorage';
 import ProductDetailsContext from '../../context/FoodDetails/ProductDetailsContext';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
-// https://usehooks.com/useLocalStorage/
 
 function ButtonFavoritarDrink() {
   const { detailDrink } = useContext(ProductDetailsContext);
