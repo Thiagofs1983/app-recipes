@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import ProductDetailsContext from '../context/FoodDetails/ProductDetailsContext';
 import FoodDrinkContext from '../context/FoodDrink/FoodDrinkContext';
+import './pagesCss/Drinks.css';
 
 function Drinks() {
   const {
@@ -29,18 +30,20 @@ function Drinks() {
   return (
     <div>
       <Header namePage="Drinks" />
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ handleClickCategoryAllDrink }
-        >
-          All
-        </button>
-
-        {categoryDrink.length > 0 && btnFilter === false
+      <main className="mainDrinks">
+        <div className="divButton">
+          <button
+            className="buttonDrinks"
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ handleClickCategoryAllDrink }
+          >
+            All
+          </button>
+          {categoryDrink.length > 0 && btnFilter === false
         && categoryDrink.map((drink) => (
           <button
+            className="buttonDrinks"
             name={ drink.strCategory }
             key={ drink.strCategory }
             type="button"
@@ -50,11 +53,12 @@ function Drinks() {
             { drink.strCategory }
           </button>
         ))}
-      </div>
-      <div>
-        {dataDrink.length > 0 && btnFilter === false
+        </div>
+        <div className="divCard">
+          {dataDrink.length > 0 && btnFilter === false
         && dataDrink.map((drink, index) => (
           <div
+            className="divDrink"
             key={ drink.strDrink }
             onClick={ () => detailApiDrinkId(drink.idDrink) }
             onKeyPress={ () => {} }
@@ -63,16 +67,22 @@ function Drinks() {
             data-testid={ `${index}-recipe-card` }
           >
             <img
+              className="imgDrink"
               data-testid={ `${index}-card-img` }
               src={ drink.strDrinkThumb }
               alt={ drink.strDrink }
             />
-            <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+            <p
+              className="nameDrink"
+              data-testid={ `${index}-card-name` }
+            >
+              { drink.strDrink }
+            </p>
           </div>
         ))}
-      </div>
-      <div>
-        { category === 'drinks' && btnFilter === true
+        </div>
+        <div className="divCard">
+          { category === 'drinks' && btnFilter === true
         && listRecipes.slice(0, maxNumber)
           .map((drinks, index) => (
             <Link key={ drinks.idDrink } to={ `/drinks/${drinks.idDrink}` }>
@@ -83,7 +93,8 @@ function Drinks() {
               />
             </Link>
           )) }
-      </div>
+        </div>
+      </main>
       <Footer />
     </div>
   );

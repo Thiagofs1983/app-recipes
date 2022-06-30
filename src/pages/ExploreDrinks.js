@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import ButtonExplore from '../components/Explore/Button';
+import './pagesCss/Explore.css';
 
 function ExploreDrinks() {
   const history = useHistory();
@@ -25,16 +26,18 @@ function ExploreDrinks() {
   return (
     <div>
       <Header namePage="Explore Drinks" isEnable={ false } />
-      <ButtonExplore
-        testId="explore-by-ingredient"
-        buttonText="By Ingredient"
-        handleClick={ clickExploreDrinksIgredient }
-      />
-      <ButtonExplore
-        testId="explore-surprise"
-        buttonText="Surprise me!"
-        handleClick={ clickExploreDrinksSurprise }
-      />
+      <main className="mainBy">
+        <ButtonExplore
+          testId="explore-by-ingredient"
+          buttonText="By Ingredient"
+          handleClick={ clickExploreDrinksIgredient }
+        />
+        <ButtonExplore
+          testId="explore-surprise"
+          buttonText="Surprise me!"
+          handleClick={ clickExploreDrinksSurprise }
+        />
+      </main>
       <Footer />
     </div>
   );

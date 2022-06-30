@@ -35,6 +35,7 @@ function ButtonFavoritarFood() {
     <div>
       {food.some((dado) => dado.id === detailFood?.idMeal) ? (
         <button
+          className="buttonFav"
           type="button"
           onClick={ RemoveFavorite }
         >
@@ -46,6 +47,7 @@ function ButtonFavoritarFood() {
         </button>
       ) : (
         <button
+          className="buttonFav"
           type="button"
           onClick={ favoritarFood }
         >

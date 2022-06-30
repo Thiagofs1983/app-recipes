@@ -1,0 +1,52 @@
+.mainLogin {
+  align-items: center;
+  background-image: url('../../images/AppLogin2.jpg');
+  display: flex;
+  flex-flow: column nowrap;
+  height: 640px;
+  justify-content: center;
+  width: 360px;
+}
+
+.nameApp {
+  color: black;
+  font-weight: 700;
+  text-align: center;
+  width: 200px;
+}
+
+.formLogin {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  padding: 5%;
+}
+
+.inputLogin {
+  background-color: azure;
+  color: black;
+  font-weight: 600;
+  height: 35px;
+  margin: 2%;
+  text-align: center;
+  width: 200px;
+}
+
+.buttonLogin {
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  font-size: larger;
+  font-weight: 600;
+  padding: 2%;
+  width: 80%;
+}
+
+.buttonLogin:disabled {
+  background-color: var(--secondaryTXTColor);
+  color: var(--textColor);
+  font-size: larger;
+  font-weight: 600;
+  padding: 2%;
+  width: 80%;
+}

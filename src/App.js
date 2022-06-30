@@ -18,8 +18,9 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import ExploreFoods from './pages/ExploreFoods';
 import NotFound from './pages/NotFound';
-import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
 import ProductDetailsProvider from './context/FoodDetails/ProductDetailsProvider';
+import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
+import './App.css';
 
 function App() {
   return (

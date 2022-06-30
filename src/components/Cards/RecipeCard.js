@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './RecipeCard.css';
 
 function RecipeCard(props) {
   const { index, image, name } = props;
 
   return (
-    <div className="card" data-testid={ `${index}-recipe-card` }>
+    <div className="recipeCard" data-testid={ `${index}-recipe-card` }>
       <img
-        className="card-recipe"
+        className="img-recipe"
         data-testid={ `${index}-card-img` }
         src={ image }
         alt="img"
       />
-      <p className="card-name" data-testid={ `${index}-card-name` }>{ name }</p>
+      <p className="name-recipe" data-testid={ `${index}-card-name` }>{ name }</p>
     </div>
   );
 }

@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Ingredient.css';
 
-function IgredientCard({ name, image, testId, testImage, testName, handleClick }) {
+function IngredientCard({ name, image, testId, testImage, testName, handleClick }) {
   return (
     <button
+      className="buttonIngredient"
       type="button"
       data-testid={ testId }
       onClick={ handleClick }
     >
       <img
+        className="imgIngredient"
         src={ image }
         alt={ `Foto do ${name}` }
         data-testid={ testImage }
       />
-      <span data-testid={ testName }>{ name }</span>
+      <span className="nameIngredient" data-testid={ testName }>{ name }</span>
     </button>
   );
 }
 
-IgredientCard.propTypes = {
+IngredientCard.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
@@ -27,4 +30,4 @@ IgredientCard.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
-export default IgredientCard;
+export default IngredientCard;
