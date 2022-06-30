@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -22,7 +22,7 @@ describe('Testa a Toda há tela do exploreDrinks', () => {
     expect(history.location.pathname).toBe('/explore/drinks/ingredients');
   });
 
-  test('testa se ao entrar na pagina de ingredientes drinks a apie chamada', () => { 
+  test('testa se ao entrar na pagina de ingredientes drinks a apie chamada', () => {
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue(ingredientesDrinks),
@@ -55,4 +55,3 @@ describe('Testa a Toda há tela do exploreDrinks', () => {
     expect(history.location.pathname).toBe('/explore/drinks');
   });
 });
- */

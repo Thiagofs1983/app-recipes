@@ -18,14 +18,14 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import ExploreFoods from './pages/ExploreFoods';
 import NotFound from './pages/NotFound';
-import ProductDetailsProvider from './context/FoodDetails/ProductDetailsProvider';
 import FoodDrinkProvider from './context/FoodDrink/FoodDrinkProvider';
+import ProductDetailsProvider from './context/FoodDetails/ProductDetailsProvider';
 import './App.css';
 
 function App() {
   return (
-    <ProductDetailsProvider>
-      <FoodDrinkProvider>
+    <FoodDrinkProvider>
+      <ProductDetailsProvider>
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/foods" component={ Foods } />
@@ -64,8 +64,8 @@ function App() {
           <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
           <Route path="*" component={ NotFound } />
         </Switch>
-      </FoodDrinkProvider>
-    </ProductDetailsProvider>
+      </ProductDetailsProvider>
+    </FoodDrinkProvider>
   );
 }
 

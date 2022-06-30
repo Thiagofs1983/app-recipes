@@ -43,8 +43,9 @@ function RecipeDrinks() {
       );
     } else {
       const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const getLocalS = JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails;
       const cocktails = { ...getLocal.cocktails,
-        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id] || [] };
+        [id]: getLocalS !== undefined ? getLocalS[id] : [] };
       localStorage.setItem('inProgressRecipes', JSON
         .stringify({ ...getLocal, cocktails }));
     }
@@ -106,7 +107,8 @@ function RecipeDrinks() {
       tags: [detailDrink.strTags],
     };
     localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeDrinks]));
-    localStorage.removeItem('inProgressRecipes');
+    delete objLocalStorage.cocktails;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objLocalStorage));
     setDoneRecipeDrink([...doneRecipeDrink, recipeDrinks]);
   };
 

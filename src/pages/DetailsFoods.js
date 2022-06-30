@@ -39,7 +39,7 @@ function DetailsFoods() {
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getLocal?.meals[id]) {
+    if (getLocal?.meals !== undefined && getLocal?.meals[id]) {
       setNameButton(false);
     }
   }, []);

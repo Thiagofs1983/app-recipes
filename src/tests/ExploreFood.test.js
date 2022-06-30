@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -77,4 +77,3 @@ describe('Testa a Toda há tela do exploreFoods', () => {
     expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=');
   });
 });
- */

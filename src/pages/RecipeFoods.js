@@ -41,8 +41,9 @@ function RecipeFoods() {
       localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
     } else {
       const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const getLocalS = JSON.parse(localStorage.getItem('inProgressRecipes')).meals;
       const meals = { ...getLocal.meals,
-        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).meals[id] || [] };
+        [id]: getLocalS !== undefined ? getLocalS[id] : [] };
       localStorage.setItem('inProgressRecipes', JSON.stringify({ ...getLocal, meals }));
     }
   }, []);
@@ -103,7 +104,8 @@ function RecipeFoods() {
       tags: [detailFood.strTags],
     };
     localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeFood]));
-    localStorage.removeItem('inProgressRecipes');
+    delete objLocalStorage.meals;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objLocalStorage));
     setDoneRecipesfood([...doneRecipesFood, recipeFood]);
   };
   console.log('getlocal', getLocalStorage);
