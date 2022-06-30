@@ -15,8 +15,8 @@ function RecipeFoods() {
   const [doneRecipesFood, setDoneRecipesfood] = useState([]);
   const { id } = useParams();
   const history = useHistory();
-  setIdUrl(id);
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailFood).forEach(([key, value]) => {
@@ -52,7 +52,7 @@ function RecipeFoods() {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const { meals, cocktails } = getStorage;
     setObjLocalStorage({ ...objLocalStorage, meals, cocktails });
-  }, []);
+  }, [setObjLocalStorage]);
 
   useEffect(() => {
     const getArrLocalStorage = objLocalStorage?.meals[id];
@@ -84,6 +84,9 @@ function RecipeFoods() {
     }
   };
 
+  const filtroRepetItens = ingredientesData
+    .filter((ing, i) => ingredientesData.indexOf(ing) === i);
+
   const clickRedirect = () => {
     history.push('/done-recipes');
     const current = new Date();
@@ -105,6 +108,7 @@ function RecipeFoods() {
     localStorage.setItem('inProgressRecipes', JSON.stringify(objLocalStorage));
     setDoneRecipesfood([...doneRecipesFood, recipeFood]);
   };
+  console.log('getlocal', getLocalStorage);
 
   return (
     <section>
@@ -170,7 +174,7 @@ function RecipeFoods() {
             type="button"
             data-testid="finish-recipe-btn"
             onClick={ clickRedirect }
-            disabled={ getLocalStorage?.length !== ingredientesData?.length }
+            disabled={ getLocalStorage?.length !== filtroRepetItens?.length }
           >
             Finish Recipe
           </button>

@@ -15,8 +15,8 @@ function RecipeDrinks() {
   const [doneRecipeDrink, setDoneRecipeDrink] = useState([]);
   const { id } = useParams();
   const history = useHistory();
-  setIdUrl(id);
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailDrink).forEach(([key, value]) => {
@@ -86,6 +86,9 @@ function RecipeDrinks() {
       localStorage.setItem('inProgressRecipes', JSON.stringify(newItemLocal));
     }
   };
+
+  const filtroRepetItens = ingredientesData
+    .filter((ing, i) => ingredientesData.indexOf(ing) === i);
 
   const clickRedirect = () => {
     history.push('/done-recipes');
@@ -172,7 +175,7 @@ function RecipeDrinks() {
             className="buttonRecipe"
             type="button"
             data-testid="finish-recipe-btn"
-            disabled={ getLocalStorage?.length !== ingredientesData?.length }
+            disabled={ getLocalStorage?.length !== filtroRepetItens?.length }
             onClick={ clickRedirect }
           >
             Finish Recipe
