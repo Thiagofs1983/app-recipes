@@ -2,6 +2,7 @@
   background-color: var(--secondaryBGColor);
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-evenly;
 }
 
 .header {
@@ -9,12 +10,12 @@
   background-color: var(--secondaryBGColor);
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
   left: 0;
   padding-top: 6px;
   position: fixed;
   top: 0;
-  width: 360px;
+  width: 100%;
 }
 
 .imgIcon {

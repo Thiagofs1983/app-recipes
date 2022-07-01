@@ -1,12 +1,13 @@
 .mainDrinks {
   background-color: var(--backgroundColor);
   padding-bottom: 30px;
-  width: 360px;
+  width: 100%;
 }
 
 .divCard {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-evenly;
   margin-bottom: 50px;
 }
 
