@@ -1,7 +1,7 @@
 # Projeto APP de Receitas
 
 # Contexto
-Projeto Front-End com o intúito de fazer um APP de receitas.
+Projeto Front-End em grupo com o intúito de fazer um APP de receitas.
 
 Nele será possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks!
 
