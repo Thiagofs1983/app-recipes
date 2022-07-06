@@ -7,7 +7,7 @@ Nele será possível ver, buscar, filtrar, favoritar e acompanhar o progresso de
 
 O layout tem como foco dispositivos móveis, então foi desenvolvido para telas menores.
 
-## Técnologias usadas
+## Tecnologias usadas
 
 Front-end:
 > Desenvolvido usando: React, React Router, React Hooks, Context API, CSS3, ES6
