@@ -168,3 +168,8 @@
   margin: 2px;
   padding: 5px;
 }
+
+.buttonRecipe:disabled {
+  background-color: var(--secondaryTXTColor);
+  color: var(--textColor);
+}
