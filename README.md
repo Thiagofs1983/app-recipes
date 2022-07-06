@@ -10,7 +10,7 @@ O layout tem como foco dispositivos móveis, então foi desenvolvido para telas 
 ## Técnologias usadas
 
 Front-end:
-> Desenvolvido usando: React, React Hooks, Context API, CSS3, ES6
+> Desenvolvido usando: React, React Router, React Hooks, Context API, CSS3, ES6
 
 ## Instalando Dependências
 
