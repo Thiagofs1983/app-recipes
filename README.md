@@ -16,7 +16,8 @@ Front-end:
 
 > Frontend
 ```bash
-cd sd-020-a-project-recipes-app/
+git clone git@github.com:Thiagofs1983/app-recipes.git
+cd app-recipes/
 npm install
 ``` 
 ## Executando aplicação
@@ -24,7 +25,7 @@ npm install
 * Para rodar o front-end:
 
   ```
-    cd sd-020-a-project-recipes-app/ && npm start
+    cd app-recipes/ && npm start
   ```
 
 ## Executando Testes
@@ -34,3 +35,5 @@ npm install
   ```
     npm test
   ```
+  
+  [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" height='30'>](https://www.linkedin.com/in/fsthiago/)
